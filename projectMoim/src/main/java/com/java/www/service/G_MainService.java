@@ -47,9 +47,12 @@ public class G_MainService implements Service {
 			}
 		} else {
 			search = request.getParameter("g_srch");
-			if(request.getParameter("g_srch").equals("검색어를 입력하세요")) {
-				search=null;
+			if(search!=null) {
+				if(search.equals("검색어를 입력하세요")) {
+					search=null;
+				}
 			}
+				
 			local = request.getParameter("local");
 			category = request.getParameter("category");
 		}
