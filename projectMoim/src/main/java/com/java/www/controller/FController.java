@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.www.service.G_MainService;
 import com.java.www.service.G_doSearchService;
 import com.java.www.service.Service;
 
@@ -35,10 +36,10 @@ public class FController extends HttpServlet {
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");
 			break;
-		case "/g_search.do":
-			service = new G_doSearchService();
+		case "/g_main.do":
+			service = new G_MainService();
 			service.execute(request, response);
-			url="g_search.jsp";
+			url="g_main.jsp";
 			break;		
 		
 		}

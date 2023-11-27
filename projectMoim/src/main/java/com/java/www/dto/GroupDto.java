@@ -6,6 +6,21 @@ public class GroupDto {
 
 	public GroupDto() {}
 	
+	public GroupDto(int g_id, String g_name, String g_intro, String g_content, String g_local, String g_category,
+			String g_file, String g_user_id, String g_member_id, int g_member_cnt, Timestamp g_date) {
+		this.g_id = g_id;
+		this.g_name = g_name;
+		this.g_intro = g_intro;
+		this.g_content = g_content;
+		this.g_local = g_local;
+		this.g_category = g_category;
+		this.g_file = g_file;
+		this.g_user_id = g_user_id;
+		this.g_member_id = g_member_id;
+		this.g_member_cnt = g_member_cnt;
+		this.g_date = g_date;
+	}
+
 	private int g_id;
 	private String g_name;
 	private String g_intro;
