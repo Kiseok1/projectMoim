@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.G_doSearchService;
+import com.java.www.service.P_InsertService;
+import com.java.www.service.P_SelectOneService;
+import com.java.www.service.P_listSelectService;
 import com.java.www.service.Service;
+import com.java.www.service.U_LoginService;
 
 
 
@@ -32,15 +36,42 @@ public class FController extends HttpServlet {
 		case "/main.do":
 			response.sendRedirect("main.jsp");
 			break;
-		case "/u_login.do":
-			response.sendRedirect("u_login.jsp");
+		case "/b_insert.do":
+			response.sendRedirect("b_insert.jsp");
 			break;
 		case "/g_search.do":
 			service = new G_doSearchService();
 			service.execute(request, response);
 			url="g_search.jsp";
+			break;
+			//게시글 리스트 가져오기
+		case "/b_list.do":
+			service = new P_listSelectService();
+			service.execute(request, response);
+			url="b_list.jsp";
 			break;		
-		
+		case "/b_view.do":
+			service = new P_SelectOneService();
+			System.out.println("컨트롤러 서비스:"+url);
+			service.execute(request, response);
+			url="b_view.jsp";
+			break;		
+		case "/do_insert.do":
+			service = new P_InsertService();
+			service.execute(request, response);
+			url="do_insert.jsp";
+			break;		
+		case "/u_login.do":
+			response.sendRedirect("u_login.jsp");
+			break;
+		case "/dologin.do":
+			service = new U_LoginService();
+			service.execute(request, response);
+			url="dologin.jsp";
+			break;		
+		case "/u_logout.do":
+			response.sendRedirect("u_logout.jsp");
+			break;
 		}
 		
 		if(url != null) {

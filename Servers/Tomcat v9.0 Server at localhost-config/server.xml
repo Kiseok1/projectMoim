@@ -170,15 +170,15 @@
       
       
       <Context docBase="c:/upload" path="/jsp1113/upload" reloadable="true"/>
-      <Context docBase="jsp1114" path="/jsp1114" reloadable="true" source="org.eclipse.jst.jee.server:jsp1114"/>
+      
       <Context docBase="c:/upload" path="/jsp1114/upload" reloadable="true"/>
-      <Context docBase="jsp1116" path="/jsp1116" reloadable="true" source="org.eclipse.jst.jee.server:jsp1116"/>
+      
       <Context docBase="c:/upload" path="/jsp1116/upload" reloadable="true"/>
-      <Context docBase="jsp1117" path="/jsp1117" reloadable="true" source="org.eclipse.jst.jee.server:jsp1117"/>
-      <Context docBase="c:/upload" path="/jsp1117/upload" reloadable="true"/><Context docBase="jsp1121" path="/jsp1121" reloadable="true" source="org.eclipse.jst.jee.server:jsp1121"/>
+      
+      <Context docBase="c:/upload" path="/jsp1117/upload" reloadable="true"/>
       <Context docBase="jsp1122" path="/jsp1122" reloadable="true" source="org.eclipse.jst.jee.server:jsp1122"/>
        <Context docBase="c:/upload" path="/simplePjt/upload" reloadable="true"/>
-      <Context docBase="project_frist" path="/project_frist" reloadable="true" source="org.eclipse.jst.jee.server:project_frist"/><Context docBase="samplePjt" path="/samplePjt" reloadable="true" source="org.eclipse.jst.jee.server:samplePjt"/>
+      <Context docBase="samplePjt" path="/samplePjt" reloadable="true" source="org.eclipse.jst.jee.server:samplePjt"/>
       <Context docBase="samplePjt2" path="/samplePjt2" reloadable="true" source="org.eclipse.jst.jee.server:samplePjt2"/>
        <Context docBase="c:/upload" path="/simplePjt2/upload" reloadable="true"/><Context docBase="projectMoim" path="/projectMoim" reloadable="true" source="org.eclipse.jst.jee.server:projectMoim"/></Host>
       
