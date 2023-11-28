@@ -35,11 +35,11 @@ public class G_quitService implements Service {
 		//탈퇴자 분리
 		g_member_id="";
 		for(int i=0;i<member_id.length;i++) {
-			if(member_id[i]!=u_id && g_member_id=="" ) {
+			if(!member_id[i].equals(u_id) && g_member_id=="" ) {
 				g_member_id=member_id[i];
 				System.out.println(member_id[i]+","+u_id);
 				
-			} else if (member_id[i]!=u_id && g_member_id!="") {
+			} else if (!member_id[i].equals(u_id) && g_member_id!="") {
 				g_member_id += ","+member_id[i];
 				System.out.println(member_id[i]+","+u_id);
 			}
@@ -61,7 +61,7 @@ public class G_quitService implements Service {
 		//탈퇴모임 분리
 		u_gId="";
 		for(int i=0;i<u_gIds.length;i++) {
-			if(u_gIds[i]!=g_id) {
+			if(!u_gIds[i].equals(g_id)) {
 				if(u_gId=="") u_gId=u_gIds[i];
 				else u_gId += ","+u_gIds[i];
 			}

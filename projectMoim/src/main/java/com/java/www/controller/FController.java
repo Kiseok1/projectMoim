@@ -16,6 +16,7 @@ import com.java.www.service.G_quitService;
 import com.java.www.service.G_viewService;
 import com.java.www.service.Service;
 import com.java.www.service.U_LoginService;
+import com.java.www.service.U_insertService;
 
 
 
@@ -68,6 +69,11 @@ public class FController extends HttpServlet {
 			service = new G_quitService();
 			service.execute(request, response);
 			url="g_quit.jsp";
+			break;		
+		case "/u_DoInsert.do":
+			service = new U_insertService();
+			service.execute(request, response);
+			url="u_DoInsert.jsp";
 			break;		
 		
 		}
