@@ -47,21 +47,20 @@ public class GroupDao {
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, search);
 				pstmt.setString(2, search);
-				
-			} else if(local != null && category != null) {
-				
-				query="select * from groups where g_local=? and g_category like '%'||?||'%'";
-				pstmt=conn.prepareStatement(query);
-				pstmt.setString(1, local);
-				pstmt.setString(2, category);
-			} else if(local != null && category == null) {
-				query="select * from groups where g_local=? ";
-				pstmt=conn.prepareStatement(query);
-				pstmt.setString(1, local);
-			} else if(local == null && category != null) {
-				query="select * from groups where g_category like '%'||?||'%'";
-				pstmt=conn.prepareStatement(query);
-				pstmt.setString(1, category);
+//			} else if(local != null && category != null) {
+//				query="select * from groups where g_local=? and g_category like '%'||?||'%'";
+//				pstmt=conn.prepareStatement(query);
+//				pstmt.setString(1, local);
+//				pstmt.setString(2, category);
+//			} else if(local != null && category == null) {
+//				query="select * from groups where g_local=? ";
+//				System.out.println("dao local : "+local);
+//				pstmt=conn.prepareStatement(query);
+//				pstmt.setString(1, local);
+//			} else if(local == null && category != null) {
+//				query="select * from groups where g_category like '%'||?||'%'";
+//				pstmt=conn.prepareStatement(query);
+//				pstmt.setString(1, category);
 			} else {
 				query="select * from groups";
 				pstmt=conn.prepareStatement(query);
@@ -95,5 +94,89 @@ public class GroupDao {
 			}
 		}
 		return list;
+	}//selectSearch
+
+	//모임 선택
+	public GroupDto selectOne(String g_id2) {
+		try {
+			conn=getConnection();
+			query="select * from groups where g_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_id2);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				g_id=rs.getInt("g_id");
+				g_member_cnt=rs.getInt("g_member_cnt");
+				g_name=rs.getString("g_name");
+				g_intro=rs.getString("g_intro");
+				g_content=rs.getString("g_content");
+				g_local=rs.getString("g_local");
+				g_category=rs.getString("g_category");
+				g_file=rs.getString("g_file");
+				g_user_id=rs.getString("g_user_id");
+				g_member_id=rs.getString("g_member_id");
+				g_date=rs.getTimestamp("g_date");
+				
+				gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return gdto;
+	}//selectOne
+
+	//회원가입
+	public int join(String g_member_id2, String g_id2) {
+		try {
+			conn=getConnection();
+			query="update groups set g_member_id=? where g_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_member_id2);		
+			pstmt.setString(2, g_id2);		
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
 	}
+
+	//모임 탈퇴
+	public int quitGroup(String g_member_id2, String g_id2) {
+		try {
+			conn=getConnection();
+			query="update groups set g_member_id=? where g_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_member_id2);		
+			pstmt.setString(2, g_id2);		
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}//quitGroup
 }

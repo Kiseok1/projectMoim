@@ -21,12 +21,13 @@
 						$("#g_srch").focus();
 						return false;
 					}
+					$("#g_srch").val();
 					sFrm.submit();
 				});//sBtn click
 				
 				//필터
 				$("#fBtn").click(function(){
-					
+					$("#g_srch").val();
 					sFrm.submit();
 				});//sBtn click
 			});//jquery
@@ -34,7 +35,7 @@
 	</head>
 	<body>
 		<form name="sFrm" method="post" action="g_main.do">
-			<input type="text" name="g_srch" id="g_srch" value="검색어를 입력하세요"> 
+			<input type="text" name="g_srch" id="g_srch" placeholder="검색어를 입력하세요"> 
 			<input type="button" id="sBtn" value="확인">
 		<br>
 		<h4>필터(모달)</h4>
@@ -88,7 +89,7 @@
 		<ul>
 			<c:forEach items="${list}" var="gdto">
 				<div>
-					모임명 : ${gdto.g_name}
+					모임명 : <a href="g_view.do?g_id=${gdto.g_id}">${gdto.g_name}</a>
 				</div>
 			</c:forEach>
 		</ul>

@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.G_MainService;
 import com.java.www.service.G_doSearchService;
+import com.java.www.service.G_joinService;
+import com.java.www.service.G_quitService;
+import com.java.www.service.G_viewService;
 import com.java.www.service.Service;
+import com.java.www.service.U_LoginService;
 
 
 
@@ -36,10 +40,33 @@ public class FController extends HttpServlet {
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");
 			break;
+		case "/dologin.do":
+			service = new U_LoginService();
+			service.execute(request, response);
+			url="dologin.jsp";
+			break;		
+		case "/u_logout.do":
+			response.sendRedirect("u_logout.jsp");
+			break;
 		case "/g_main.do":
 			service = new G_MainService();
 			service.execute(request, response);
 			url="g_main.jsp";
+			break;		
+		case "/g_view.do":
+			service = new G_viewService();
+			service.execute(request, response);
+			url="g_view.jsp";
+			break;		
+		case "/g_join.do":
+			service = new G_joinService();
+			service.execute(request, response);
+			url="g_join.jsp";
+			break;		
+		case "/g_quit.do":
+			service = new G_quitService();
+			service.execute(request, response);
+			url="g_quit.jsp";
 			break;		
 		
 		}

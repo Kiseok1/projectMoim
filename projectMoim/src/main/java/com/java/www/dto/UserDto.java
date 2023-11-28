@@ -20,6 +20,23 @@ public class UserDto {
 		this.u_date = u_date;
 	}
 
+	
+
+
+	public UserDto(String u_id, String u_pw, String u_nickname, String u_email, String u_category, String u_local,
+			String u_profileImg, String g_id, Timestamp u_date) {
+		this.u_id = u_id;
+		this.u_pw = u_pw;
+		this.u_nickname = u_nickname;
+		this.u_email = u_email;
+		this.u_category = u_category;
+		this.u_local = u_local;
+		this.u_profileImg = u_profileImg;
+		this.g_id = g_id;
+		this.u_date = u_date;
+	}
+
+
 
 
 	private String u_id;
@@ -29,6 +46,7 @@ public class UserDto {
 	private String u_category;
 	private String u_local;
 	private String u_profileImg;
+	private String g_id;
 	private Timestamp u_date;
 	
 	public String getU_id() {
@@ -72,6 +90,12 @@ public class UserDto {
 	}
 	public void setU_profileImg(String u_profileImg) {
 		this.u_profileImg = u_profileImg;
+	}
+	public String getG_id() {
+		return g_id;
+	}
+	public void setG_id(String g_id) {
+		this.g_id = g_id;
 	}
 	public Timestamp getU_date() {
 		return u_date;
