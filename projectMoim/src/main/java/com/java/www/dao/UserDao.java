@@ -19,7 +19,7 @@ public class UserDao {
 	ResultSet rs = null;
 	UserDto udto = null;
 	ArrayList<UserDto> list = new ArrayList<UserDto>();
-	String u_id,u_pw,u_nickname,u_email,u_category,u_local,u_profileImg,query="";
+	String u_id,u_pw,u_nickname,u_email,u_category,u_local,u_profileImg,g_id,query="";
 	Timestamp u_date;
 	int result;
 	
@@ -52,9 +52,10 @@ public class UserDao {
 				u_category=rs.getString("u_category");
 				u_local=rs.getString("u_local");
 				u_profileImg=rs.getString("u_profileImg");
+				g_id=rs.getString("g_id");
 				u_date=rs.getTimestamp("u_date");
 				
-				udto = new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, u_date);
+				udto = new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id, u_date);
 			}
 			
 		} catch (Exception e) {

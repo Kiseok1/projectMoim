@@ -29,6 +29,7 @@ public class FController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cPath = request.getContextPath();
 		String fileName = uri.substring(cPath.length());
+		System.out.println(fileName);
 		
 		String url = null;
 		Service service = null;

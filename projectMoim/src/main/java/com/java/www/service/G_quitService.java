@@ -16,8 +16,8 @@ public class G_quitService implements Service {
 		HttpSession session = request.getSession();
 		String g_id=request.getParameter("g_id");
 		String u_id = (String) session.getAttribute("session_id");
-		UserDao udao = null;
-		GroupDao gdao = null;
+		UserDao udao = new UserDao();
+		GroupDao gdao = new GroupDao();
 		String g_member_id;
 		String u_gId;
 		String[] member_id = null;
@@ -35,10 +35,13 @@ public class G_quitService implements Service {
 		//탈퇴자 분리
 		g_member_id="";
 		for(int i=0;i<member_id.length;i++) {
-			if(member_id[i]!=u_id) {
-				if(g_member_id=="") g_member_id=member_id[i];
-				else g_member_id += ","+member_id[i];
+			if(member_id[i]!=u_id && g_member_id=="" ) 
+				g_member_id=member_id[i];
+			else if (member_id[i]!=u_id && g_member_id!="") {
+				g_member_id += ","+member_id[i];
 			}
+			
+			System.out.println(g_member_id);
 		}//for
 		
 		//db에 수정된 member_id 저장
