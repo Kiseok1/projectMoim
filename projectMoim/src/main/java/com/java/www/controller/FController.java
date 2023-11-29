@@ -50,10 +50,13 @@ public class FController extends HttpServlet {
 		case "/u_logout.do":
 			response.sendRedirect("u_logout.jsp");
 			break;
+		case "/u_insert.do":
+			response.sendRedirect("u_insert.jsp");
+			break;
 		case "/g_main.do":
 			service = new G_MainService();
 			service.execute(request, response);
-			url="g_main.jsp";
+			url="initial.jsp";
 			break;		
 		case "/g_view.do":
 			service = new G_viewService();

@@ -41,7 +41,7 @@ public class IdCheck extends HttpServlet {
 		JSONObject jObj = new JSONObject(); //json배열안에 객체추가
 		jObj.put("result", result);
 		jArray.add(jObj);
-		System.out.println("json 타입 형태 : "+jArray.toString());
+		
 		
 		//------------
 		//response.setContentType("text/html; charset=utf-8");

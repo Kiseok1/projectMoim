@@ -25,10 +25,15 @@
 					sFrm.submit();
 				});//sBtn click
 				
+				//로그아웃 버튼
+				$("#logoutBtn").click(function(){
+					location.href="u_logout.do";
+				});
+				
 				//필터
 				$("#fBtn").click(function(){
 					$("#g_srch").val();
-					sFrm.submit();
+					fFrm.submit();
 				});//sBtn click
 			});//jquery
 		</script>
@@ -37,7 +42,8 @@
 		<form name="sFrm" method="post" action="g_main.do">
 			<input type="text" name="g_srch" id="g_srch" placeholder="검색어를 입력하세요"> 
 			<input type="button" id="sBtn" value="확인">
-		<br>
+		</form>	
+		<form name="fFrm" method="post" action="g_main.do">
 		<h4>필터(모달)</h4>
 		<h4>지역</h4>
 		<label for="서울">서울</label>
@@ -85,6 +91,9 @@
 		
 		<input type="button" id="fBtn" value="적용하기">
 		</form>
+		<c:if test="${session_id!=null}">
+		<input type="button" id="logoutBtn" value="로그아웃">
+		</c:if>
 		
 		<ul>
 			<c:forEach items="${list}" var="gdto">

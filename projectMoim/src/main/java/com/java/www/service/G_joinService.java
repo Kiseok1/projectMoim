@@ -22,7 +22,12 @@ public class G_joinService implements Service {
 		
 		UserDao udao = new UserDao();
 		UserDto udto = udao.selectOne(u_id);
-		u_gId = udto.getG_id()+","+g_id;
+		if(udto.getG_id()==null) {
+			u_gId = g_id;
+		} else {
+			u_gId = udto.getG_id()+","+g_id;
+		}	
+
 		System.out.println(u_gId);
 		uResult = udao.join(u_gId,u_id);
 

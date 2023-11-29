@@ -77,7 +77,7 @@
 	<body>
 		<div>
 			<h1>회원가입</h1>
-			<form name="mFrm" method="post" action="u_DoInsert.do">
+			<form name="mFrm" method="post" action="u_DoInsert.do" enctype="multipart/form-data">
 				<table>
 					<tr>
 						<th>아이디</th>
@@ -93,6 +93,12 @@
 					<tr>
 						<th>닉네임</th>
 						<td><input type="text" name="nickname" id="nickname"></td>
+					</tr>
+					<tr>
+						<th>프로필 사진</th>
+						<td>
+							<input type="file" name="u_profileImg" id="u_profileImg">
+						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
@@ -121,7 +127,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th>취미</th>
+						<th>관심 카테고리</th>
 						<td>
 							<input type="checkbox" name="category" id="culture" value="culture">
 							<label for="culture">문화/예술</label>

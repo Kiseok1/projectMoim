@@ -37,11 +37,11 @@ public class G_quitService implements Service {
 		for(int i=0;i<member_id.length;i++) {
 			if(!member_id[i].equals(u_id) && g_member_id=="" ) {
 				g_member_id=member_id[i];
-				System.out.println(member_id[i]+","+u_id);
+				
 				
 			} else if (!member_id[i].equals(u_id) && g_member_id!="") {
 				g_member_id += ","+member_id[i];
-				System.out.println(member_id[i]+","+u_id);
+				
 			}
 			
 			System.out.println(g_member_id);

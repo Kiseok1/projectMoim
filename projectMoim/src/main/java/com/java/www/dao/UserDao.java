@@ -212,4 +212,36 @@ public class UserDao {
 		}
 		return udto;
 	}// idCheck
+
+	//회원가입
+	public int insert(UserDto udto2) {
+		try {
+			conn=getConnection();
+			query="insert into users (u_id,u_pw,u_nickname,u_email,u_local,u_category,u_profileImg,u_date)"
+					+ "values (?,?,?,?,?,?,?, sysdate)";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, udto2.getU_id());
+			pstmt.setString(2, udto2.getU_pw());
+			pstmt.setString(3, udto2.getU_nickname());
+			pstmt.setString(4, udto2.getU_email());
+			pstmt.setString(5, udto2.getU_local());
+			pstmt.setString(6, udto2.getU_category());
+			pstmt.setString(7, udto2.getU_profileImg());
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return result;
+	}
 }

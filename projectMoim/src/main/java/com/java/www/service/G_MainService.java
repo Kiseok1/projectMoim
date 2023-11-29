@@ -19,7 +19,7 @@ public class G_MainService implements Service {
 		String id=null;
 		String search = null;
 		String local = null;
-		String[] categorys = null;
+		String[] categorys = request.getParameterValues("category");
 		String category = null;
 		UserDao udao = new UserDao();
 		UserDto udto = null;
@@ -27,42 +27,27 @@ public class G_MainService implements Service {
 		if(session.getAttribute("session_id")!=null) {
 			id = (String) session.getAttribute("session_id");
 		}
+		if(categorys!=null) {
+			for(int i=0;i<categorys.length;i++) {
+				if(i==0) category=categorys[i];
+				else category += ","+categorys[i];
+			}
+		}
+		local = request.getParameter("local");
+		search=request.getParameter("g_srch");
+		
 		//로그인시
 		if(id!=null) {
 			udto = udao.selectOne(id);
-			
-			if(request.getParameter("g_srch")!="" && request.getParameter("g_srch")!=null) {
-				search = request.getParameter("g_srch"); //검색어 있을 경우 : 검색어 / 없을 경우 : null
-				System.out.println("service : "+search);
-			} 
-			
-			//필터 나중에 구현
-//			if(request.getParameter("local")!=null) {
-//				local = request.getParameter("local"); //필터local이 있을 경우 : 검색한 지역
-//			} else {
-//				local = udto.getU_local();             //필터local이 null일 경우 : 회원정보 지역
-//			}
-//			
-//			if(request.getParameter("category")!=null) {
-//				
-//				category = request.getParameter("category"); //필터category 있을 경우 : 검색한 카테고리
-//			} else {
-//				
-//				category = udto.getU_category();             //필터category null일 경우 : 회원정보 카테고리
-//			}
-		} else {  //로그아웃된 상황
-			search = request.getParameter("g_srch");   
-			
-			
-				
-//			local = request.getParameter("local");
-//			category = request.getParameter("category");
-		}
+			if(search==null&&local==null&&category==null) {
+				local=udto.getU_local();
+				category=udto.getU_category();
+			}
+		} 
 		
-		
-//		System.out.println("service : "+search);
-//		System.out.println("service : "+local);
-//		System.out.println("service : "+category);
+		System.out.println("service search : "+search);
+		System.out.println("service local : "+local);
+		System.out.println("service category : "+category);
 		
 		
 		GroupDao gdao = new GroupDao();
