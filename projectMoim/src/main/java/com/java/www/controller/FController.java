@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.G_doSearchService;
+import com.java.www.service.P_DeleteService;
 import com.java.www.service.P_InsertService;
+import com.java.www.service.P_ReplyService;
 import com.java.www.service.P_SelectOneService;
+import com.java.www.service.P_UpdateService;
 import com.java.www.service.P_listSelectService;
 import com.java.www.service.Service;
 import com.java.www.service.U_LoginService;
@@ -31,6 +34,10 @@ public class FController extends HttpServlet {
 		
 		String url = null;
 		Service service = null;
+		
+		//호출된 파일이름
+		System.out.println("FController 파일 이름 :"+fileName);
+		
 		
 		switch (fileName) {
 		case "/main.do":
@@ -52,14 +59,28 @@ public class FController extends HttpServlet {
 			break;		
 		case "/b_view.do":
 			service = new P_SelectOneService();
-			System.out.println("컨트롤러 서비스:"+url);
 			service.execute(request, response);
 			url="b_view.jsp";
 			break;		
+		case "/b_reply.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_reply.jsp";
+			break;		
+		case "/do_Reply.do":
+			service = new P_ReplyService();
+			service.execute(request, response);
+			url="do_Reply.jsp";
+			break;
 		case "/do_insert.do":
 			service = new P_InsertService();
 			service.execute(request, response);
 			url="do_insert.jsp";
+			break;
+		case "/do_update.do":
+			service = new P_UpdateService(); //아이디 사용 
+			service.execute(request, response);
+			url="do_update.jsp";
 			break;		
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");
@@ -68,6 +89,16 @@ public class FController extends HttpServlet {
 			service = new U_LoginService();
 			service.execute(request, response);
 			url="dologin.jsp";
+			break;
+		case "/do_Delete.do":
+			service = new P_DeleteService();
+			service.execute(request, response);
+			url="do_Delete.jsp";
+			break;
+		case "/b_update.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_update.jsp";
 			break;		
 		case "/u_logout.do":
 			response.sendRedirect("u_logout.jsp");

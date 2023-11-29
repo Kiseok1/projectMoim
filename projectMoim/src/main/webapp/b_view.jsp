@@ -11,7 +11,20 @@ margin-right:auto; line-height: 40px;
  border-collapse: collapse; border: 1px solid silver;
   border-top: 2px solid black;}
   tr{border-top:1px solid black;}
+  .files{width: 500px; height: 300px;} 
+  button{float: right; margin-right:30px;}
 </style>
+ <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(function(){
+		$("#deleteBtn").click(function(){
+			if(confirm("게시글을 삭제하시겠습니까?")){
+				location.href="do_Delete.do?b_no=${bdto.b_no}";
+			}
+			
+		});//
+	});//
+</script>
 	<head>
 	<meta charset="UTF-8">
 		<title>게시글</title>
@@ -21,23 +34,32 @@ margin-right:auto; line-height: 40px;
 		<h1>ㅁㅁ소모임 게시판 </h1>
 		<table>
 			<tr>
-				<th><strong>제목</strong><span>|</span>${bdto.b_title}<th>
+				<td><strong>제목</strong><span>|</span>${bdto.b_title}</td>
 			</tr>
 			<tr>
-				<th><strong>날짜</strong><span>|</span><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/><th>
+				<td><strong>날짜</strong><span>|</span><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/></td>
 			</tr>
 			<tr>
-				<th><strong>작성자</strong><span>|</span>${bdto.u_nicname}<th>
+				<td><strong>작성자</strong><span>|</span>${bdto.u_nicname}</td>
 			</tr>
 			<tr>
-				<th id="b_contents">${bdto.b_content}<th>
+				<td id="b_contents">${bdto.b_content}</td>
 			</tr>
-			
-			
-			
-				
-				
-			</tbody>
+			<td class="files">
+				<img src="upload/${bdto.b_file}" alt="" width=50%>
+			</td>
 		</table>
+		<tr>
+			<a href="b_list.do"><button type="button">게시판</button></a>
+		</tr>
+		<tr>
+			<a href="b_reply.do?b_no=${bdto.b_no}"><button type="button">답글달기</button></a>
+		</tr>
+		<tr>
+			<button type="button" id="deleteBtn">삭제</button></a>
+		</tr>
+		<tr>
+			<a href="b_update.do?b_no=${bdto.b_no}"><button type="button">글수정</button></a>
+		</tr>
 	</body>
 </html>

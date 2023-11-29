@@ -8,7 +8,10 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import org.apache.catalina.connector.Request;
 
 import com.java.www.dto.BoardDto;
 
@@ -20,7 +23,7 @@ public class BoardDao {
 	BoardDto bdto = null;
 	ArrayList<BoardDto> list = new ArrayList<BoardDto>();
 	int b_no,b_group,b_step,b_indent,b_hit,result,listCount;
-	String b_title,b_content,u_nicname,b_file,query="",g_id ;
+	String b_title,b_content,u_nicname,b_file,query="",g_id,u_id;
 	Timestamp b_date;
 	
 	//getConnection
@@ -81,7 +84,6 @@ public class BoardDao {
 		try {
 			conn = getConnection();
 			query = "select * from p_board where b_no=?";
-			System.out.println("selectOne Bno:" +b_no);
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, b_no2);
 			rs = pstmt.executeQuery();
@@ -117,12 +119,15 @@ public class BoardDao {
 	//게시글 저장 메소드 (작성)
 	public int insert(BoardDto bdto2) {
 		try {
+			
 			conn = getConnection();
-			query = "insert into p_board values(p_board_seq.nextval,?,?,sysdate,board_seq.currval,0,0,1,?)";
+			query = "insert into p_board (b_no,b_title,b_content,u_nicname,u_id,b_group,b_step,b_indent,b_hit,b_file,b_date) values(p_board_seq.nextval,?,?,?,?,p_board_seq.currval,0,0,1,?,sysdate)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bdto2.getB_title());
 			pstmt.setString(2, bdto2.getB_content());
-			pstmt.setString(3, bdto2.getB_file());
+			pstmt.setString(3, bdto2.getU_nicname());
+			pstmt.setString(4, bdto2.getU_id());
+			pstmt.setString(5, bdto2.getB_file());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -138,4 +143,102 @@ public class BoardDao {
 		
 		return result;
 	}
+
+	//게시글 수정 메소드	
+	public int update(BoardDto bdto2) {
+		
+		try {
+		  conn = getConnection();
+		  query = "update p_board set b_title=?,b_content=?,b_file=? where b_no=?";
+		  pstmt = conn.prepareStatement(query);
+		  pstmt.setString(1, bdto2.getB_title());
+		  pstmt.setString(2, bdto2.getB_content());
+		  pstmt.setString(3, bdto2.getB_file());
+		  pstmt.setInt(4, bdto2.getB_no());
+		  result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}	
+		System.out.println("dao file:"+bdto2.getB_file());
+		return result;
+	}
+	//게시글 삭제
+	public int delete(int b_no2) {
+		try {
+			conn = getConnection();
+			query = "delete p_board where b_no = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}	
+		return result;
+	}
+	
+	//step 1씩 증가 메소드
+	public void stepUp(int b_group2, int b_step2) {
+		try {
+			conn = getConnection();
+			query = "update p_board set b_step = b_step+1 where b_group=? and b_step=?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_group2);
+			pstmt.setInt(2, b_step2);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+	}//stepUp
+	//답글 저장 메소드
+	public int replyInsert(BoardDto bdto2) {
+		try {
+			
+			conn = getConnection();
+			query = "insert into p_board (b_no,b_title,b_content,u_nicname,u_id,b_group,b_step,b_indent,b_hit,b_file,b_date) values(p_board_seq.nextval,?,?,?,?,?,?,?,1,?,sysdate)";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1,bdto2.getB_title());
+			pstmt.setString(2,bdto2.getB_content());
+			pstmt.setString(3,bdto2.getU_nicname());
+			pstmt.setString(4,bdto2.getU_id());
+			pstmt.setInt(5,bdto2.getB_group());
+			pstmt.setInt(6,bdto2.getB_step()+1);
+			pstmt.setInt(7,bdto2.getB_indent()+1);
+			pstmt.setString(8,bdto2.getB_file());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return result;
+	}
+		
+		
+		
 }
