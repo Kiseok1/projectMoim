@@ -41,13 +41,35 @@ public class BoardDao {
 	}//getConnection
 	
 	//게시글 가져오기 - select 
-	public ArrayList<BoardDto> p_listSelect() {
+	public ArrayList<BoardDto> p_listSelect(String category, String sword, int startRow, int endRow) {
 		
 		try {
 			conn = getConnection();
-			query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum between 1 and 10";
-			
-			pstmt = conn.prepareStatement(query);
+			if(category==null) {
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum between ? and ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, startRow);
+				pstmt.setInt(2, endRow);
+			}else if(category.equals("all")) {
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from p_board a where b_title like  '%'||?||'%' or b_content like '%'||?||'%')where rnum between ? and ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				pstmt.setString(2, sword);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
+			}else if(category.equals("btitle")) {
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from p_board a where b_title like  '%'||?||'%') where rnum between ? and ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			}else {
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from p_board a where b_content like '%'||?||'%')where rnum between ? and ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
+			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				b_no = rs.getInt("b_no");
@@ -238,7 +260,132 @@ public class BoardDao {
 		}//
 		return result;
 	}
+	//검색한 게시글 가져오기 
+	public int pListCount(String category, String sword) {
+		try {
+			conn = getConnection();
+			//검색을 안할때
+			if(category == null) {
+				query = "select count(*) listCount from p_board";
+				pstmt = conn.prepareStatement(query);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					listCount = rs.getInt("listCount");
+				}//next
+				//전체  검색
+			}else if (category.equals("all")) {
+				query = "select count(*) listCount from p_board where b_title like '%'||?||'%' or b_content like '%'||?||'%' ";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				pstmt.setString(2, sword);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					listCount = rs.getInt("listCount");
+				}
+				//제목검색
+			}else if (category.equals("btitle")) {
+				query = "select count(*) listCount from p_board where b_title like '%'||?||'%'";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					listCount = rs.getInt("listCount");
+				}
+				//내용 검색
+			}else {
+				query = "select count(*) listCount from p_board where b_content like '%'||?||'%' ";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, sword);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					listCount = rs.getInt("listCount");
+				}
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
 		
+		return listCount;
+	}
+	//이전글 가져오기
+	public BoardDto preSelectOne(int b_no2) {
+		
+		try {
+			conn = getConnection();
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)+1";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				b_no = rs.getInt("b_no");
+				b_title = rs.getString("b_title");
+				b_content = rs.getString("b_content");
+				u_nicname = rs.getString("u_nicname");
+				g_id = rs.getString("g_id");
+				b_group = rs.getInt("b_group");
+				b_step = rs.getInt("b_step");
+				b_indent = rs.getInt("b_indent");
+				b_hit = rs.getInt("b_hit");
+				b_file = rs.getString("b_file");
+				b_date = rs.getTimestamp("b_date");
+				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		
+		return bdto;
+	}
+	//다음글 가져오기
+	public BoardDto nextSelectOne(int b_no2) {
+		try {
+			conn = getConnection();
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)-1";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				b_no = rs.getInt("b_no");
+				b_title = rs.getString("b_title");
+				b_content = rs.getString("b_content");
+				u_nicname = rs.getString("u_nicname");
+				g_id = rs.getString("g_id");
+				b_group = rs.getInt("b_group");
+				b_step = rs.getInt("b_step");
+				b_indent = rs.getInt("b_indent");
+				b_hit = rs.getInt("b_hit");
+				b_file = rs.getString("b_file");
+				b_date = rs.getTimestamp("b_date");
+				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		
+		return bdto;
+	}
+
 		
 		
 }

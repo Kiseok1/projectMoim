@@ -6,12 +6,12 @@
 <html>
 <style>
 section{text-align: center;}
-table{width:96%; margin-top:100px; margin-left:auto; 
+table{width:80%; margin-top:100px; margin-left:auto; 
 margin-right:auto; line-height: 40px;
  border-collapse: collapse; border: 1px solid silver;
   border-top: 2px solid black;}
-  tr{border-top:1px solid black;}
-  .files{width: 500px; height: 300px;} 
+ tr{border-top:1px solid black;}
+  img{width: 500px; height: 200px;}		
   button{float: right; margin-right:30px;}
 </style>
  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -45,9 +45,32 @@ margin-right:auto; line-height: 40px;
 			<tr>
 				<td id="b_contents">${bdto.b_content}</td>
 			</tr>
-			<td class="files">
-				<img src="upload/${bdto.b_file}" alt="" width=50%>
-			</td>
+			<tr class="files">
+				<td class="imgbox">
+					<img src="upload/${bdto.b_file}">
+				</td>
+			</tr>
+			<tr>
+				<c:if test="${preDto.b_no==bdto.b_no}">
+				<td><strong>이전글</strong><span>|</span>
+				이전글이 없습니다.</td>
+				</c:if>
+				<c:if test="${preDto.b_no!=null}">
+				<td><strong>이전글</strong><span>|</span>
+				<a href="b_view.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}1</a></td>
+				</c:if>
+			</tr>
+			<tr>
+			<c:if test="${nextDto.b_no==bdto.b_no}">
+				<td><strong>다음글</strong><span>|</span>
+				다음글이 없습니다.</td>
+			</c:if>
+			<c:if test="${nextDto.b_no!=null}">
+				<td><strong>다음글</strong><span>|</span>
+			<a href="b_view.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}2</a></td>
+			</c:if>
+			</tr>
+			
 		</table>
 		<tr>
 			<a href="b_list.do"><button type="button">게시판</button></a>
