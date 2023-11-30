@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.java.www.service.G_CreateService;
+import com.java.www.service.G_UpdateService;
 import com.java.www.service.G_doSearchService;
 import com.java.www.service.Service;
 
@@ -31,6 +33,16 @@ public class FController extends HttpServlet {
 		switch (fileName) {
 		case "/main.do":
 			response.sendRedirect("main.jsp");
+			break;
+		case "/g_create.do":
+			//service = new G_CreateService();
+			//service.execute(request, response);
+			url = "g_create.jsp";
+			break;
+		case "/g_update.do":
+			service = new G_UpdateService();
+			service.execute(request, response);
+			url = "g_update.jsp";
 			break;
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");

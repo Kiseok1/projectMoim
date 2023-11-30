@@ -3,9 +3,44 @@ package com.java.www.dto;
 import java.sql.Timestamp;
 
 public class GroupDto {
-
-	public GroupDto() {}
 	
+	public GroupDto() {}//기본생성자
+
+	public GroupDto(String g_name2, String g_local2, String g_intro2, String g_content2, int g_member_cnt2, String g_file2) {
+		this.g_name = g_name2;
+		this.g_intro = g_intro2;
+		this.g_content = g_content2;
+		this.g_local = g_local2;
+		this.g_file = g_file2;
+		this.g_member_cnt = g_member_cnt2;
+	}
+
+	public GroupDto(int g_id, String g_name, String g_intro, String g_content, String g_local, String g_file,
+			int g_member_cnt) {
+		this.g_id = g_id;
+		this.g_name = g_name;
+		this.g_intro = g_intro;
+		this.g_content = g_content;
+		this.g_local = g_local;
+		this.g_file = g_file;
+		this.g_member_cnt = g_member_cnt;
+	}
+
+	public GroupDto(int g_id, String g_name, String g_intro, String g_content, String g_local, String g_category,
+			String g_file, String g_user_id, String g_member_id, int g_member_cnt, Timestamp g_date) {
+		this.g_id = g_id;
+		this.g_name = g_name;
+		this.g_intro = g_intro;
+		this.g_content = g_content;
+		this.g_local = g_local;
+		this.g_category = g_category;
+		this.g_file = g_file;
+		this.g_user_id = g_user_id;
+		this.g_member_id = g_member_id;
+		this.g_member_cnt = g_member_cnt;
+		this.g_date = g_date;
+	}
+
 	private int g_id;
 	private String g_name;
 	private String g_intro;

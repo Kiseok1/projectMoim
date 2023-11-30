@@ -4,11 +4,12 @@
 	<html>
 		<head>
 			<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   			<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 			<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 			<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-			<link rel="stylesheet" type="text/css" href="css/g_create.css">
 			<link rel="stylesheet" type="text/css" href="css/g_update.css">
-			<title>모임개설페이지</title>
+			<title>모임수정페이지</title>
 		</head>
 			<style>
 			#map{width:500px; height:300px;}
@@ -82,7 +83,7 @@
 				<br>
 				<div class="continer-box">
 					<div class="box-group">
-						<p class="page-title">모임만들기</p> 
+						<p class="page-title">모임정보수정</p> 
 				<br>
 				<form class="innerbox">
 					<div class="toast">
@@ -92,7 +93,7 @@
 				<br>	
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
-						<input type="text" placeholder="모임명을 입력하세요." class="form-input"  maxlength="100">
+						<input type="text" placeholder="모임명을 수정하세요." name="lfrm" class="form-input" value="${gdto2.g_name }" maxlength="100">
 				</div>	
 				<br>
 				<br>
@@ -100,10 +101,10 @@
 					<label class="form-label2">지역</label>
 					<br>
 						<div class="select1">
-					 		<input type="text" id="location-text" name="location-text" placeholder="지역을 선택하세요.">
+					 		<input type="text" id="location-text" name="location-text" value="${gdto2.g_local }" placeholder="지역을 다시 선택하세요.">
 					 	<br>
 					 	<script>
-					 		$(function(){
+					 	 	$(function(){
 					 		 //지역입력
 					 			$("#location").change(function(){
 					 				if($("#location").val()==""){
@@ -134,14 +135,15 @@
 				<br>
 				<div class="form-group3">
 					<label class="form-label3">장소명</label>
-						 <input type="text" placeholder="장소명을 입력하세요." class="form-input3" maxlength="30">		
+						 <input type="text" placeholder="장소명을 수정하세요." name="lfrm" class="form-input3" maxlength="30">		
 				</div>
 				<div id="map">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6320.291871538852!2d126.91717979676459!3d37.62225488591868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9786122a4fb1%3A0x7174a0da38729d2b!2z7Jew7Iug64K07Jet!5e0!3m2!1sko!2skr!4v1701327670887!5m2!1sko!2skr" 
 				width="500px" height="300px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
 				</iframe>
 				</div>
-				<br>		
+				<br>	
+				<br>	
 				<div id="join_address">
 						<label for="">주소</label>
 				</div>		
@@ -150,12 +152,12 @@
 					<input type="button" id="postBtn" value="우편번호"/><div></div>
 					<input type="text" id="address1" name="address1" required readonly /><div></div>
 					<input type="text" id="address2" name="address2">		
-				</div>	
+				</div>					
 				<br>
 				<br>
 				<div class="form-group4">
 					<label class="form-label4">모임정원수</label>
-						 <input type="text" placeholder="인원수를 입력하세요.(예시:0)" class="form-input4" maxlength="30">		
+						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:0)" name="lfrm" class="form-input4" value="${gdto2.g_member_cnt }" maxlength="30">		
 				</div>
 				<br>
 				<br>
@@ -166,21 +168,21 @@
 							<div class="image_container">
 								<img src="images/1.jpg">
 							</div>
-						<script>
-					      function setThumbnail(event) {
-					        for (var image of event.target.files) {
-					          var reader = new FileReader();
-					
-					          reader.onload = function(event) {
-					            var img = document.createElement("img");
-					            img.setAttribute("src", event.target.result);
-					            document.querySelector("div#image_container").appendChild(img);
-					          };
-					
-					          console.log(image);
-					          reader.readAsDataURL(image);
-					        }
-					      }
+					<script>
+				      function setThumbnail(event) {
+				        for (var image of event.target.files) {
+				          var reader = new FileReader();
+				
+				          reader.onload = function(event) {
+				            var img = document.createElement("img");
+				            img.setAttribute("src", event.target.result);
+				            document.querySelector("div#image_container").appendChild(img);
+				          };
+				
+				          console.log(image);
+				          reader.readAsDataURL(image);
+				        }
+				      }
 					</script>
 				</div>
 				<br>
@@ -188,18 +190,16 @@
 				<br>
 				<br>
 				<br>
-				<br>
-				<br>
-				<br>
+				<br>		
 				<br>
 				<br>
 				<div class="form-group6">
-					<label class="form-label6">모임상세정보</label>	
+					<label class="form-label6">상세정보수정</label>	
 				<br>
 					<label class="form-label6">짧은소개글</label>
-					<textarea rows="3" cols="60" id="textarea"></textarea>	
+					<textarea rows="3" cols="60" name="lfrm" id="textarea">${gdto2.g_intro }</textarea>	
 					<label class="form-label6">긴소개글</label>
-					<textarea rows="6" cols="60" id="textarea"></textarea>	
+					<textarea rows="6" cols="60" name="lfrm" id="textarea">${gdto2.g_content }</textarea>	
 				</div>
 				<div></div>
 				<br>
@@ -213,7 +213,7 @@
 				<br>
 			<div class="form-group7">
 				<label class="form-label7">카카오톡오픈채팅</label>
-				 	<input type="text" placeholder="오픈채팅 링크정보를 입력하세요" class="form-input7" maxlength="30">		
+				 	<input type="text" placeholder="오픈채팅 링크정보를 입력하세요" name="lfrm" class="form-input7" maxlength="30">		
 			</div>
 			<br>
 			<br>
@@ -235,19 +235,18 @@
 			</div>
 			<br>
 			<br>
-			<form action="main.do" name="lfrm" method="post">
-				<div id="input-button">
-					<input type="reset" id="reset" value="취소하기">
-					<input type="submit" id="submit" value="모임만들기">
-				</div>
-			</form>
+				<form action="main.do" name="lfrm" method="post">
+					<div id="input-button">
+						<input type="reset" id="reset" value="취소하기">
+						<input type="submit" id="submit" value="수정하기">
+					</div>
+				</form>
 			<br>
 			<br>
-			<!-- <h1 class="select_name">추가 선택 입력 정보</h1>
+			<!--  ><h1 class="select_name">추가 선택 정보 수정</h1>
 				<div class="select_info">
-				
 			<br>
-			 <div id="join_interest">
+			<div id="join_interest">
 				<div class="join_div">
 					<label id="interest_name" for>관심사</label>				
 				</div>
@@ -304,7 +303,7 @@
 					</ul>
 				</div>
 			</div>
-		</div>-->
+		</div> -->
 			</form>
 		</div>
 	</div>
