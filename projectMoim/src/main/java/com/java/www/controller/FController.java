@@ -17,6 +17,8 @@ import com.java.www.service.G_viewService;
 import com.java.www.service.Service;
 import com.java.www.service.U_LoginService;
 import com.java.www.service.U_insertService;
+import com.java.www.service.U_mypageService;
+import com.java.www.service.U_selectOneService;
 
 
 
@@ -56,7 +58,7 @@ public class FController extends HttpServlet {
 		case "/g_main.do":
 			service = new G_MainService();
 			service.execute(request, response);
-			url="initial.jsp";
+			url="g_main1.jsp";
 			break;		
 		case "/g_view.do":
 			service = new G_viewService();
@@ -73,10 +75,20 @@ public class FController extends HttpServlet {
 			service.execute(request, response);
 			url="g_quit.jsp";
 			break;		
+		case "/u_mypage.do":
+			service = new U_mypageService();
+			service.execute(request, response);
+			url="u_mypage.jsp";
+			break;		
 		case "/u_DoInsert.do":
 			service = new U_insertService();
 			service.execute(request, response);
 			url="u_DoInsert.jsp";
+			break;		
+		case "/u_update.do":
+			service = new U_selectOneService();
+			service.execute(request, response);
+			url="u_update.jsp";
 			break;		
 		
 		}

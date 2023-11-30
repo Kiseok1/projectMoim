@@ -67,7 +67,7 @@ public class GroupDao {
 					list.add(new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date));
 				}	
 			} else if(search==null && local != null && category != null) {
-				query="select * from groups where g_local=? and g_category like '%'||?||'%'";
+				query="select * from groups where g_local=? or g_category like '%'||?||'%'";
 				pstmt=conn.prepareStatement(query);
 				pstmt.setString(1, local);
 				categorys=category.split(",");
@@ -90,7 +90,6 @@ public class GroupDao {
 						list.add(new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date));
 					}	
 				}
-				
 			} else if(search==null && local != null && category == null) {
 				query="select * from groups where g_local=? ";
 				System.out.println("dao local : "+local);
@@ -155,9 +154,6 @@ public class GroupDao {
 					list.add(new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date));
 				}	
 			}
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -255,4 +251,45 @@ public class GroupDao {
 		}
 		return result;
 	}//quitGroup
+
+	//가입된 모임 가져오기
+	public ArrayList<GroupDto> selectJoinGroup(String[] g_ids) {
+		try {
+			conn=getConnection();
+			for(int i=0;i<g_ids.length;i++) {
+				query="select * from groups where g_id=?";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setString(1, g_ids[i]);
+				rs=pstmt.executeQuery();
+				while(rs.next()) {
+					g_id=rs.getInt("g_id");
+					g_member_cnt=rs.getInt("g_member_cnt");
+					g_name=rs.getString("g_name");
+					g_intro=rs.getString("g_intro");
+					g_content=rs.getString("g_content");
+					g_local=rs.getString("g_local");
+					g_category=rs.getString("g_category");
+					g_file=rs.getString("g_file");
+					g_user_id=rs.getString("g_user_id");
+					g_member_id=rs.getString("g_member_id");
+					g_date=rs.getTimestamp("g_date");
+					
+					list.add(new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	
 }

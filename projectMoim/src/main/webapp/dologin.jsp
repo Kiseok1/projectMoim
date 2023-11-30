@@ -8,8 +8,8 @@
 	</head>
 	<body>
 		<script>
-			alert("로그인 되었습니디다.");
-			location.href="main.do";
+			alert("로그인 되었습니다.");
+			location.href="g_main.do";
 		</script>
 	
 	</body>

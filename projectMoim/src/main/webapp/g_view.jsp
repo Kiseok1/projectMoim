@@ -30,15 +30,30 @@
 				});//탈퇴 클릭
 			});//jquery
 		</script>
+		
 	</head>
 	<body>
+		<div id="header"></div>
+	
 		<c:set var="id" value="${session_id}" />
-		<h4>header</h4>
-		<h3>소개사진</h3>
+		<img src="upload/${gdto.g_file}" style="width:10%;">
 		<h3>${gdto.g_name}</h3>
 		<h5>가입자: ${gdto.g_member_cnt}명</h3>
 		<h4>${gdto.g_intro}</h4>
-		<h4>${gdto.g_content}</h4>
+		<div>${gdto.g_content}</div>
+		<h5>가입자</h5>
+		<c:forEach	items="${list}" var="u">
+			<div>
+				<c:if test="${admin==u.u_id}">
+					<img src="upload/${u.u_profileImg}" style="width:2%; border:1px solid red;">
+					<p>${u.u_id}</p>
+				</c:if>
+				<c:if test="${admin!=u.u_id}">
+					<img src="upload/${u.u_profileImg}" style="width:2%;">
+					<p>${u.u_id}</p>
+				</c:if>
+			</div>
+		</c:forEach>
 		
 		<!-- 가입자 -->
 		<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
@@ -59,6 +74,13 @@
 		<h5 id="jBtn">가입</h5>
 		</c:if>
 		<input type="button" onclick="javascript:history.back()" value="뒤로">
-	
+
+		<div id="footer"></div>	
+		<script>
+			$(function(){
+				$("#header").load("header.jsp");
+				$("#footer").load("footer.jsp");
+			})
+		</script>
 	</body>
 </html>

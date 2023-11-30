@@ -244,4 +244,44 @@ public class UserDao {
 		}
 		return result;
 	}
+
+	//모임 가입자 정보 가져오기
+	public ArrayList<UserDto> selectJoinUser(String[] joinUsers) {
+		try {
+			conn = getConnection();
+			for(int i=0;i<joinUsers.length;i++) {
+				query = "select * from users where u_id=?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, joinUsers[i]);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					u_id = rs.getString("u_id");
+					u_pw = rs.getString("u_pw");
+					u_nickname = rs.getString("u_nickname");
+					u_email = rs.getString("u_email");
+					u_category = rs.getString("u_category");
+					u_local = rs.getString("u_local");
+					u_profileImg = rs.getString("u_profileImg");
+					g_id = rs.getString("g_id");
+					u_date = rs.getTimestamp("u_date");
+					
+					list.add(new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id, u_date));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
 }
