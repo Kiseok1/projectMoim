@@ -8,6 +8,8 @@
 <head>
   <meta charset="UTF-8">
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="js/iziModal.min.js"></script>
+  <script src="js/iziModal.js"></script>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="imagetoolbar" content="no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,6 +55,9 @@
 			$("#g_srch").val();
 			fFrm.submit();
 		});//sBtn click
+		
+		
+		
 	});//jquery
   </script>
   <style>

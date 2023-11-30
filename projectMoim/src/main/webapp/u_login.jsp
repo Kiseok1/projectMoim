@@ -35,57 +35,8 @@
 </head>
 
 <body>
-  <!-- [S]basic-N2 -->
-  <div class="basic-N2" data-bid="lPLpjf5Kr1" id="">
-    <div class="header-inner">
-      <div class="header-container container-lg">
-        <h1 class="header-title">
-          <a href="javascript:void(0)">
-            <img src="resources/images/img_logo_black.png" alt="로고">
-          </a>
-        </h1>
-        <div class="header-right">
-          <div class="header-title header-mobile-top">
-            <a href="javascript:void(0)">
-              <img src="resources/images/img_logo_black.png" alt="로고">
-            </a>
-          </div>
-          <ul class="header-gnblist">
-            <li class="header-gnbitem">
-              <a class="header-gnblink" href="javascript:void(0)">
-                <span>HOME</span>
-              </a>
-            </li>
-            <li class="header-gnbitem">
-              <a class="header-gnblink" href="javascript:void(0)">
-                <span>회원가입</span>
-              </a>
-            </li>
-            <li class="header-gnbitem">
-              <a class="header-gnblink" href="javascript:void(0)">
-                <span>로그인</span>
-              </a>
-            </li>
-            <li class="header-gnbitem">
-              <a class="header-gnblink" href="javascript:void(0)">
-                <span>공지사항</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="header-utils">
-          <button class="btn-momenu">
-            <img src="resources/icons/ico_menu_black.svg" alt="모바일메뉴 아이콘">
-          </button>
-          <button class="btn-close">
-            <img src="resources/icons/ico_close_black.svg" alt="닫기 아이콘">
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="header-dim"></div>
-  </div>
-  <!-- [E]basic-N2 -->
+  
+  <div id="header"></div>
   <main class="th-layout-main ">
     <!-- [S]basic-N37 -->
     <div class="basic-N37" data-bid="SqLPkH07cN" id="">
@@ -211,3 +162,8 @@
   <script src="resources/js/common.js"></script>
   <script src="resources/js/script.js"></script>
 </body>
+		<script>
+			$(function(){
+				$("#header").load("header.jsp");
+			})
+		</script>
