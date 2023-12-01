@@ -30,50 +30,61 @@
 				});//탈퇴 클릭
 			});//jquery
 		</script>
+		<style>
+			.gview_cont{margin-left: 300px; width: 1000px;}
+			.memImg{display:inline-block;}
+			p{text-align: center;}
+		</style>
 		
 	</head>
 	<body>
 		<div id="header"></div>
 	
 		<c:set var="id" value="${session_id}" />
-		<img src="upload/${gdto.g_file}" style="width:10%;">
-		<h3>${gdto.g_name}</h3>
-		<h5>가입자: ${gdto.g_member_cnt}명</h3>
-		<h4>${gdto.g_intro}</h4>
-		<div>${gdto.g_content}</div>
-		<h5>가입자</h5>
-		<c:forEach	items="${list}" var="u">
-			<div>
-				<c:if test="${admin==u.u_id}">
-					<img src="upload/${u.u_profileImg}" style="width:2%; border:1px solid red;">
-					<p>${u.u_id}</p>
-				</c:if>
-				<c:if test="${admin!=u.u_id}">
-					<img src="upload/${u.u_profileImg}" style="width:2%;">
-					<p>${u.u_id}</p>
-				</c:if>
-			</div>
-		</c:forEach>
 		
-		<!-- 가입자 -->
-		<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
-		<h3>게시판 링크</h3>	
-		<h3>사진첩 링크</h3>	
-		<h5 id="qBtn">탈퇴</h5>
-		</c:if>
-		<!-- 운영자 -->
-		<c:if test="${session_id!=null && fn:contains(gdto.g_user_id,id)}">
-		<h5><a href="g_admin">관리페이지</a></h5>
-		</c:if>
-		<!-- 비가입자(로그인) -->
-		<c:if test="${not fn:contains(gdto.g_member_id,id)}">
-		<h5 id="jBtn">가입</h5>
-		</c:if>
-		<!-- 비가입자(비로그인) -->
-		<c:if test="${session_id==null}">
-		<h5 id="jBtn">가입</h5>
-		</c:if>
-		<input type="button" onclick="javascript:history.back()" value="뒤로">
+		<div class="gview_cont">
+			<img src="upload/${gdto.g_file}" style="height:200px;">
+			<h3>${gdto.g_name}</h3>
+			<h5>가입자: ${gdto.g_member_cnt}명</h3>
+			<h4>${gdto.g_intro}</h4>
+			<div>${gdto.g_content}</div>
+			<h5>가입자</h5>
+				<div>
+					<c:forEach	items="${list}" var="u">
+						<c:if test="${admin==u.u_id}">
+							<div class="memImg">
+								<img src="upload/${u.u_profileImg}" style="width:50px; height:50px; border:1px solid red; border-radius: 50%;">
+								<p>${u.u_id}</p>
+							</div>
+						</c:if>
+						<c:if test="${admin!=u.u_id}">
+							<div class="memImg">
+								<img src="upload/${u.u_profileImg}" style="width:50px; height:50px; border-radius: 50%;" >
+								<p>${u.u_id}</p>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+			<!-- 가입자 -->
+			<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
+			<h5>게시판 링크</h5>	
+			<h5>사진첩 링크</h5>	
+			<h5 id="qBtn">탈퇴</h5>
+			</c:if>
+			<!-- 운영자 -->
+			<c:if test="${session_id!=null && fn:contains(gdto.g_user_id,id)}">
+			<h5><a href="g_admin">관리페이지</a></h5>
+			</c:if>
+			<!-- 비가입자(로그인) -->
+			<c:if test="${not fn:contains(gdto.g_member_id,id)}">
+			<h5 id="jBtn">가입</h5>
+			</c:if>
+			<!-- 비가입자(비로그인) -->
+			<c:if test="${session_id==null}">
+			<h5 id="jBtn">가입</h5>
+			</c:if>
+			<input type="button" onclick="javascript:history.back()" value="뒤로">
+		</div>
 
 		<div id="footer"></div>	
 		<script>
