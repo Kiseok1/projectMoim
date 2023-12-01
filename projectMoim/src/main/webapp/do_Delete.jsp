@@ -9,7 +9,7 @@
 	<body>
 		<script>
 			alert("글을 삭제하였습니다.");
-			location.href="b_list.do";
+			location.href="b_list.do?page=${page}&category=${category}&sword=${sword}";
 		</script>
 	
 	</body>

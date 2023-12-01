@@ -22,6 +22,9 @@ margin-right:auto; line-height: 40px;
   #wBtn{float: right; margin-right: 100px; margin-top:50px; width:135px; height: 50px; font-size:20px;
   font-family: 'Noto Sans KR', sans-serif;
   }
+  #lBtn{float: right; margin-right: 100px; margin-top:50px; width:135px; height: 50px; font-size:20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  }
  .page-num {
   margin-top: 15px;
 }
@@ -79,6 +82,10 @@ select, div, button {
 			}
 		searchFrm.submit();
 		});//sBtn
+		$("#lBtn").click(function(){
+			alert("게시판의 1페이지로 돌아갑니다.")
+			location.href="b_list.do";
+		});//
 	});//
 
 </script>
@@ -158,6 +165,7 @@ select, div, button {
 		
 		
 		<button type="button" id="wBtn">쓰기</button>
+		<button type="button" id="lBtn">게시판으로</button>
 	</section>
 
 </body>

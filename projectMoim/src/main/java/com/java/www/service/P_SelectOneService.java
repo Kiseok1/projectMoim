@@ -23,12 +23,22 @@ public class P_SelectOneService implements Service {
 		String fileName = uri.substring(cPath.length());
 		BoardDto preDto = null;
 		BoardDto nextDto = null;
-		BoardDto lastDto = null;
-		BoardDto firstDto = null;
+		BoardDto prenullDto = null;
+		BoardDto nextnullDto = null;
+		BoardDto hitDto = null;
+		
 		if(fileName.equals("/b_view.do")) {
 			preDto = bdao.preSelectOne(b_no);
+			if(preDto == null) {
+				prenullDto = bdao.prenull(b_no);
+			}
 			
 			nextDto = bdao.nextSelectOne(b_no);
+			if(nextDto == null) {
+				nextnullDto = bdao.nextnull(b_no);
+			}
+			//조회수 1증가
+			bdao.hitPlus(b_no);
 		}
 		
 		
@@ -37,9 +47,13 @@ public class P_SelectOneService implements Service {
 		request.setAttribute("bdto", bdto);
 		request.setAttribute("preDto", preDto);
 		request.setAttribute("nextDto", nextDto);
+		request.setAttribute("nextnullDto", nextnullDto);
+		request.setAttribute("prenullDto", prenullDto);
 		request.setAttribute("page", page);
 		request.setAttribute("category", category);
 		request.setAttribute("sword", sword);
+		System.out.println("prenullDto:"+prenullDto);
+		System.out.println("nextnullDto:"+nextnullDto);
 	}
 
 }

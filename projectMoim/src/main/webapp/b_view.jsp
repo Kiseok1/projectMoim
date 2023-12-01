@@ -19,7 +19,7 @@ margin-right:auto; line-height: 40px;
 	$(function(){
 		$("#deleteBtn").click(function(){
 			if(confirm("게시글을 삭제하시겠습니까?")){
-				location.href="do_Delete.do?b_no=${bdto.b_no}";
+				location.href="do_Delete.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}";
 			}
 			
 		});//
@@ -51,7 +51,7 @@ margin-right:auto; line-height: 40px;
 				</td>
 			</tr>
 			<tr>
-				<c:if test="${preDto.b_no==bdto.b_no}">
+				<c:if test="${prenullDto.b_no==0}">
 				<td><strong>이전글</strong><span>|</span>
 				이전글이 없습니다.</td>
 				</c:if>
@@ -61,7 +61,7 @@ margin-right:auto; line-height: 40px;
 				</c:if>
 			</tr>
 			<tr>
-			<c:if test="${nextDto.b_no==bdto.b_no}">
+			<c:if test="${nextnullDto.b_no==preDto.b_no}">
 				<td><strong>다음글</strong><span>|</span>
 				다음글이 없습니다.</td>
 			</c:if>
@@ -73,16 +73,16 @@ margin-right:auto; line-height: 40px;
 			
 		</table>
 		<tr>
-			<a href="b_list.do"><button type="button">게시판</button></a>
+			<a href="b_list.do?page=${page}&category=${category}&sword=${sword}"><button type="button">게시판</button></a>
 		</tr>
 		<tr>
-			<a href="b_reply.do?b_no=${bdto.b_no}"><button type="button">답글달기</button></a>
+			<a href="b_reply.do?page=${page}&b_no=${bdto.b_no}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">답글달기</button></a>
 		</tr>
 		<tr>
 			<button type="button" id="deleteBtn">삭제</button></a>
 		</tr>
 		<tr>
-			<a href="b_update.do?b_no=${bdto.b_no}"><button type="button">글수정</button></a>
+			<a href="b_update.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">글수정</button></a>
 		</tr>
 	</body>
 </html>

@@ -13,10 +13,15 @@ public class P_DeleteService implements Service {
 		BoardDao bdao = new BoardDao();
 		//변수선언
 		int b_no = Integer.parseInt(request.getParameter("b_no"));
+		int page = 1;
+		String sword="",category="";
+		page = Integer.parseInt(request.getParameter("page"));
+		category = request.getParameter("category");
+		sword = request.getParameter("sword");
 		//메소드 호출
 		int result = bdao.delete(b_no);
 		//request추가
-		request.setAttribute("result", result);
+		request.setAttribute("page", page);
 	}   
 	
 

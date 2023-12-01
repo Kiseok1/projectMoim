@@ -386,6 +386,96 @@ public class BoardDao {
 		return bdto;
 	}
 
+	//조회수 증가
+	public void hitPlus(int b_no2) {
+		
+		try {
+			conn = getConnection();
+			query = "update p_board set b_hit=b_hit+1 where b_no = ?";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		
+	}
+	//이전글이 없습니다. 메소드
+	public BoardDto prenull(int b_no2) {
+		try {
+			conn = getConnection();
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)+1";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				b_no = rs.getInt("b_no");
+				b_title = rs.getString("b_title");
+				b_content = rs.getString("b_content");
+				u_nicname = rs.getString("u_nicname");
+				g_id = rs.getString("g_id");
+				b_group = rs.getInt("b_group");
+				b_step = rs.getInt("b_step");
+				b_indent = rs.getInt("b_indent");
+				b_hit = rs.getInt("b_hit");
+				b_file = rs.getString("b_file");
+				b_date = rs.getTimestamp("b_date");
+				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return bdto;
+	}
+	//다음글이 없습니다. 메소드
+	public BoardDto nextnull(int b_no2) {
+		try {
+			conn = getConnection();
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)-1";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, b_no2);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				b_no = rs.getInt("b_no");
+				b_title = rs.getString("b_title");
+				b_content = rs.getString("b_content");
+				u_nicname = rs.getString("u_nicname");
+				g_id = rs.getString("g_id");
+				b_group = rs.getInt("b_group");
+				b_step = rs.getInt("b_step");
+				b_indent = rs.getInt("b_indent");
+				b_hit = rs.getInt("b_hit");
+				b_file = rs.getString("b_file");
+				b_date = rs.getTimestamp("b_date");
+				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return bdto;
+	}
+
 		
 		
 }
