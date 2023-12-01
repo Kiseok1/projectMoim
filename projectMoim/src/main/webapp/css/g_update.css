@@ -37,7 +37,7 @@ box-sizing: border-box;padding: 0;display: block;font-family: Roboto,Helvetica N
 padding: 32px 10px 40px;display: flex;flex-direction: column;width: 100%;min-height: calc(100vh - 56px);
 color: rgba(0,0,0,.85);box-sizing: border-box; position: relative;}
 
-.box-group{width:632px; height:2100px; margin: 0 auto;padding: 32px; width: 100%; max-width: 632px;border-radius: 8px;background-color: #fff;
+.box-group{width:632px; height:2300px; margin: 0 auto;padding: 32px; width: 100%; max-width: 632px;border-radius: 8px;background-color: #fff;
 box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);box-sizing: border-box; display: block;border-bottom: 1px solid rgba(0,0,0,.08);}
 
 .page-title{font-size: 24px;line-height: 1.33;letter-spacing: -1px;box-sizing: border-box;margin: 0;padding: 0;display: block;display: block;color: rgba(0,0,0,.85);
@@ -50,14 +50,24 @@ border-top: 1px solid rgba(0,0,0,.08);}
 .toast{width:568px;height:56px;margin-top: 16px;flex-direction: row;justify-content: flex-start;justify-content: flex-start;
 align-items: center;min-height: 56px;background-color: #fff;box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);display: flex;margin-bottom: 16px;padding: 12px 16px;
 border-radius: 8px;font-size: 14px;font-weight: 700;color: #fff;box-sizing: border-box;margin: 0;font-family: Roboto,Helvetica Neue,sans-serif;}
-/*모임명*/
-.form-group1{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);
+/*아이디*/
+.form-group{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);
 font-family: Roboto,Helvetica Neue,sans-serif;}
 
 .form-label{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
 cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 
-.form-input{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+.form-input{width:300px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+box-sizing: border-box;margin: 0;}
+
+/*모임명*/
+.form-group1{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);
+font-family: Roboto,Helvetica Neue,sans-serif;}
+
+.form-label1{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
+cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
+
+.form-input1{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
 box-sizing: border-box;margin: 0;}
 /*지역*/
 .form-group2{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;}
@@ -139,7 +149,7 @@ box-sizing: border-box;margin: 0;line-height:top;}
 .form-label7{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
 cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 
-.form-input7{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+.form-input7{width:300px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
 box-sizing: border-box;margin: 0;}
 
 .input-form-file{width:100px;text-rendering: auto;color: buttontext;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;

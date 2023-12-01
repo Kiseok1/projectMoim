@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 <!DOCTYPE html>
 	<html>
 		<head>
@@ -17,23 +19,10 @@
 			</style>
 			<script>
 			 $(function(){
-				 //수정하기 및 취소하기 버튼 클릭 시 
-				/*   $("#submit").click(function(){
-						if($("lbtn").val()==null){
-							alert("입력란을 모두 작성해주세요.")	
-						}else if("location-text").val()==null)	{
-							 alert("입력란을 모두 작성해주세요.")
-						}else {
-							alert("정보수정을 완료하시겠습니까?")
-							location.href="main.do";
+					 $("#submit").click(function(){
+						if(confirm("정보수정을 완료하시겠습니까?")){	
 						}
 						lfrm.submit(); 
-					 }); */
-					 $("#submit").click(function(){
-						if(confirm("정보수정을 완료하시겠습니까?")){
-							location.href="main.do";		
-						}
-						lfrm.submit();  
 					 });
 					 
 					 $("#reset").click(function(){
@@ -85,15 +74,23 @@
 					<div class="box-group">
 						<p class="page-title">모임정보수정</p> 
 				<br>
-				<form class="innerbox">
+				
+				<form action="doG_update.do" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
+				
 					<div class="toast">
 						<a href="https://https://www.notion.so/Project-1-d3dbad96ba6a4df498ae5eb0abe7927f" class="aa" target="blank">모임개설가이드</a>
 					</div>
 				<br>
 				<br>	
+				<div class="form-group">
+					<label class="form-label">회원아이디</label>	
+						<input type="text" placeholder="아이디를 수정하세요." name="id"  class="form-input" value="${gdto2.g_id }" maxlength="100">
+				</div>	
+				<br>
+				<br>	
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
-						<input type="text" placeholder="모임명을 수정하세요." name="lfrm" class="form-input" value="${gdto2.g_name }" maxlength="100">
+						<input type="text" placeholder="모임명을 수정하세요."  class="form-input1" value="${gdto2.g_name }" maxlength="100">
 				</div>	
 				<br>
 				<br>
@@ -135,7 +132,7 @@
 				<br>
 				<div class="form-group3">
 					<label class="form-label3">장소명</label>
-						 <input type="text" placeholder="장소명을 수정하세요." name="lfrm" class="form-input3" maxlength="30">		
+						 <input type="text" placeholder="장소명을 수정하세요."  class="form-input3" maxlength="30">		
 				</div>
 				<div id="map">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6320.291871538852!2d126.91717979676459!3d37.62225488591868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9786122a4fb1%3A0x7174a0da38729d2b!2z7Jew7Iug64K07Jet!5e0!3m2!1sko!2skr!4v1701327670887!5m2!1sko!2skr" 
@@ -157,17 +154,23 @@
 				<br>
 				<div class="form-group4">
 					<label class="form-label4">모임정원수</label>
-						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:0)" name="lfrm" class="form-input4" value="${gdto2.g_member_cnt }" maxlength="30">		
+						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:30)"  class="form-input4" value="${gdto2.g_member_cnt }" maxlength="30">		
 				</div>
 				<br>
 				<br>
 				<div class="form-group5">
 					<label class="form-label5">이미지수정</label>	
 					<br>
-						<input type="file" id="image" accept="images/*" onchange="setThumbnail(event);">
+						<input type="file" id="image"  accept="images/*" value="${gdto2.g_file }"  onchange="setThumbnail(event);">
 							<div class="image_container">
-								<img src="images/1.jpg">
-							</div>
+							  <c:if test="${bdto2.g_file != null }">
+			       				<img src="upload/${bdto2.g_file}">
+		    				  </c:if>
+		       				  <c:if test="${bdto2.g_file == null }">
+			       	          <i class="fa fa-ban" aria-hidden="true"></i>
+			                	첨부파일없음
+			                  </c:if>		
+							</div>	
 					<script>
 				      function setThumbnail(event) {
 				        for (var image of event.target.files) {
@@ -197,9 +200,9 @@
 					<label class="form-label6">상세정보수정</label>	
 				<br>
 					<label class="form-label6">짧은소개글</label>
-					<textarea rows="3" cols="60" name="lfrm" id="textarea">${gdto2.g_intro }</textarea>	
+					<textarea rows="3" cols="60" id="textarea">${gdto2.g_intro }</textarea>	
 					<label class="form-label6">긴소개글</label>
-					<textarea rows="6" cols="60" name="lfrm" id="textarea">${gdto2.g_content }</textarea>	
+					<textarea rows="6" cols="60" id="textarea">${gdto2.g_content }</textarea>	
 				</div>
 				<div></div>
 				<br>
@@ -212,8 +215,8 @@
 				<br>
 				<br>
 			<div class="form-group7">
-				<label class="form-label7">카카오톡오픈채팅</label>
-				 	<input type="text" placeholder="오픈채팅 링크정보를 입력하세요" name="lfrm" class="form-input7" maxlength="30">		
+				<label class="form-label7">개설일</label>
+				 	<input type="text" placeholder="YY/MM/DD(예시:23/12/01)" fmt:formatDate value="${bdto.bdate}" pattern="yy-MM-dd" class="form-input7" maxlength="30"> 		
 			</div>
 			<br>
 			<br>
@@ -235,12 +238,11 @@
 			</div>
 			<br>
 			<br>
-				<form action="main.do" name="lfrm" method="post">
 					<div id="input-button">
-						<input type="reset" id="reset" value="취소하기">
+						<input type="reset" id="reset" value="취소하기">	
 						<input type="submit" id="submit" value="수정하기">
 					</div>
-				</form>
+				
 			<br>
 			<br>
 			<!--  ><h1 class="select_name">추가 선택 정보 수정</h1>
@@ -304,6 +306,41 @@
 				</div>
 			</div>
 		</div> -->
+		</fieldset>
+				<h4>
+					선택 입력 정보 
+				</h4>
+				<fieldset class="fieldset_class">
+					<dl id="join_interests_dl">
+						<dt>
+							<label for="">취미</label>
+						</dt>
+						<dd>
+							<ul>
+								<li>
+									<input type="checkbox" name="g_categorys" id="climb" value="climb" >
+									<label for="climb">등산</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="run" value="run" >
+									<label for="run">조깅</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="book" value="book" >
+									<label for="book">독서</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="cook" value="cook" >
+									<label for="cook">요리</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="cafe" value="cafe">
+									<label for="cafe">카페</label>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</fieldset>
 			</form>
 		</div>
 	</div>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.java.www.service.G_CreateService;
 import com.java.www.service.G_UpdateService;
 import com.java.www.service.G_doSearchService;
+import com.java.www.service.GselectOneService;
 import com.java.www.service.Service;
 
 
@@ -26,6 +27,7 @@ public class FController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cPath = request.getContextPath();
 		String fileName = uri.substring(cPath.length());
+		System.out.println(fileName);
 		
 		String url = null;
 		Service service = null;
@@ -35,15 +37,29 @@ public class FController extends HttpServlet {
 			response.sendRedirect("main.jsp");
 			break;
 		case "/g_create.do":
-			//service = new G_CreateService();
-			//service.execute(request, response);
+			service = new G_CreateService();
+			service.execute(request, response);
 			url = "g_create.jsp";
+			break;
+		case "/doG_create.do": 
+			service = new G_CreateService();
+			service.execute(request, response);
+			url = "doG_create.jsp";
 			break;
 		case "/g_update.do":
 			service = new G_UpdateService();
 			service.execute(request, response);
 			url = "g_update.jsp";
 			break;
+		case "/doG_update.do": 
+			service = new G_UpdateService();
+			service.execute(request, response);
+			url = "doG_update.jsp";
+			break;
+		/*
+		 * case "/doG_info.input.do"://회원정보1개가져오기 service = new GselectOneService();
+		 * service.execute(request, response); url = "doG_info.input.do"; break;
+		 */
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");
 			break;

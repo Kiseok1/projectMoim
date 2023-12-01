@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>      
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +8,7 @@
 	</head>
 	<body>
 		<script>
-			alert("모임정보를 수정했습니다.")
+			alert("모임을 개설했습니다.")
 			location.href="main.do"
 		</script>
 	</body>

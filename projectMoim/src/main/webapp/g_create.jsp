@@ -16,12 +16,11 @@
 			</style>
 			<script>
 			 $(function(){
-					 $("#submit").click(function(){
-						if($("#submit").val()==null){
-							alert("글작성을 모두 완료해주세요!")		
-							return false;
+				 $("#submit").click(function(){
+						if(confirm("정보수정을 완료하시겠습니까?")){
+									
 						}
-						lfrm.submit();  
+						lfrm.submit(); 
 					 });
 					 
 					 $("#reset").click(function(){
@@ -73,15 +72,21 @@
 					<div class="box-group">
 						<p class="page-title">모임만들기</p> 
 				<br>
-				<form class="innerbox">
+				<form action="doG_create.do" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
 					<div class="toast">
 						<a href="https://https://www.notion.so/Project-1-d3dbad96ba6a4df498ae5eb0abe7927f" class="aa" target="blank">모임개설가이드</a>
 					</div>
 				<br>
 				<br>	
+				<div class="form-group">
+					<label class="form-label">회원아이디</label>	
+						<input type="text" placeholder="아이디를 입력하세요." class="form-input" name="${gdto2.g_name }"   maxlength="100">
+				</div>	
+				<br>
+				<br>	
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
-						<input type="text" placeholder="모임명을 입력하세요." class="form-input"  maxlength="100">
+						<input type="text" placeholder="모임명을 입력하세요." class="form-input" name="g_name"   maxlength="100">
 				</div>	
 				<br>
 				<br>
@@ -89,7 +94,7 @@
 					<label class="form-label2">지역</label>
 					<br>
 						<div class="select1">
-					 		<input type="text" id="location-text" name="location-text" placeholder="지역을 선택하세요.">
+					 		<input type="text" id="location-text" name="location-text" value="${gdto2.g_local }" placeholder="지역을 선택하세요.">
 					 	<br>
 					 	<script>
 					 		$(function(){
@@ -106,7 +111,7 @@
 					 			});
 					 		});
 					 	</script>
-							<select id="location">
+							<select id="location" name="g_local">
 								<option value="seoul" selected>지역</option>
 								<option value="서울">서울</option>
 								<option value="부산">부산</option>
@@ -144,16 +149,22 @@
 				<br>
 				<div class="form-group4">
 					<label class="form-label4">모임정원수</label>
-						 <input type="text" placeholder="인원수를 입력하세요.(예시:0)" class="form-input4" maxlength="30">		
+						 <input type="text" placeholder="인원수를 입력하세요.(예시:0)" class="form-input4" name="g_member_cnt" maxlength="300">		
 				</div>
 				<br>
 				<br>
 				<div class="form-group5">
 					<label class="form-label5">이미지수정</label>	
 					<br>
-						<input type="file" id="image" accept="images/*" onchange="setThumbnail(event);">
+						<input type="file" id="image" accept="images/*" name="g_file" onchange="setThumbnail(event);">
 							<div class="image_container">
-								<img src="images/1.jpg">
+								 <c:if test="${gdto2.g_file != null }">
+			       				 <img src="upload/${gdto2.g_file}">
+		    				  	 </c:if>
+		       				 	 <c:if test="${gdto2.g_file == null }">
+			       	          	 <i class="fa fa-ban" aria-hidden="true"></i>
+			                	첨부파일없음
+			                  </c:if>		
 							</div>
 						<script>
 					      function setThumbnail(event) {
@@ -186,9 +197,9 @@
 					<label class="form-label6">모임상세정보</label>	
 				<br>
 					<label class="form-label6">짧은소개글</label>
-					<textarea rows="3" cols="60" id="textarea"></textarea>	
+					<textarea rows="3" cols="60" id="textarea" name="g_intro">${gdto2.g_intro }</textarea>	
 					<label class="form-label6">긴소개글</label>
-					<textarea rows="6" cols="60" id="textarea"></textarea>	
+					<textarea rows="6" cols="60" id="textarea" name="g_content">${gdto2.g_content }</textarea>	
 				</div>
 				<div></div>
 				<br>
@@ -224,12 +235,10 @@
 			</div>
 			<br>
 			<br>
-			<form action="main.do" name="lfrm" method="post">
 				<div id="input-button">
 					<input type="reset" id="reset" value="취소하기">
 					<input type="submit" id="submit" value="모임만들기">
 				</div>
-			</form>
 			<br>
 			<br>
 			<!-- <h1 class="select_name">추가 선택 입력 정보</h1>
@@ -294,6 +303,41 @@
 				</div>
 			</div>
 		</div>-->
+			</fieldset>
+				<h4>
+					선택 입력 정보 
+				</h4>
+				<fieldset class="fieldset_class">
+					<dl id="join_interests_dl">
+						<dt>
+							<label for="">취미</label>
+						</dt>
+						<dd>
+							<ul>
+								<li>
+									<input type="checkbox" name="g_categorys" id="climb" value="climb" >
+									<label for="climb">등산</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="run" value="run" >
+									<label for="run">조깅</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="book" value="book" >
+									<label for="book">독서</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="cook" value="cook" >
+									<label for="cook">요리</label>
+								</li>
+								<li>
+									<input type="checkbox" name="g_categorys" id="cafe" value="cafe">
+									<label for="cafe">카페</label>
+								</li>
+							</ul>
+						</dd>
+					</dl>
+				</fieldset>	
 			</form>
 		</div>
 	</div>
