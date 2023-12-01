@@ -16,21 +16,10 @@
 			</style>
 			<script>
 			 $(function(){
-				 //수정하기 및 취소하기 버튼 클릭 시 
-				/*   $("#submit").click(function(){
-						if($("lbtn").val()==null){
-							alert("입력란을 모두 작성해주세요.")	
-						}else if("location-text").val()==null)	{
-							 alert("입력란을 모두 작성해주세요.")
-						}else {
-							alert("정보수정을 완료하시겠습니까?")
-							location.href="main.do";
-						}
-						lfrm.submit(); 
-					 }); */
 					 $("#submit").click(function(){
-						if(confirm("정보수정을 완료하시겠습니까?")){
-							location.href="main.do";		
+						if($("#submit").val()==null){
+							alert("글작성을 모두 완료해주세요!")		
+							return false;
 						}
 						lfrm.submit();  
 					 });
