@@ -14,6 +14,11 @@ import com.java.www.service.G_doSearchService;
 import com.java.www.service.G_joinService;
 import com.java.www.service.G_quitService;
 import com.java.www.service.G_viewService;
+import com.java.www.service.M_deleteService;
+import com.java.www.service.M_insertService;
+import com.java.www.service.M_selectPopService;
+import com.java.www.service.M_selectRecieveService;
+import com.java.www.service.M_selectSendService;
 import com.java.www.service.Service;
 import com.java.www.service.U_LoginService;
 import com.java.www.service.U_insertService;
@@ -58,7 +63,7 @@ public class FController extends HttpServlet {
 		case "/g_main.do":
 			service = new G_MainService();
 			service.execute(request, response);
-			url="g_main1.jsp";
+			url="g_main.jsp";
 			break;		
 		case "/g_view.do":
 			service = new G_viewService();
@@ -89,6 +94,49 @@ public class FController extends HttpServlet {
 			service = new U_selectOneService();
 			service.execute(request, response);
 			url="u_update.jsp";
+			break;		
+		case "/u_message.do":
+			service = new U_selectOneService();
+			service.execute(request, response);
+			url="u_message.jsp";
+			break;		
+		case "/m_Insert.do":
+			service = new M_insertService();
+			service.execute(request, response);
+			url="m_Insert.jsp";
+			break;		
+		case "/m_recvMsg.do":
+			service = new M_selectRecieveService();
+			service.execute(request, response);
+			url="m_recvMsg.jsp";
+			break;		
+		case "/m_recvMsgPop.do":
+			service = new M_selectPopService();
+			service.execute(request, response);
+			url="m_recvMsgPop.jsp";
+			break;		
+		case "/m_sentMsg.do":
+			service = new M_selectSendService();
+			service.execute(request, response);
+			url="m_sentMsg.jsp";
+			break;		
+		case "/m_sentMsgPop.do":
+			service = new M_selectPopService();
+			service.execute(request, response);
+			url="m_sentMsgPop.jsp";
+			break;		
+		case "/m_write.do":
+			url="m_write.jsp";
+			break;		
+		case "/m_delRecv.do":
+			service = new M_deleteService();
+			service.execute(request, response);
+			url="m_recvMsg.do";
+			break;		
+		case "/m_delSent.do":
+			service = new M_deleteService();
+			service.execute(request, response);
+			url="m_sentMsg.do";
 			break;		
 		
 		}

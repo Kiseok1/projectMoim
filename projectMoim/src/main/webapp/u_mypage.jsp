@@ -24,6 +24,7 @@
 			<div>
 				<ul class="mypage1">
 					<li><a href="u_update.do"><i class="fa fa-user" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp개인정보 수정</a></li>
+					<li><a href="u_message.do"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp쪽지함</a></li>
 					<li><a href="g_create.do"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp모임 개설</a></li>
 				</ul>
 			</div>

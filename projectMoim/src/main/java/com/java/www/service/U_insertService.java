@@ -20,7 +20,7 @@ public class U_insertService implements Service {
 		int result=0;
 		UserDto udto = null;
 		String uPath = "c:/upload";
-		int size = 2*1024*1024;
+		int size = 10*1024*1024;
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, uPath, size, "utf-8", new DefaultFileRenamePolicy());

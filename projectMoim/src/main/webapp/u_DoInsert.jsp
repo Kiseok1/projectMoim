@@ -9,7 +9,7 @@
 	<body>
 		<script>
 			alert("회원가입에 성공하였습니다.");
-			location.href="main.do";
+			location.href="g_main.do";
 		</script>
 	</body>
 </html>

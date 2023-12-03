@@ -8,6 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="imagetoolbar" content="no">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +38,8 @@
 			if( $("#g_srch").val().length < 2 ){
 				alert("검색어는 두글자 이상 입력하셔야합니다.");
 				$("#g_srch").focus();
+				$("#popup").css("display","none"); //모달창 표시안함
+				$("#back").css("display","none");  //블러처리 표시안함
 				return false;
 			}
 			$("#g_srch").val();
@@ -51,26 +54,48 @@
 		//필터
 		$("#fBtn").click(function(){
 			$("#g_srch").val();
+			$("#popup").css("display","none"); //모달창 표시안함
+			$("#back").css("display","none");  //블러처리 표시안함
 			fFrm.submit();
 		});//sBtn click
+		
+				
 	});//jquery
   </script>
   <style>
   	.search{margin-left: 300px;}
+  	#popup{width: 650px; height: 340px; border: 1px solid black;
+				position: relative; left: 200px; top: 300px;
+				background: white;
+				padding-left: 70px; padding-top: 50px;
+				z-index: 999; border-radius: 30px;
+			}
+	#back{position: fixed; left: 0; top:0;
+		width: 100%; height:1080px; background: rgba(0,0,0,0.8);
+		filter: blur(10px); z-index: 990;
+		}
+	.filterImg{margin-left: 300px;}	
+  	
   </style>
 </head>
 
 <body>
+  <div id="back"></div>
   <div id="header"></div>
   <main class="th-layout-main ">
     <!-- [S]basic-N42 -->
     <div class="basic-N42" id="">
       <div class="contents-inner">
+      	
    		<form name="sFrm" method="post" action="g_main.do">
 			<input type="text" name="g_srch" id="g_srch" class="search" placeholder="검색어를 입력하세요"> 
 			<input type="button" id="sBtn" value="확인">
 		</form>	
-		<form name="fFrm" method="post" class="search" action="g_main.do">
+		<button class="filterImg" id="popupOpen" onclick="popupOpen()" style="margin-top: 5px;">필터이미지</button>
+      	<div id="popup">
+		
+		<form name="fFrm" method="post"  action="g_main.do" style="margin-top: -30px;">
+			<div onclick="popupClose()" style="width: 20px; margin-left: 510px; cursor: pointer;" ><i class="fa fa-times" aria-hidden="true"></i></div>
 			<br>
 			<h4>지역</h4>
 			<input type="radio" name="local" id="서울" value="서울">
@@ -148,6 +173,8 @@
 			
 			<input type="button" id="fBtn" value="적용하기">
 		</form>
+		</div>
+		
         <div class="contents-container container-md">
           <div class="textset">
             <h2 class="textset-tit">모임&nbsp;</h2>
@@ -262,4 +289,20 @@
 			$(function(){
 				$("#header").load("header.jsp");
 			})
+			function popupOpen(){
+				var scx = (screen.width-600)/2;
+				var scy = screen.height-1000;
+				$("#popup").css("display","block"); //모달창 표시
+				$("#back").css("display","block");  //블러처리 표시
+				$("#popup").css("left",scx);        //모달창 x위치
+				$("#popup").css("top",scy);         //모달창 y위치
+			}
+			
+			function popupClose(){
+				//alert("test");
+				$("#popup").css("display","none"); //모달창 표시안함
+				$("#back").css("display","none");  //블러처리 표시안함
+			}
+			
+			popupClose();
 		</script>
