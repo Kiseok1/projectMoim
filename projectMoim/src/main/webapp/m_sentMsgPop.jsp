@@ -21,7 +21,7 @@
 				<div>${mdto.m_recv_id}</div>
 			</div>															
 			<div class="mcontent" >
-				<textarea rows="14" cols="45" id="mcontent" name="mcontent">${mdto.m_note}</textarea>
+				<textarea rows="14" cols="45" id="mcontent" name="mcontent" readonly>${mdto.m_note}</textarea>
 			</div>
 		</div>
 	</body>
