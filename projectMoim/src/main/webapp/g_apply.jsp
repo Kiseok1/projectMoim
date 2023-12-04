@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<script>
-			alert("모임에 가입되었습니다.");
+			alert("가입신청하였습니다.");
 			location.href="g_main.do";
 		</script>
 	

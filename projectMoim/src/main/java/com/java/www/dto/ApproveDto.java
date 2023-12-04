@@ -6,9 +6,9 @@ public class ApproveDto {
 
 	public ApproveDto() {}
 
-	public ApproveDto(int a_no, int g_no, String u_id, int status, Timestamp apply_date, Timestamp approve_date) {
+	public ApproveDto(int a_no, int g_id, String u_id, int status, Timestamp apply_date, Timestamp approve_date) {
 		this.a_no = a_no;
-		this.g_no = g_no;
+		this.g_id = g_id;
 		this.u_id = u_id;
 		this.status = status;
 		this.apply_date = apply_date;
@@ -16,7 +16,7 @@ public class ApproveDto {
 	}
 
 	private int a_no;
-	private int g_no;
+	private int g_id;
 	private String u_id;
 	private int status;
 	private Timestamp apply_date;
@@ -28,11 +28,11 @@ public class ApproveDto {
 	public void setA_no(int a_no) {
 		this.a_no = a_no;
 	}
-	public int getG_no() {
-		return g_no;
+	public int getg_id() {
+		return g_id;
 	}
-	public void setG_no(int g_no) {
-		this.g_no = g_no;
+	public void setg_id(int g_id) {
+		this.g_id = g_id;
 	}
 	public String getU_id() {
 		return u_id;

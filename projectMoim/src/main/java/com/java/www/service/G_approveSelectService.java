@@ -20,6 +20,7 @@ public class G_approveSelectService implements Service {
 		
 		//request에 추가
 		request.setAttribute("listA", listA);
+		
 
 	}
 

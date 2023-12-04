@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.G_MainService;
+import com.java.www.service.G_applyService;
+import com.java.www.service.G_approveConfirmService;
 import com.java.www.service.G_approveSelectService;
 import com.java.www.service.G_doSearchService;
 import com.java.www.service.G_joinService;
@@ -71,6 +73,11 @@ public class FController extends HttpServlet {
 			service.execute(request, response);
 			url="g_view.jsp";
 			break;		
+		case "/g_apply.do":
+			service = new G_applyService();
+			service.execute(request, response);
+			url="g_apply.jsp";
+			break;		
 		case "/g_join.do":
 			service = new G_joinService();
 			service.execute(request, response);
@@ -90,6 +97,11 @@ public class FController extends HttpServlet {
 			service = new G_approveSelectService();
 			service.execute(request, response);
 			url="g_approve.jsp";
+			break;		
+		case "/g_approveConfirm.do":
+			service = new G_approveConfirmService();
+			service.execute(request, response);
+			url="g_approveConfirm.jsp";
 			break;		
 		case "/u_mypage.do":
 			service = new U_mypageService();

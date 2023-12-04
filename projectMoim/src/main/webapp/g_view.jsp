@@ -14,8 +14,10 @@
 				//가입
 				$("#jBtn").click(function(){
 					if(${session_id != null } ){
-						alert("가입페이지로 이동합니다.");
-						location.href="g_join.do?g_id=${gdto.g_id}";
+						//alert("가입페이지로 이동합니다.");
+						//location.href="g_join.do?g_id=${gdto.g_id}";
+						
+						location.href="g_apply.do?g_id=${gdto.g_id}";
 					} else {
 						alert("가입신청은 로그인후에 가능합니다.");
 						location.href="u_login.do";

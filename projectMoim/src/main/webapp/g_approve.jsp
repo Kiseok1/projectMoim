@@ -38,7 +38,7 @@
 		</script>
 	</head>
 	<body>
-		<form action="a_approveConfirm.do" method="post" name="appFrm">
+		<form action="g_approveConfirm.do" method="post" name="appFrm">
 		<input type="button" id="appBtn" value="승인">
 		<hr>
 		<table>
@@ -54,11 +54,11 @@
 				<th>내용</th>					
 				<th>신청일</th>					
 			</tr>
-			<c:forEach items="${list}" var="adto">
-				<tr id="msg" style="font-weight:700">
+			<c:forEach items="${listA}" var="adto">
+				<tr>
 					<td><input type="checkbox" class="a_no" name="a_no" value="${adto.a_no}"></td>
-					<td>${adto.u_id}</td>
-					<td><a href="">${adto.u_id}님이 승인 대기중입니다.</a></td>
+					<td>${adto.u_id}</td><input type="hidden" name="u_id" value="${adto.u_id}">
+					<td>${adto.u_id}님이 승인 대기중입니다.</td><input type="hidden" name="g_id" value="${adto.g_id}">
 					<td><fmt:formatDate value="${adto.apply_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 				</tr>
 			</c:forEach>

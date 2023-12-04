@@ -327,5 +327,48 @@ public class GroupDao {
 		return listA;
 	}//approveSelect
 
+	//가입 신청
+	public void apply(String g_id2, String u_id2) {
+		try {
+			conn=getConnection();
+			query="insert into approves values(approves_seq.nextval,?,?,0,sysdate,'')";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_id2);
+			pstmt.setString(2, u_id2);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}//apply
+
+	//가입 승인
+	public void approveConfirm(String a_nos) {
+		try {
+			conn=getConnection();
+			query="update approves set status=1 where a_no=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, a_nos);
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}//approveConfirm
+
 	
 }
