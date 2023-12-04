@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.java.www.service.G_MainService;
+import com.java.www.service.G_approveSelectService;
 import com.java.www.service.G_doSearchService;
 import com.java.www.service.G_joinService;
 import com.java.www.service.G_quitService;
@@ -79,6 +80,16 @@ public class FController extends HttpServlet {
 			service = new G_quitService();
 			service.execute(request, response);
 			url="g_quit.jsp";
+			break;		
+		case "/g_admin.do":
+			service = new G_viewService();
+			service.execute(request, response);
+			url="g_admin.jsp";
+			break;		
+		case "/g_approve.do":
+			service = new G_approveSelectService();
+			service.execute(request, response);
+			url="g_approve.jsp";
 			break;		
 		case "/u_mypage.do":
 			service = new U_mypageService();

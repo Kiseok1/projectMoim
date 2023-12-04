@@ -23,14 +23,12 @@ public class M_deleteService implements Service {
 				m_no=m_nos[i];
 				mdao.delRecvMsg(m_no);
 			}
-			
 			break;
 		case "/m_delSent.do":
 			for(int i=0;i<m_nos.length;i++) {
 				m_no=m_nos[i];
 				mdao.delSentMsg(m_no);
 			}
-			
 			break;
 		}//switch
 

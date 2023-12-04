@@ -8,6 +8,7 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script>
 			$(function(){
 				//가입
@@ -16,7 +17,7 @@
 						alert("가입페이지로 이동합니다.");
 						location.href="g_join.do?g_id=${gdto.g_id}";
 					} else {
-						alert("가입은 로그인후에 가능합니다.");
+						alert("가입신청은 로그인후에 가능합니다.");
 						location.href="u_login.do";
 						return false;
 					}
@@ -31,9 +32,10 @@
 			});//jquery
 		</script>
 		<style>
-			.gview_cont{margin-left: 300px; width: 1000px;}
+			.gview_cont{margin:0 auto; width: 600px;}
 			.memImg{display:inline-block;}
 			p{text-align: center;}
+			#g_name{font-size: 20px; font-weight: 500;}
 		</style>
 		
 	</head>
@@ -44,11 +46,23 @@
 		
 		<div class="gview_cont">
 			<img src="upload/${gdto.g_file}" style="height:200px;">
-			<h3>${gdto.g_name}</h3>
-			<h5>가입자: ${gdto.g_member_cnt}명</h3>
-			<h4>${gdto.g_intro}</h4>
-			<div>${gdto.g_content}</div>
-			<h5>가입자</h5>
+			<div>
+				<c:forEach	items="${list}" var="u">
+					<c:if test="${admin==u.u_id}">
+						<div class="memImg" style="margin-top: 10px; width:70px;  float: left;" >
+							<img src="upload/${u.u_profileImg}" style="width:50px; height:50px; border:2px solid blue; border-radius: 50%;">
+						</div>
+					</c:if>
+				</c:forEach>
+					<div style="margin-top: 10px; vertical-align: middle;">
+						<div id="g_name">${gdto.g_name}</div>
+						<div>호스트 ${gdto.g_user_id}</div>
+					</div>
+			</div>
+			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
+			
+			<div style="margin-top: 10px;">${gdto.g_content}</div>
+			<h5 style="margin-top: 10px;">가입멤버</h5>
 				<div>
 					<c:forEach	items="${list}" var="u">
 						<c:if test="${admin==u.u_id}">
@@ -67,30 +81,29 @@
 				</div>
 			<!-- 가입자 -->
 			<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
-			<h5>게시판 링크</h5>	
-			<h5>사진첩 링크</h5>	
-			<h5 id="qBtn">탈퇴</h5>
+			<h5 style="margin-top: 10px;"><a href="#"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
+			<h5><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp&nbsp&nbsp사진첩</a></h5>	
+			<h5 id="qBtn" style="cursor: pointer;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp탈퇴</h5>
 			</c:if>
 			<!-- 운영자 -->
 			<c:if test="${session_id!=null && fn:contains(gdto.g_user_id,id)}">
-			<h5><a href="g_admin">관리페이지</a></h5>
+			<h5><a href="g_admin.do?g_id=${gdto.g_id}"><i class="fa fa-lock" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp관리페이지</a></h5>
 			</c:if>
 			<!-- 비가입자(로그인) -->
 			<c:if test="${not fn:contains(gdto.g_member_id,id)}">
-			<h5 id="jBtn">가입</h5>
+			<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
 			</c:if>
 			<!-- 비가입자(비로그인) -->
 			<c:if test="${session_id==null}">
-			<h5 id="jBtn">가입</h5>
+			<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
 			</c:if>
-			<input type="button" onclick="javascript:history.back()" value="뒤로">
 		</div>
 
-		<div id="footer"></div>	
+		
 		<script>
 			$(function(){
 				$("#header").load("header.jsp");
-				$("#footer").load("footer.jsp");
+				
 			})
 		</script>
 	</body>

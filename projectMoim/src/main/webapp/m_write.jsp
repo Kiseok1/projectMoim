@@ -36,13 +36,13 @@
 								$("#recvId").focus();
 								return false;
 							} 
+							sFrm.submit();
 						},
 						error:function(){
 							alert("실패");
 						}
 					});//ajax
 					
-					sFrm.submit();
 				});//sBtn 클릭
 			});//jquery
 		</script>

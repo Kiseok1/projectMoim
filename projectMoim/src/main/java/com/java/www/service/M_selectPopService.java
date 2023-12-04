@@ -15,7 +15,9 @@ public class M_selectPopService implements Service {
 		MessageDto mdto = null;
 		
 		MessageDao mdao = new MessageDao();
+		//m_recv_read=1로 변경
 		mdao.receiveDateCheck(m_no);
+		//쪽지 내용 가져오기
 		mdto = mdao.selectPop(m_no);
 		
 		request.setAttribute("mdto", mdto);

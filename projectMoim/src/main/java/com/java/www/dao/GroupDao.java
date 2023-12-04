@@ -10,6 +10,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.java.www.dto.ApproveDto;
 import com.java.www.dto.BoardDto;
 import com.java.www.dto.GroupDto;
 
@@ -19,10 +20,12 @@ public class GroupDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	GroupDto gdto = null;
+	ApproveDto adto = null;
 	ArrayList<GroupDto> list = new ArrayList<GroupDto>();
-	int g_id,g_member_cnt,result;
-	String g_name,g_intro,g_content,g_local,g_category,g_file,g_user_id,g_member_id,query="";
-	Timestamp g_date;
+	ArrayList<ApproveDto> listA = new ArrayList<ApproveDto>();
+	int g_id,g_member_cnt,a_no,status,result;
+	String g_name,g_intro,g_content,g_local,g_category,g_file,g_user_id,g_member_id,u_id,query="";
+	Timestamp g_date,apply_date,approve_date;
 	String[] categorys = null;
 	
 	//getConnection
@@ -42,9 +45,9 @@ public class GroupDao {
 	public ArrayList<GroupDto> selectSearch(String search, String local, String category) {
 		try {
 			conn=getConnection();
-			System.out.println("gdao search : "+search);
-			System.out.println("gdao local : "+local);
-			System.out.println("gdao category : "+category);
+//			System.out.println("gdao search : "+search);
+//			System.out.println("gdao local : "+local);
+//			System.out.println("gdao category : "+category);
 			if(search!=null) {
 				query="select * from groups where g_intro like '%'||?||'%' or g_content like '%'||?||'%'";
 				pstmt=conn.prepareStatement(query);
@@ -290,6 +293,39 @@ public class GroupDao {
 		}
 		return list;
 	}
+
+	//승인 대기중인 유저 불러오기
+	public ArrayList<ApproveDto> approveSelect(String g_id2) {
+		try {
+			conn=getConnection();
+			query="select * from approves where g_id=? and status=0";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_id2);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				a_no=rs.getInt("a_no");
+				g_id=rs.getInt("g_id");
+				u_id=rs.getString("u_id");
+				status=rs.getInt("status");
+				apply_date=rs.getTimestamp("apply_date");
+				approve_date=rs.getTimestamp("approve_date");
+				
+				listA.add(new ApproveDto(a_no, g_id, u_id, status, apply_date, approve_date));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return listA;
+	}//approveSelect
 
 	
 }
