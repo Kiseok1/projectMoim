@@ -22,9 +22,15 @@ public class P_InsertService implements Service {
 		String b_title="", b_content="", b_file="";
 		String id = (String)session.getAttribute("session_id");
 		String nicname = (String)session.getAttribute("session_nicname");
+		int g_id = 0;
 		//form데이터 처리 Multipart
 		String upload = "c:/upload";
 		int size = 10*1024*1024;
+		//파일이름 추출
+		String uri = request.getRequestURI();
+		String cPath = request.getContextPath();
+		String fileName = uri.substring(cPath.length());
+	
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, upload,size,"utf-8",new DefaultFileRenamePolicy());
@@ -42,7 +48,7 @@ public class P_InsertService implements Service {
 			int result = bdao.insert(bdto);
 			//request 추가
 			request.setAttribute("result", result);
-			System.out.println("리턴받은 result의 값 :"+result);
+			
 		} catch (Exception e) {e.printStackTrace();}
 		
 	}

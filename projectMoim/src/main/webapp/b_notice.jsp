@@ -36,12 +36,7 @@ margin-right:auto; line-height: 40px;
 					return false;
 				}
 				
-				insertFrm.submit();
-			
-		});//
-		$(".notice").click(function(){
-			alert("공지사항을 작성합니다.")
-			location.href = "b_notice.do";
+				noticeFrm.submit();
 		});//
 		$(".cancel").click(function(){
 			window.history.back();
@@ -56,12 +51,12 @@ margin-right:auto; line-height: 40px;
 		<section>
 		<h1>ㅁㅁ소모임 게시판 </h1>
 		<table>
-		<form action="do_insert.do" name="insertFrm" method="post" enctype="multipart/form-data">
+		<form action="do_notice.do" name="noticeFrm" method="post" enctype="multipart/form-data">
 		<p class="titleCon">
 			<tr>
-				<th><strong>제목</strong>|</th>
+				<th><strong>제목</strong>|[공지사항]</th>
 				<td>
-					<input type="text" name="b_title" id="b_title">
+					<input type="text" name="b_title" id="b_title" value="[공지사항]">
 				</td>
 			</tr>
 			<tr>
@@ -82,7 +77,6 @@ margin-right:auto; line-height: 40px;
 			
 			<button type="button" class="cancel">취소</button>
 			<button type="button" class="write">작성완료</button>
-			<button type="button" class="notice">공지작성</button>
 		</form>
 			
 			

@@ -66,6 +66,7 @@ select, div, button {
     border-radius: 5px; /* 테두리 모서리 둥글게 설정 */
 }
 #sword{width:300px;  height: 35px;}
+#class{display:none;}
 	
 </style>
 <script>
@@ -74,18 +75,38 @@ select, div, button {
 			alert("글을 작성합니다.");
 			location.href="b_insert.do";
 		});
+		
 		$("#sBtn").click(function(){
-	if($("#sword").val()=="") {
-		alert("검색어를 입력해주세요.")
-		$("#sword").focus();
-		return false
-			}
+			if($("#sword").val()=="") {
+				alert("검색어를 입력해주세요.")
+				$("#sword").focus();
+			    return false
+		    }
+	
 		searchFrm.submit();
 		});//sBtn
+		
 		$("#lBtn").click(function(){
 			alert("게시판의 1페이지로 돌아갑니다.")
 			location.href="b_list.do";
 		});//
+		
+		$("#community").change(function(){
+			if($("#community").val()=="specific"){
+				$("#class").css("display","inline-block");
+				
+			}else if($("#community").val()=="announcement") {
+				$("#class").css("display","none");
+				location.href ="b_list.do?page=1&category=all&sword=공지사항";
+				
+			}else if($("#community").val()=="FreeBoard"){
+				$("#class").css("display","none");
+			}
+		});//
+		
+		
+		
+		
 	});//
 
 </script>
@@ -93,6 +114,19 @@ select, div, button {
 <body>
 	<section>
 		<h1>ㅁㅁ소모임 게시판 </h1>
+		<div>
+		<select name="community" id="community">
+			<option value="announcement">공지사항</option>
+			<option value="FreeBoard">자유게시판</option>
+			<option value="specific">모임별</option>
+		</select>
+		<select name="class" id="class">
+			<option value="score">축구</option>
+			<option value="baseball">야구</option>
+			<option value="baskball">농구</option>
+			<option value="swim">수영</option>
+		</select>
+		</div>
 		<div class="wrapper">
 		<form action="b_list.do" name="searchFrm" method="post">
 		<select name="category" id="category">

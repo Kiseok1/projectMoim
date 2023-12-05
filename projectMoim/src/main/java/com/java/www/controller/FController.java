@@ -46,6 +46,9 @@ public class FController extends HttpServlet {
 		case "/b_insert.do":
 			response.sendRedirect("b_insert.jsp");
 			break;
+		case "/b_notice.do":
+			response.sendRedirect("b_notice.jsp");
+			break;
 		case "/g_search.do":
 			service = new G_doSearchService();
 			service.execute(request, response);
@@ -76,6 +79,11 @@ public class FController extends HttpServlet {
 			service = new P_InsertService();
 			service.execute(request, response);
 			url="do_insert.jsp";
+			break;
+		case "/do_notice.do":
+			service = new P_InsertService();
+			service.execute(request, response);
+			url="do_notice.jsp";
 			break;
 		case "/do_update.do":
 			service = new P_UpdateService(); //아이디 사용 

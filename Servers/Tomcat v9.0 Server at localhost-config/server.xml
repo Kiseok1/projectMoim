@@ -182,7 +182,7 @@
       <Context docBase="samplePjt2" path="/samplePjt2" reloadable="true" source="org.eclipse.jst.jee.server:samplePjt2"/>
        <Context docBase="c:/upload" path="/simplePjt2/upload" reloadable="true"/>
        <Context docBase="projectMoim" path="/projectMoim" reloadable="true" source="org.eclipse.jst.jee.server:projectMoim"/>
-        <Context docBase="c:/upload" path="/projectMoim/upload" reloadable="true"/></Host>
+        <Context docBase="c:/upload" path="/projectMoim/upload" reloadable="true"/><Context docBase="jadinPjt" path="/jadinPjt" reloadable="true" source="org.eclipse.jst.jee.server:jadinPjt"/></Host>
       
     </Engine>
   </Service>

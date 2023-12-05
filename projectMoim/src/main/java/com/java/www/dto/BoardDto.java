@@ -11,17 +11,18 @@ public class BoardDto {
 	private String b_title;
 	private String b_content;
 	private String u_nicname;
-	private String g_id;
+	private int g_id;
 	private int b_group;
 	private int b_step;
 	private int b_indent;
 	private int b_hit;
 	private String b_file;
 	private Timestamp b_date;
+	
 	public int getB_no() {
 		return b_no;
 	}
-	public BoardDto(int b_no, String b_title, String b_content, String u_nicname, String g_id, int b_group, int b_step,
+	public BoardDto(int b_no, String b_title, String b_content, String u_nicname, int g_id, int b_group, int b_step,
 			int b_indent, int b_hit, String b_file, Timestamp b_date) {
 		super();
 		this.b_no = b_no;
@@ -76,6 +77,15 @@ public class BoardDto {
 		this.b_indent = b_indent;
 		this.b_file = b_file;
 	}
+	public BoardDto(String b_title, String b_content, String u_nicname, String u_id, String b_file, int g_id) {
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.u_nicname = u_nicname;
+		this.u_id = u_id;
+		this.b_file = b_file;
+		this.g_id = g_id;
+		
+	}
 	public void setB_no(int b_no) {
 		this.b_no = b_no;
 	}
@@ -103,10 +113,10 @@ public class BoardDto {
 	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
-	public String getG_id() {
+	public int getG_id() {
 		return g_id;
 	}
-	public void setG_id(String g_id) {
+	public void setG_id(int g_id) {
 		this.g_id = g_id;
 	}
 	public int getB_group() {
