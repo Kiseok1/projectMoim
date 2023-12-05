@@ -17,14 +17,14 @@
 			<script>
 			 $(function(){
 				 $("#submit").click(function(){
-						if(confirm("정보수정을 완료하시겠습니까?")){
+						if(confirm("모임개설을 완료하시겠습니까?")){
 									
 						}
 						lfrm.submit(); 
 					 });
 					 
 					 $("#reset").click(function(){
-						if(confirm("정보수정을 취소하시겠습니까?")){
+						if(confirm("정보입력을 취소하시겠습니까?")){
 							location.href="main.do";		
 						}
 						lfrm.submit();  
@@ -80,10 +80,22 @@
 				<br>	
 				<div class="form-group">
 					<label class="form-label">회원아이디</label>	
-						<input type="text" placeholder="아이디를 입력하세요." class="form-input" name="${gdto2.g_name }"   maxlength="100">
+						<input type="text" placeholder="아이디를 입력하세요." class="form-input" name="g_id" maxlength="100">
 				</div>	
 				<br>
 				<br>	
+				<div class="form-group">
+					<label class="form-label">사용자아이디</label>	
+						<input type="text" placeholder="사용자아이디를 입력하세요." class="form-input" name="g_user_id"   maxlength="100">
+				</div>	
+				<br>
+				<br>	
+				<div class="form-group">
+					<label class="form-label">관리자아이디</label>	
+						<input type="text" placeholder="관리자아이디를 입력하세요." class="form-input" name="g_member_id"   maxlength="100">
+				</div>		
+				<br>
+				<br>		
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
 						<input type="text" placeholder="모임명을 입력하세요." class="form-input" name="g_name"   maxlength="100">
@@ -157,7 +169,7 @@
 					<label class="form-label5">이미지수정</label>	
 					<br>
 						<input type="file" id="image" accept="images/*" name="g_file" onchange="setThumbnail(event);">
-							<div class="image_container">
+							<%-- <div class="image_container">
 								 <c:if test="${gdto2.g_file != null }">
 			       				 <img src="upload/${gdto2.g_file}">
 		    				  	 </c:if>
@@ -165,7 +177,7 @@
 			       	          	 <i class="fa fa-ban" aria-hidden="true"></i>
 			                	첨부파일없음
 			                  </c:if>		
-							</div>
+							</div> --%>
 						<script>
 					      function setThumbnail(event) {
 					        for (var image of event.target.files) {
@@ -183,14 +195,6 @@
 					      }
 					</script>
 				</div>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
 				<br>
 				<br>
 				<div class="form-group6">
@@ -211,7 +215,7 @@
 				<br>
 				<br>
 				<br>
-			<div class="form-group7">
+			<!-- <div class="form-group7">
 				<label class="form-label7">카카오톡오픈채팅</label>
 				 	<input type="text" placeholder="오픈채팅 링크정보를 입력하세요" class="form-input7" maxlength="30">		
 			</div>
@@ -234,13 +238,8 @@
 						<label for="close">비공개</label>
 			</div>
 			<br>
-			<br>
-				<div id="input-button">
-					<input type="reset" id="reset" value="취소하기">
-					<input type="submit" id="submit" value="모임만들기">
-				</div>
-			<br>
-			<br>
+			<br> -->
+			
 			<!-- <h1 class="select_name">추가 선택 입력 정보</h1>
 				<div class="select_info">
 				
@@ -338,6 +337,15 @@
 						</dd>
 					</dl>
 				</fieldset>	
+				<br>
+				<br>
+					<div id="input-button">
+					<input type="reset" id="reset" value="취소하기">
+					<input type="submit" id="submit" value="모임만들기">
+				</div>
+				<br>
+				<br>				
+				
 			</form>
 		</div>
 	</div>

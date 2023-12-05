@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.java.www.dto.BoardDto;
 import com.java.www.dto.GroupDto;
 
 public class GroupDao {
@@ -43,7 +45,7 @@ public class GroupDao {
 	public int g_Update(GroupDto gdto2) {
 		try {
 		conn = getConnection();
-		query = "update groups set g_name=?,g_intro=?,g_content=?,g_local=?,g_category=?,g_file=?,g_member_cnt=?,g_date=? where g_id=?";
+		query = "update groups set g_name=?, g_intro=?, g_content=?, g_local=?, g_category=?, g_file=?, g_user_id=?, g_member_id=?, g_member_cnt=?, g_date=? where g_id=?";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, gdto2.getG_id());
 		pstmt.setString(2, gdto2.getG_name());
@@ -53,18 +55,23 @@ public class GroupDao {
 		pstmt.setString(6, gdto2.getG_category());
 		pstmt.setString(7, gdto2.getG_file());
 		pstmt.setString(8, gdto2.getG_user_id());
-		pstmt.setString(9, gdto2.getG_member_id() );
+		pstmt.setString(9, gdto2.getG_member_id());
+		pstmt.setInt(10, gdto2.getG_member_cnt());
+		pstmt.setTimestamp(11, gdto2.getG_date() );
 		result = pstmt.executeUpdate();
 		if(rs.next()) {
 			g_id = rs.getString("g_id");
 			g_name = rs.getString("g_name");
-			g_local = rs.getString("g_local");
 			g_intro = rs.getString("g_intro");
 			g_content = rs.getString("g_content");
+			g_local = rs.getString("g_local");
+			g_category = rs.getString("g_category");
 			g_file = rs.getString("g_file");
+			g_user_id = rs.getString("g_user_id");
+			g_member_id = rs.getString("g_member_id");	
 			g_member_cnt = rs.getInt("g_member_cnt");
 			g_date = rs.getTimestamp("g_date");
-			gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_file, g_member_cnt, g_date);
+			gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date);
 		}
 		
 		
@@ -96,10 +103,13 @@ public class GroupDao {
 				g_intro = rs.getString("g_intro");
 				g_content = rs.getString("g_content");
 				g_local = rs.getString("g_local");
+				g_category = rs.getString("g_category");
 				g_file = rs.getString("g_file");
+				g_user_id = rs.getString("g_user_id");
+				g_member_id = rs.getString("g_member_id");	
 				g_member_cnt = rs.getInt("g_member_cnt");
 				g_date = rs.getTimestamp("g_date");
-				gdto = new GroupDto(g_id,g_name,g_intro,g_content,g_local,g_file,g_member_cnt,g_date);
+				gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,7 +128,7 @@ public class GroupDao {
 	public int g_create(GroupDto gdto2) {
 		try {
 			conn = getConnection();
-			query = "insert into groups values(?,?,?,?,?,?,?,?,?,1,sysdate)";
+			query = "insert into groups values(?,?,?,?,?,?,?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, gdto2.getG_id());
 			pstmt.setString(2, gdto2.getG_name());
@@ -128,7 +138,8 @@ public class GroupDao {
 			pstmt.setString(6, gdto2.getG_category());
 			pstmt.setString(7, gdto2.getG_file());
 			pstmt.setString(8, gdto2.getG_user_id());
-			pstmt.setString(9, gdto2.getG_member_id() );
+			pstmt.setString(9, gdto2.getG_member_id());
+			pstmt.setInt(10, gdto2.getG_member_cnt());
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -142,6 +153,45 @@ public class GroupDao {
 		}
 		return result;
 		}
+
+
+	//모임정보가져오기
+	public ArrayList<GroupDto> selectAll() {
+		try {
+			conn = getConnection();
+			query = "select * from (select row_number() over (order by g_id desc, g_id asc) rnum, a.* from groups a) where rnum between 1 and 10";
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, 1);
+			pstmt.setInt(2, 10);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				g_id = rs.getString("g_id");
+				g_name = rs.getString("g_name");
+				g_intro = rs.getString("g_intro");
+				g_content = rs.getString("g_content");
+				g_local = rs.getString("g_local");
+				g_category = rs.getString("g_category");
+				g_file = rs.getString("g_file");
+				g_user_id = rs.getString("g_user_id");
+				g_member_id = rs.getString("g_member_id");	
+				g_member_cnt = rs.getInt("g_member_cnt");
+				g_date = rs.getTimestamp("g_date");
+				list.add(new GroupDto(g_id,g_name,g_intro,g_content,g_local,g_category,g_file,g_user_id,g_member_id,g_member_cnt,g_date));
+				
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return list;
+	}
 	
 }
 	

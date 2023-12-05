@@ -43,7 +43,19 @@
 				    }).open();
 					
 				 });
+			 		//회원정보 1명 검색 가져오기
+			 		$("#insertBtn").click(function(){
+			 			if($("#id").val()==""){
+			 				alert("아이디를 입력하세요!");
+			 				$("#id").focus();
+			    			return false;
+			 			}else{
+			 				alert("회원정보를 불러옵니다!");
+			 			}
+			 			lfrm.submit();
+			 		});
 			 });
+			 
 			</script>
 			<body>
 				<div class="top">
@@ -76,21 +88,35 @@
 				<br>
 				
 				<form action="doG_update.do" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
-				
 					<div class="toast">
 						<a href="https://https://www.notion.so/Project-1-d3dbad96ba6a4df498ae5eb0abe7927f" class="aa" target="blank">모임개설가이드</a>
 					</div>
 				<br>
 				<br>	
 				<div class="form-group">
-					<label class="form-label">회원아이디</label>	
-						<input type="text" placeholder="아이디를 수정하세요." name="id"  class="form-input" value="${gdto2.g_id }" maxlength="100">
+					<label class="form-label">회원아이디검색</label>	
+						<input type="text" placeholder="아이디를 검색하세요." id="id" name="id" class="form-input" value="${gdto.g_id }" maxlength="100">
+						<div id="info_input_button">
+							<input type="button" id="insertBtn" value="검색">
+						</div>
+				</div>	
+				<br>
+				<br>		
+				<div class="form-group">
+					<label class="form-label">사용자아이디</label>	
+						<input type="text" placeholder="사용자아이디를 입력하세요." class="form-input" value="${gdto.g_user_id}"  maxlength="100">
 				</div>	
 				<br>
 				<br>	
+				<div class="form-group">
+					<label class="form-label">관리자아이디</label>	
+						<input type="text" placeholder="관리자아이디를 입력하세요." class="form-input" value="${gdto.g_member_id}"  maxlength="100">
+				</div>		
+				<br>
+				<br>		
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
-						<input type="text" placeholder="모임명을 수정하세요."  class="form-input1" value="${gdto2.g_name }" maxlength="100">
+						<input type="text" placeholder="모임명을 수정하세요."  class="form-input1" value="${gdto.g_name }" maxlength="100">
 				</div>	
 				<br>
 				<br>
@@ -98,7 +124,7 @@
 					<label class="form-label2">지역</label>
 					<br>
 						<div class="select1">
-					 		<input type="text" id="location-text" name="location-text" value="${gdto2.g_local }" placeholder="지역을 다시 선택하세요.">
+					 		<input type="text" id="location-text" name="location-text" value="${gdto.g_local }" placeholder="지역을 다시 선택하세요.">
 					 	<br>
 					 	<script>
 					 	 	$(function(){
@@ -154,15 +180,15 @@
 				<br>
 				<div class="form-group4">
 					<label class="form-label4">모임정원수</label>
-						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:30)"  class="form-input4" value="${gdto2.g_member_cnt }" maxlength="30">		
+						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:30)"  class="form-input4" value="${gdto.g_member_cnt }" maxlength="30">		
 				</div>
 				<br>
 				<br>
 				<div class="form-group5">
 					<label class="form-label5">이미지수정</label>	
 					<br>
-						<input type="file" id="image"  accept="images/*" value="${gdto2.g_file }"  onchange="setThumbnail(event);">
-							<div class="image_container">
+						<input type="file" id="id" accept="images/*" value="${gdto.g_file }"  onchange="setThumbnail(event);">
+							<%-- <div class="image_container">
 							  <c:if test="${bdto2.g_file != null }">
 			       				<img src="upload/${bdto2.g_file}">
 		    				  </c:if>
@@ -170,7 +196,7 @@
 			       	          <i class="fa fa-ban" aria-hidden="true"></i>
 			                	첨부파일없음
 			                  </c:if>		
-							</div>	
+							</div>	 --%>
 					<script>
 				      function setThumbnail(event) {
 				        for (var image of event.target.files) {
@@ -190,19 +216,13 @@
 				</div>
 				<br>
 				<br>
-				<br>
-				<br>
-				<br>
-				<br>		
-				<br>
-				<br>
 				<div class="form-group6">
 					<label class="form-label6">상세정보수정</label>	
 				<br>
 					<label class="form-label6">짧은소개글</label>
-					<textarea rows="3" cols="60" id="textarea">${gdto2.g_intro }</textarea>	
+					<textarea rows="3" cols="60" id="textarea">${gdto.g_intro }</textarea>	
 					<label class="form-label6">긴소개글</label>
-					<textarea rows="6" cols="60" id="textarea">${gdto2.g_content }</textarea>	
+					<textarea rows="6" cols="60" id="textarea">${gdto.g_content }</textarea>	
 				</div>
 				<div></div>
 				<br>
@@ -216,11 +236,11 @@
 				<br>
 			<div class="form-group7">
 				<label class="form-label7">개설일</label>
-				 	<input type="text" placeholder="YY/MM/DD(예시:23/12/01)" fmt:formatDate value="${bdto.bdate}" pattern="yy-MM-dd" class="form-input7" maxlength="30"> 		
+				 	<input type="text" placeholder="YY/MM/DD(예시:23/12/01)" value="${gdto.g_date}"  class="form-input7" maxlength="30"> 		
 			</div>
 			<br>
 			<br>
-			<div id="join_gender">
+			<!-- <div id="join_gender">
 				<label for>성별</label>
 					<input type="radio" name="gender" id="male" value="male" checked="checked">
 						<label for="male">남성</label>
@@ -237,14 +257,8 @@
 						<label for="close">비공개</label>
 			</div>
 			<br>
-			<br>
-					<div id="input-button">
-						<input type="reset" id="reset" value="취소하기">	
-						<input type="submit" id="submit" value="수정하기">
-					</div>
-				
-			<br>
-			<br>
+			<br> -->
+		
 			<!--  ><h1 class="select_name">추가 선택 정보 수정</h1>
 				<div class="select_info">
 			<br>
@@ -318,29 +332,37 @@
 						<dd>
 							<ul>
 								<li>
-									<input type="checkbox" name="g_categorys" id="climb" value="climb" >
+									<input type="checkbox" name="g_category" value="${gdto.g_category }" id="climb" value="climb" >
 									<label for="climb">등산</label>
 								</li>
 								<li>
-									<input type="checkbox" name="g_categorys" id="run" value="run" >
+									<input type="checkbox" name="g_category" value="${gdto.g_category }" id="run" value="run" >
 									<label for="run">조깅</label>
 								</li>
 								<li>
-									<input type="checkbox" name="g_categorys" id="book" value="book" >
+									<input type="checkbox" name="g_category" value="${gdto.g_category }" id="book" value="book" >
 									<label for="book">독서</label>
 								</li>
 								<li>
-									<input type="checkbox" name="g_categorys" id="cook" value="cook" >
+									<input type="checkbox" name="g_category" value="${gdto.g_category }" id="cook" value="cook" >
 									<label for="cook">요리</label>
 								</li>
 								<li>
-									<input type="checkbox" name="g_categorys" id="cafe" value="cafe">
+									<input type="checkbox" name="g_category" value="${gdto.g_category }" id="cafe" value="cafe">
 									<label for="cafe">카페</label>
 								</li>
 							</ul>
 						</dd>
 					</dl>
 				</fieldset>
+			<br>	
+			<br>	
+				<div id="input-button">
+					<input type="reset" id="reset" value="취소하기">	
+					<input type="submit" id="submit" value="수정하기">
+				</div>	
+			<br>
+			<br>
 			</form>
 		</div>
 	</div>

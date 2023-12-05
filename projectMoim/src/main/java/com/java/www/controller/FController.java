@@ -13,6 +13,7 @@ import com.java.www.service.G_CreateService;
 import com.java.www.service.G_UpdateService;
 import com.java.www.service.G_doSearchService;
 import com.java.www.service.GselectOneService;
+import com.java.www.service.GselectService;
 import com.java.www.service.Service;
 
 
@@ -47,12 +48,12 @@ public class FController extends HttpServlet {
 			url = "doG_create.jsp";
 			break;
 		case "/g_update.do":
-			service = new G_UpdateService();
+			service = new GselectOneService();
 			service.execute(request, response);
 			url = "g_update.jsp";
 			break;
-		case "/doG_update.do": 
-			service = new G_UpdateService();
+		case "/doG_update.do":
+			service = new GselectOneService();
 			service.execute(request, response);
 			url = "doG_update.jsp";
 			break;

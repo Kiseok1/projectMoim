@@ -82,6 +82,36 @@ public class GroupDto {
 		
 	}
 
+	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2,
+			String g_category2, String g_file2, String g_user_id2, String g_member_id2, int g_member_cnt2) {
+		this.g_id = g_id;
+		this.g_name = g_name2;
+		this.g_intro = g_intro2;
+		this.g_content = g_content2;
+		this.g_local = g_local2;
+		this.g_category = g_category2;	
+		this.g_file = g_file2;
+		this.g_user_id = g_user_id2;
+		this.g_member_id = g_member_id2;
+		this.g_member_cnt = g_member_cnt2;
+	}
+
+
+	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2,
+			String g_category2, String g_file2, String g_user_id2, String g_member_id2, int g_member_cnt2,
+			Timestamp g_date2) {
+		this.g_id = g_id;
+		this.g_name = g_name2;
+		this.g_intro = g_intro2;
+		this.g_content = g_content2;
+		this.g_local = g_local2;
+		this.g_category = g_category2;	
+		this.g_file = g_file2;
+		this.g_user_id = g_user_id2;
+		this.g_member_id = g_member_id2;
+		this.g_member_cnt = g_member_cnt2;
+		this.g_date = g_date2;
+	}
 
 
 	private int g_id;

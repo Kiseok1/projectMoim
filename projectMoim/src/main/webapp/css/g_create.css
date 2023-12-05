@@ -32,12 +32,12 @@ font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;top:-5px;left:-5px
 .user-img{margin: 8px;width: 32px;height: 32px;border-radius: 100%;background-image: url(/static/assets/images/img-user.svg);
 background-repeat: no-repeat;background-position: 50%;background-size: cover;background-color: rgba(0,0,0,.05);
 box-sizing: border-box;padding: 0;display: block;font-family: Roboto,Helvetica Neue,sans-serif;}
-/*하단 폼 부분*/
+/*하단 박스 부분*/
 .continer-box{width:758px;height:2802.91px;background-color: #f5f5f5;max-width: 100%;margin: 0 auto;
 padding: 32px 10px 40px;display: flex;flex-direction: column;width: 100%;min-height: calc(100vh - 56px);
 color: rgba(0,0,0,.85);box-sizing: border-box; position: relative;}
 
-.box-group{width:632px; height:2100px; margin: 0 auto;padding: 32px; width: 100%; max-width: 632px;border-radius: 8px;background-color: #fff;
+.box-group{width:632px; height:2300px; margin: 0 auto;padding: 32px; width: 100%; max-width: 632px;border-radius: 8px;background-color: #fff;
 box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);box-sizing: border-box; display: block;border-bottom: 1px solid rgba(0,0,0,.08);}
 
 .page-title{font-size: 24px;line-height: 1.33;letter-spacing: -1px;box-sizing: border-box;margin: 0;padding: 0;display: block;display: block;color: rgba(0,0,0,.85);
@@ -50,7 +50,6 @@ border-top: 1px solid rgba(0,0,0,.08);}
 .toast{width:568px;height:56px;margin-top: 16px;flex-direction: row;justify-content: flex-start;justify-content: flex-start;
 align-items: center;min-height: 56px;background-color: #fff;box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);display: flex;margin-bottom: 16px;padding: 12px 16px;
 border-radius: 8px;font-size: 14px;font-weight: 700;color: #fff;box-sizing: border-box;margin: 0;font-family: Roboto,Helvetica Neue,sans-serif;}
-
 /*아이디*/
 .form-group{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);
 font-family: Roboto,Helvetica Neue,sans-serif;}
@@ -65,17 +64,17 @@ box-sizing: border-box;margin: 0;}
 .form-group1{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);
 font-family: Roboto,Helvetica Neue,sans-serif;}
 
-.form-label{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
+.form-label1{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
 cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 
-.form-input{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+.form-input1{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
 box-sizing: border-box;margin: 0;}
 /*지역*/
 .form-group2{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;}
 
 .form-label2{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
 cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;color: rgba(0,0,0,.85);}
-/*지역*/
+
 #location{display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
 box-sizing: border-box;margin: 0;}
 
@@ -105,6 +104,13 @@ margin-inline-start: 0px;margin-inline-end: 0px;padding-inline-start: 40px;visib
 
 .dropdown-itmes{width:265px;height:48px;display: flex;align-items: center;padding: 0 16px;box-sizing: border-box;margin: 0;text-align: -webkit-match-parent;list-style: none;visibility: hidden;font-size: 14px;
 color: rgba(0,0,0,.6);font-family: Roboto,Helvetica Neue,sans-serif;}
+
+#insertBtn{text-rendering: auto;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;
+ text-indent: 0px;text-shadow: none;display: inline-block;text-align: center;align-items: flex-start;cursor: default;box-sizing: border-box;
+ margin: 0em;padding-block: 1px;padding-inline: 6px;border-width: 2px;border-style: outset;border-image: initial;margin-bottom: 3px;background-color:darkgrey;color: #fff;border-radius: 4px;}
+
+#insertBtn:hover{background-color: #00baa4;color: #fff;border-radius: 4px;}
+
 /*장소명*/
 .form-group3{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;}
 
@@ -129,14 +135,13 @@ cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 
 #formfile{width:200px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;}
 
-.upload-img{width:250px;height:100px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;
-font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;box-sizing: border-box;margin: 0;}
+.image_container{width:568px;height:150px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;
+box-sizing: border-box;margin: 0;padding:20px;}
 
-.upload-thumbnail{width: 200px;height: 100px;margin-left: 4px;background-size: cover;background-position-y: center;
-background-image: url();font-family: Roboto,Helvetica Neue,sans-serif;}
+.image_container img{width:30%;}
 
-.upload_file{height: 16px;flex: 1;margin-left: 16px;margin-right: 36px;text-overflow: ellipsis;overflow-y: hidden;font-family: NotoSansKR;
- font-size: 15px;box-sizing: border-box;margin: 0;padding: 0;color: rgba(0,0,0,.85);}
+.thumbnail{width:100%;height:100%;object-fit:cover;}
+
 /*모임상세정보*/
 .form-group6{width:568px;height:75px;margin-top: 32px;position: relative;box-sizing: border-box;margin: 0;padding: 0;display: block;color: rgba(0,0,0,.85);font-family: Roboto,Helvetica Neue,sans-serif;font-size: 12px;}
 
@@ -151,7 +156,7 @@ box-sizing: border-box;margin: 0;line-height:top;}
 .form-label7{width:568px;height:19px;display: block;margin-bottom: 8px;font-size: 14px;color: rgba(0,0,0,.85);box-sizing: border-box;margin: 0;padding: 0;
 cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 
-.form-input7{width:568px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+.form-input7{width:300px;height:48px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
 box-sizing: border-box;margin: 0;}
 
 .input-form-file{width:100px;text-rendering: auto;color: buttontext;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;
@@ -201,8 +206,10 @@ cursor: default;font-family: Roboto,Helvetica Neue,sans-serif;}
 box-sizing: border-box;margin: 0;margin-bottom: 3px;}
 
 #postBtn{text-rendering: auto;letter-spacing: normal;word-spacing: normal;line-height: normal;text-transform: none;
- text-indent: 0px;text-shadow: none;display: inline-block;text-align: center;align-items: flex-start;cursor: default;box-sizing: border-box;background-color: buttonface;
- margin: 0em;padding-block: 1px;padding-inline: 6px;border-width: 2px;border-style: outset;border-image: initial;margin-bottom: 3px;background-color: #fff}
+ text-indent: 0px;text-shadow: none;display: inline-block;text-align: center;align-items: flex-start;cursor: default;box-sizing: border-box;
+ margin: 0em;padding-block: 1px;padding-inline: 6px;border-width: 2px;border-style: outset;border-image: initial;margin-bottom: 3px;background-color:darkgrey;color: #fff;border-radius: 4px;}
+ 
+#postBtn:hover{background-color: #00baa4;color: #fff;border-radius: 4px;}
  
 #address1{width:300px;height:30px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;
 font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;box-sizing: border-box;margin: 0;margin-bottom: 3px;}
@@ -230,13 +237,18 @@ box-sizing: border-box;margin: 0;}
 #reset{background-color:darkgrey;color: #fff;border-radius: 4px;}
 #reset:hover{background-color: #00baa4;color: #fff;border-radius: 4px;}
 
-
 #submit{background-color:darkgrey;color: #fff;border-radius: 4px;}
 #submit:hover{background-color: #00baa4;color: #fff;border-radius: 4px;}
 
 #textarea{resize: none;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;
 font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;}	
 
+/*체크박스*/
+.fieldset_class{width:568px;height:150px;display: block;padding: 0 16px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);font-size: 14px;background-color: #fff;color: #000;font-family: Noto Sans KR,Noto Sans,Nanum Gothic,나눔고딕,sans-serif;
+box-sizing: border-box;margin: 0;line-height:top;}		
+		
+		
+		
 		
 		
 		
