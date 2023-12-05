@@ -51,23 +51,23 @@ margin-right:auto; line-height: 40px;
 				</td>
 			</tr>
 			<tr>
-				<c:if test="${prenullDto.b_no==0}">
+				<c:if test="${preDto==null}">
 				<td><strong>이전글</strong><span>|</span>
 				이전글이 없습니다.</td>
 				</c:if>
-				<c:if test="${preDto.b_no!=null}">
+				<c:if test="${preDto!=null}">
 				<td><strong>이전글</strong><span>|</span>
-				<a href="b_view.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}1</a></td>
+				<a href="b_view.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}</a></td>
 				</c:if>
 			</tr>
 			<tr>
-			<c:if test="${nextnullDto.b_no==preDto.b_no}">
+			<c:if test="${nextDto==null}">
 				<td><strong>다음글</strong><span>|</span>
 				다음글이 없습니다.</td>
 			</c:if>
-			<c:if test="${nextDto.b_no!=null}">
+			<c:if test="${nextDto!=null}">
 				<td><strong>다음글</strong><span>|</span>
-			<a href="b_view.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}2</a></td>
+			<a href="b_view.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}</a></td>
 			</c:if>
 			</tr>
 			

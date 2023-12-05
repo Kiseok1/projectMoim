@@ -320,7 +320,8 @@ public class BoardDao {
 		
 		try {
 			conn = getConnection();
-			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)+1";
+			bdto = null;
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)-1";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, b_no2);
 			rs = pstmt.executeQuery();
@@ -347,14 +348,15 @@ public class BoardDao {
 				if(conn!=null) conn.close();
 			} catch (Exception e2) { e2.printStackTrace();}
 		}//
-		
+		System.out.println("bdao PreSelectOne :"+ bdto);
 		return bdto;
 	}
 	//다음글 가져오기
 	public BoardDto nextSelectOne(int b_no2) {
 		try {
 			conn = getConnection();
-			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)-1";
+			bdto = null;
+			query = "select * from (select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where rnum = (select rnum from(select row_number() over (order by b_group desc, b_step asc) rnum, a.* from p_board a) where b_no=?)+1";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, b_no2);
 			rs = pstmt.executeQuery();
@@ -382,7 +384,7 @@ public class BoardDao {
 				if(conn!=null) conn.close();
 			} catch (Exception e2) { e2.printStackTrace();}
 		}//
-		
+		System.out.println("bdao NextSelectOne :"+ bdto);
 		return bdto;
 	}
 

@@ -48,10 +48,11 @@ public class BoardDto {
 	}
 	
 	
-	public BoardDto(String b_title, String b_content,String u_nicname,String b_file) {
+	public BoardDto(String b_title, String b_content,String u_nicname, String u_id,String b_file) {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.u_nicname = u_nicname;
+		this.u_id = u_id;
 		this.b_file = b_file;
 	}
 	

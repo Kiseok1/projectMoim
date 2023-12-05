@@ -21,6 +21,7 @@ public class P_InsertService implements Service {
 		HttpSession session = request.getSession();
 		String b_title="", b_content="", b_file="";
 		String id = (String)session.getAttribute("session_id");
+		String nicname = (String)session.getAttribute("session_nicname");
 		//form데이터 처리 Multipart
 		String upload = "c:/upload";
 		int size = 10*1024*1024;
@@ -36,7 +37,7 @@ public class P_InsertService implements Service {
 				b_file = multi.getFilesystemName(f);
 				System.out.println("service bfile : "+b_file);
 			}
-			BoardDto bdto = new BoardDto(b_title, b_content,id,b_file);
+			BoardDto bdto = new BoardDto(b_title,b_content,nicname,id,b_file);
 			//dao 접근 - 게시글 저장 메소드 호출
 			int result = bdao.insert(bdto);
 			//request 추가
