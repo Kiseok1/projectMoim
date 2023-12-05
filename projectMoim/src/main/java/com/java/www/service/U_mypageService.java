@@ -17,15 +17,21 @@ public class U_mypageService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("session_id");
-		
+		String g_id="";
+		String[] g_ids=null;
+		ArrayList<GroupDto> list = new ArrayList<GroupDto>();
 		
 		UserDao udao = new UserDao();
 		UserDto udto = udao.selectOne(id);
-		String g_id=udto.getG_id();
-		String[] g_ids=g_id.split(",");
 		
-		GroupDao gdao = new GroupDao();
-		ArrayList<GroupDto> list = gdao.selectJoinGroup(g_ids);
+		if(udto.getG_id()!=null) {
+			g_id=udto.getG_id();
+			g_ids=g_id.split(",");
+			
+			GroupDao gdao = new GroupDao();
+			list = gdao.selectJoinGroup(g_ids);
+		}
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("udto", udto);

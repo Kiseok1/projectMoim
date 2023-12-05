@@ -64,7 +64,7 @@
 						<p class="page-title">모임정보수정</p> 
 				<br>
 				
-				<form action="doG_update.do" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
+				<form action="doG_update.do?g_id=${gdto.g_id}" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
 					<div class="toast">
 						<a href="https://https://www.notion.so/Project-1-d3dbad96ba6a4df498ae5eb0abe7927f" class="aa" target="blank">모임개설가이드</a>
 					</div>
