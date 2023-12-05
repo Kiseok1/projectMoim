@@ -35,14 +35,14 @@
 			<input type="hidden" id="id" value="${session_id}">
 			<div class="leftBar">
 				<div class="left-button"> 
-					<a data-url=""><div>모임 정보 수정</div></a>
+					<a data-url="g_update.do?g_id=${gdto.g_id}"><div>모임 정보 수정</div></a>
 					<a data-url="g_approve.do?g_id=${gdto.g_id}"><div>가입 승인</div></a>
 					<a data-url=""><div>멤버 강퇴</div></a>
 				</div>
 			</div>
 			<div class="main">
 				<hr>
-				<iframe id="iframe" src="" width="100%" height="100%"></iframe>
+				<iframe id="iframe" src="" width="100%" height="90%"></iframe>
 				
 				
 				
