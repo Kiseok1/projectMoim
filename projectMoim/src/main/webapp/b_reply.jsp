@@ -36,7 +36,7 @@ margin-right:auto; line-height: 40px;
 					return false;
 				}
 				
-				insertFrm.submit();
+				ReplyFrm.submit();
 			
 		});//
 	});//
@@ -49,12 +49,15 @@ margin-right:auto; line-height: 40px;
 		<section>
 		<h1>ㅁㅁ소모임 게시판 </h1>
 		<table>
-		<form action="do_insert.do" name="insertFrm" method="post" enctype="multipart/form-data">
+		<form action="do_Reply.do" name="ReplyFrm" method="post" enctype="multipart/form-data">
+		 <input type="hidden" name="b_group" value="${bdto.b_group }">
+	     <input type="hidden" name="b_step" value="${bdto.b_step }">
+	     <input type="hidden" name="b_indent" value="${bdto.b_indent }">
 		<p class="titleCon">
 			<tr>
 				<th><strong>제목</strong>|</th>
 				<td>
-					<input type="text" name="b_title" id="b_title">
+					<input type="text" name="b_title" id="b_title" value="[답글] ${bdto.b_title}">
 				</td>
 			</tr>
 			<tr>

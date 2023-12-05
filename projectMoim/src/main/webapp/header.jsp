@@ -64,7 +64,7 @@
             <c:if test="${session_id!=null}">
             <li class="header-gnbitem">
               <a class="header-gnblink" href="u_mypage.do">
-                <span>${session_nickname}님</span>
+                <span>${session_nicname}님</span>
               </a>
             </li>
             <li class="header-gnbitem">

@@ -14,6 +14,8 @@ import com.java.www.service.G_applyService;
 import com.java.www.service.G_approveConfirmService;
 import com.java.www.service.G_approveSelectService;
 import com.java.www.service.G_doSearchService;
+
+
 import com.java.www.service.G_joinService;
 import com.java.www.service.G_quitService;
 import com.java.www.service.G_viewService;
@@ -22,11 +24,23 @@ import com.java.www.service.M_insertService;
 import com.java.www.service.M_selectPopService;
 import com.java.www.service.M_selectRecieveService;
 import com.java.www.service.M_selectSendService;
+
+import com.java.www.service.P_DeleteService;
+import com.java.www.service.P_InsertService;
+import com.java.www.service.P_ReplyService;
+import com.java.www.service.P_SelectOneService;
+import com.java.www.service.P_UpdateService;
+import com.java.www.service.P_listSelectService;
+
+
 import com.java.www.service.Service;
 import com.java.www.service.U_LoginService;
+
+
 import com.java.www.service.U_insertService;
 import com.java.www.service.U_mypageService;
 import com.java.www.service.U_selectOneService;
+
 
 
 
@@ -45,12 +59,16 @@ public class FController extends HttpServlet {
 		String url = null;
 		Service service = null;
 		
+		//호출된 파일이름
+		System.out.println("FController 파일 이름 :"+fileName);
+		
+		
 		switch (fileName) {
 		case "/main.do":
 			response.sendRedirect("main.jsp");
 			break;
-		case "/u_login.do":
-			response.sendRedirect("u_login.jsp");
+		case "/b_insert.do":
+			response.sendRedirect("b_insert.jsp");
 			break;
 		case "/dologin.do":
 			service = new U_LoginService();
@@ -159,9 +177,52 @@ public class FController extends HttpServlet {
 		case "/m_delSent.do":
 			service = new M_deleteService();
 			service.execute(request, response);
-			url="m_sentMsg.do";
+			url="m_sentMsg.do";			
+			break;
+			//게시글 리스트 가져오기
+		case "/b_list.do":
+			service = new P_listSelectService();
+			service.execute(request, response);
+			url="b_list.jsp";
 			break;		
-		
+		case "/b_view.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_view.jsp";
+			break;		
+		case "/b_reply.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_reply.jsp";
+			break;		
+		case "/do_Reply.do":
+			service = new P_ReplyService();
+			service.execute(request, response);
+			url="do_Reply.jsp";
+			break;
+		case "/do_insert.do":
+			service = new P_InsertService();
+			service.execute(request, response);
+			url="do_insert.jsp";
+			break;
+		case "/do_update.do":
+			service = new P_UpdateService(); //아이디 사용 
+			service.execute(request, response);
+			url="do_update.jsp";
+			break;		
+		case "/u_login.do":
+			response.sendRedirect("u_login.jsp");
+			break;
+		case "/do_Delete.do":
+			service = new P_DeleteService();
+			service.execute(request, response);
+			url="do_Delete.jsp";
+			break;
+		case "/b_update.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_update.jsp";
+			break;		
 		}
 		
 		if(url != null) {

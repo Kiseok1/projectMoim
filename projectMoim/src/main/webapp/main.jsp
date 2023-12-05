@@ -19,9 +19,10 @@
 		<a href="u_mypage.do"><h3>${session_nickname}</h3></a>
 		<a href="u_logout.do"><h3>로그아웃</h3></a>
 		</c:if>
-		
 		<a href="g_main.do"><h3>모임</h3></a>
+		<a href="b_list.do"><h3>게시판</h3></a>
 		
+		<!-- test -->
 		
 	</body>
 </html>

@@ -43,7 +43,7 @@
 					</tr>
 					<tr>
 						<th>닉네임</th>
-						<td><input type="text" name="nickname" id="nickname" value="${udto.u_nickname}"></td>
+						<td><input type="text" name="nickname" id="nickname" value="${udto.u_nicname}"></td>
 					</tr>
 					<tr>
 						<th>프로필 사진</th>

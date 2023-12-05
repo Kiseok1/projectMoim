@@ -19,7 +19,7 @@ public class UserDao {
 	ResultSet rs = null;
 	UserDto udto = null;
 	ArrayList<UserDto> list = new ArrayList<UserDto>();
-	String u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id, query = "";
+	String u_id, u_pw, u_nicname, u_email, u_category, u_local, u_profileImg, g_id, query = "";
 	Timestamp u_date;
 	int result;
 
@@ -47,7 +47,7 @@ public class UserDao {
 			if (rs.next()) {
 				u_id = rs.getString("u_id");
 				u_pw = rs.getString("u_pw");
-				u_nickname = rs.getString("u_nickname");
+				u_nicname = rs.getString("u_nickname");
 				u_email = rs.getString("u_email");
 				u_category = rs.getString("u_category");
 				u_local = rs.getString("u_local");
@@ -55,7 +55,7 @@ public class UserDao {
 				g_id = rs.getString("g_id");
 				u_date = rs.getTimestamp("u_date");
 
-				udto = new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id, u_date);
+				udto = new UserDto(u_id, u_pw, u_nicname, u_email, u_category, u_local, u_profileImg, g_id, u_date);
 			}
 
 		} catch (Exception e) {
@@ -88,14 +88,14 @@ public class UserDao {
 			if (rs.next()) {
 				u_id = rs.getString("u_id");
 				u_pw = rs.getString("u_pw");
-				u_nickname = rs.getString("u_nickname");
+				u_nicname = rs.getString("u_nickname");
 				u_email = rs.getString("u_email");
 				u_category = rs.getString("u_category");
 				u_local = rs.getString("u_local");
 				u_profileImg = rs.getString("u_profileImg");
 				u_date = rs.getTimestamp("u_date");
 
-				udto = new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, u_date);
+				udto = new UserDto(u_id, u_pw, u_nicname, u_email, u_category, u_local, u_profileImg, u_date);
 			}
 
 		} catch (Exception e) {
@@ -184,7 +184,7 @@ public class UserDao {
 				if (rs.next()) {
 					u_id = rs.getString("u_id");
 					u_pw = rs.getString("u_pw");
-					u_nickname = rs.getString("u_nickname");
+					u_nicname = rs.getString("u_nickname");
 					u_email = rs.getString("u_email");
 					u_category = rs.getString("u_category");
 					u_local = rs.getString("u_local");
@@ -192,7 +192,7 @@ public class UserDao {
 					g_id = rs.getString("g_id");
 					u_date = rs.getTimestamp("u_date");
 
-					udto = new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id,
+					udto = new UserDto(u_id, u_pw, u_nicname, u_email, u_category, u_local, u_profileImg, g_id,
 							u_date);
 				}
 			}
@@ -222,7 +222,7 @@ public class UserDao {
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, udto2.getU_id());
 			pstmt.setString(2, udto2.getU_pw());
-			pstmt.setString(3, udto2.getU_nickname());
+			pstmt.setString(3, udto2.getU_nicname());
 			pstmt.setString(4, udto2.getU_email());
 			pstmt.setString(5, udto2.getU_local());
 			pstmt.setString(6, udto2.getU_category());
@@ -257,7 +257,7 @@ public class UserDao {
 				while (rs.next()) {
 					u_id = rs.getString("u_id");
 					u_pw = rs.getString("u_pw");
-					u_nickname = rs.getString("u_nickname");
+					u_nicname = rs.getString("u_nickname");
 					u_email = rs.getString("u_email");
 					u_category = rs.getString("u_category");
 					u_local = rs.getString("u_local");
@@ -265,7 +265,7 @@ public class UserDao {
 					g_id = rs.getString("g_id");
 					u_date = rs.getTimestamp("u_date");
 					
-					list.add(new UserDto(u_id, u_pw, u_nickname, u_email, u_category, u_local, u_profileImg, g_id, u_date));
+					list.add(new UserDto(u_id, u_pw, u_nicname, u_email, u_category, u_local, u_profileImg, g_id, u_date));
 				}
 			}
 		} catch (Exception e) {
@@ -284,4 +284,5 @@ public class UserDao {
 		}
 		return list;
 	}
+
 }

@@ -4,14 +4,12 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>dologin.jsp</title>
+		<title>게시글 작성</title>
 	</head>
 	<body>
 		<script>
-
-			alert("로그인 되었습니다.");
-			location.href="g_main.do";
-
+			alert("글을 삭제하였습니다.");
+			location.href="b_list.do?page=${page}&category=${category}&sword=${sword}";
 		</script>
 	
 	</body>
