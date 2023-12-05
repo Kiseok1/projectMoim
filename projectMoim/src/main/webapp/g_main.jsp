@@ -33,6 +33,7 @@
 			$("#g_srch").val("");
 		});
 		
+		
 		//검색창
 		$("#sBtn").click(function(){
 			if( $("#g_srch").val().length < 2 ){
