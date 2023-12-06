@@ -63,7 +63,7 @@
 			</div>
 			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
 			
-			<div style="margin-top: 10px;">${gdto.g_content}</div>
+			<div style="margin-top: 10px;"><textarea rows="100" cols="100" style="border: none">${gdto.g_content}</textarea> </div>
 			<h5 style="margin-top: 10px;">가입멤버</h5>
 				<div>
 					<c:forEach	items="${list}" var="u">
