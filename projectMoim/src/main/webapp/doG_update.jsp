@@ -11,7 +11,6 @@
 	<body>
 		<script>
 			alert("모임정보를 수정했습니다.")
-			location.href="main.do"
 		</script>
 	</body>
 </html>

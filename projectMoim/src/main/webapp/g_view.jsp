@@ -27,11 +27,19 @@
 				
 				//탈퇴
 				$("#qBtn").click(function(){
+					var admin = "${admin}";
+					var id = "${session_id}"
 					if(confirm("모임을 탈퇴하시겠습니까?")){
-						location.href="g_quit.do?g_id=${gdto.g_id}";
+						if(admin!=id){
+							location.href="g_quit.do?g_id=${gdto.g_id}";
+						} else{
+							alert("호스트는 탈퇴할 수 없습니다.");
+						}
 					}
 				});//탈퇴 클릭
+				
 			});//jquery
+				
 		</script>
 		<style>
 			.gview_cont{margin:0 auto; width: 600px;}
@@ -62,8 +70,9 @@
 					</div>
 			</div>
 			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
+			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
 			
-			<div style="margin-top: 10px;"><textarea rows="100" cols="100" style="border: none">${gdto.g_content}</textarea> </div>
+			<div style="margin-top: 10px; white-space: pre;">${gdto.g_content}</div>
 			<h5 style="margin-top: 10px;">가입멤버</h5>
 				<div>
 					<c:forEach	items="${list}" var="u">
@@ -93,7 +102,12 @@
 			</c:if>
 			<!-- 비가입자(로그인) -->
 			<c:if test="${not fn:contains(gdto.g_member_id,id)}">
-			<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
+				<c:if test="${status==100}">
+					<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
+				</c:if>
+				<c:if test="${status==0}">
+					<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 대기중</h5>
+				</c:if>
 			</c:if>
 			<!-- 비가입자(비로그인) -->
 			<c:if test="${session_id==null}">

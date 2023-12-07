@@ -357,7 +357,7 @@ public class GroupDao {
 	public void approveConfirm(String a_nos) {
 		try {
 			conn=getConnection();
-			query="update approves set status=1 where a_no=?";
+			query="update approves set status=1, approve_date=sysdate where a_no=?";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, a_nos);
 			result=pstmt.executeUpdate();
@@ -510,6 +510,32 @@ public class GroupDao {
 		}//
 		return g_id1;
 	}
+
+	//가입대기중 확인하기
+	public int selectApproveStatus(String id2, String g_id2) {
+		try {
+			conn=getConnection();
+			query="select * from approves where u_id=? and g_id=? and status=0";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1,id2);
+			pstmt.setString(2,g_id2);
+			rs=pstmt.executeQuery();
+			status=100;
+			if(rs.next()) {
+				status=rs.getInt("status");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return status;
+	}//selectApproveStatus
 
 	
 }
