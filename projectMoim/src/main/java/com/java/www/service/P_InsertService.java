@@ -26,6 +26,8 @@ public class P_InsertService implements Service {
 		String upload = "c:/upload";
 		int size = 10*1024*1024;
 		
+		String g_id = (String) session.getAttribute("session_gid");
+		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, upload,size,"utf-8",new DefaultFileRenamePolicy());
 			b_title = multi.getParameter("b_title");
@@ -39,7 +41,7 @@ public class P_InsertService implements Service {
 			}
 			BoardDto bdto = new BoardDto(b_title,b_content,nicname,id,b_file);
 			//dao 접근 - 게시글 저장 메소드 호출
-			int result = bdao.insert(bdto);
+			int result = bdao.insert(bdto,g_id);
 			//request 추가
 			request.setAttribute("result", result);
 			System.out.println("리턴받은 result의 값 :"+result);

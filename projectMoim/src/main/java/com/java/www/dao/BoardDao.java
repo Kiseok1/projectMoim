@@ -139,17 +139,18 @@ public class BoardDao {
 	}
 
 	//게시글 저장 메소드 (작성)
-	public int insert(BoardDto bdto2) {
+	public int insert(BoardDto bdto2, String g_id2) {
 		try {
 			
 			conn = getConnection();
-			query = "insert into boards (b_no,b_title,b_content,u_nickname,u_id,b_group,b_step,b_indent,b_hit,b_file,b_date) values(boards_seq.nextval,?,?,?,?,boards_seq.currval,0,0,1,?,sysdate)";
+			query = "insert into boards (b_no,b_title,b_content,u_nickname,g_id,u_id,b_group,b_step,b_indent,b_hit,b_file,b_date) values(boards_seq.nextval,?,?,?,?,?,boards_seq.currval,0,0,1,?,sysdate)";
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, bdto2.getB_title());
 			pstmt.setString(2, bdto2.getB_content());
 			pstmt.setString(3, bdto2.getU_nicname());
-			pstmt.setString(4, bdto2.getU_id());
-			pstmt.setString(5, bdto2.getB_file());
+			pstmt.setString(4, g_id2);
+			pstmt.setString(5, bdto2.getU_id());
+			pstmt.setString(6, bdto2.getB_file());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

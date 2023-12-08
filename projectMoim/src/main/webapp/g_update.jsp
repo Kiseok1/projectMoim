@@ -44,17 +44,7 @@
 				    }).open();
 					
 				 });
-			 		//회원정보 1명 검색 가져오기
-			 		$("#insertBtn").click(function(){
-			 			if($("#id").val()==""){
-			 				alert("아이디를 입력하세요!");
-			 				$("#id").focus();
-			    			return false;
-			 			}else{
-			 				alert("회원정보를 불러옵니다!");
-			 			}
-			 			lfrm.submit();
-			 		});
+			 		
 			 });
 			 
 			</script>

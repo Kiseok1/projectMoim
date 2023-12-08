@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.www.dao.BoardDao;
 import com.java.www.dto.BoardDto;
@@ -17,6 +18,11 @@ public class P_listSelectService implements Service {
 		//검색부분
 		String category = request.getParameter("category");
 		String sword = request.getParameter("sword"); 
+		
+		
+		
+		
+		
 		//하단넘버링 필요 변수
 		int rowPage = 10; // 1페이지당 게시글 
 		int bottomPage = 10; //하단 넘버링 갯수

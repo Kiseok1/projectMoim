@@ -36,7 +36,7 @@ public class GroupDto {
 
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2, String g_file2,
 			int g_member_cnt2, Timestamp g_date2) {
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;
@@ -49,7 +49,7 @@ public class GroupDto {
 
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2, String g_file2,
 			int g_member_cnt2) {
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;
@@ -61,7 +61,7 @@ public class GroupDto {
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2, String g_file2,
 			int g_member_cnt2, String g_category2) {
 		
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;
@@ -74,7 +74,7 @@ public class GroupDto {
 
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2,
 			String g_category2, String g_file2, String g_user_id2, String g_member_id2, int g_member_cnt2) {
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;
@@ -89,7 +89,7 @@ public class GroupDto {
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2,
 			String g_category2, String g_file2, String g_user_id2, String g_member_id2, int g_member_cnt2,
 			Timestamp g_date2) {
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;
@@ -104,7 +104,7 @@ public class GroupDto {
 
 	public GroupDto(String g_id2, String g_name2, String g_intro2, String g_content2, String g_local2,
 			String g_category2, String g_file2, String g_user_id2, String g_member_id2) {
-		this.g_id = g_id;
+		this.g_id = Integer.parseInt(g_id2);
 		this.g_name = g_name2;
 		this.g_intro = g_intro2;
 		this.g_content = g_content2;

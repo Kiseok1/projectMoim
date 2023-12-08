@@ -70,7 +70,40 @@
 					</div>
 			</div>
 			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
-			<div style="display: block;"><i class="fa fa-users" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp${gdto.g_member_cnt}명</div>
+			
+			<script>
+				$(function(){
+					var g_id="${session_gid}";
+					var myLike = "${my_like_status}";
+					var htmlData = "";
+					$("#like").click(function(){
+						if(myLike==0){
+							$.ajax({
+								url:"LikeUpdate",
+								type:"post",
+								data:{"g_id":g_id,"like_status":1},
+								dataType:"text",
+								success:function(data){
+									htmlData='';
+									htmlData+='<div style="display: block;"><i class="fa fa-heart" aria-hidden="true" style="color:red;"></i>&nbsp&nbsp'+data+'명이 좋아합니다.</div>'
+									$("#like").html(htmlData);	
+								},
+								error:function(){
+									alert("실패");
+								}
+							});//ajax
+						}//if
+					});//like click
+				});//jquery
+			</script>
+			<div id="like">
+				<c:if test="${my_like_status==0}">
+					<div style="display: block;"><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp&nbsp${all_like_count}명이 좋아합니다.</div>
+				</c:if>
+				<c:if test="${my_like_status==1}">
+					<div style="display: block;"><i class="fa fa-heart" aria-hidden="true" style="color:red;"></i>&nbsp&nbsp${all_like_count}명이 좋아합니다.</div>
+				</c:if>
+			</div>
 			
 			<div style="margin-top: 10px; white-space: pre;">${gdto.g_content}</div>
 			<h5 style="margin-top: 10px;">가입멤버</h5>
@@ -92,7 +125,7 @@
 				</div>
 			<!-- 가입자 -->
 			<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
-			<h5 style="margin-top: 10px;"><a href="b_list.do"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
+			<h5 style="margin-top: 10px;"><a href="b_list.do?g_id=${gdto.g_id}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
 			<h5><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp&nbsp&nbsp사진첩</a></h5>	
 			<h5 id="qBtn" style="cursor: pointer;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp탈퇴</h5>
 			</c:if>
