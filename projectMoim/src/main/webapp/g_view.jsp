@@ -83,7 +83,7 @@
 				</div>
 			<!-- 가입자 -->
 			<c:if test="${session_id!=null && fn:contains(gdto.g_member_id,id)}">
-			<h5 style="margin-top: 10px;"><a href="b_list.do?g_id=${gdto.g_id}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
+			<h5 style="margin-top: 10px;"><a href="b_list.do?g_id=${gdto.g_id}&g_name=${gdto.g_name}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
 			<h5><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp&nbsp&nbsp사진첩</a></h5>	
 			<h5 id="qBtn" style="cursor: pointer;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp탈퇴</h5>
 			</c:if>

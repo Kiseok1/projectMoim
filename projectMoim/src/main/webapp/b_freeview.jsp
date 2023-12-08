@@ -36,9 +36,16 @@ margin-right:auto; line-height: 40px;
 			<tr>
 				<td><strong>제목</strong><span>|</span>${bdto.b_title}</td>
 			</tr>
+			<c:if test="${bdto.g_id==null}">
+			<tr>
+				<td><strong>그룹번호가 없습니다.</strong></td>
+			</tr>
+			</c:if>
+			<c:if test="${bdto.g_id!=null}">
 			<tr>
 				<td><strong>그룹번호</strong><span>|</span>${bdto.g_id}</td>
 			</tr>
+			</c:if>
 			<tr>
 				<td><strong>날짜</strong><span>|</span><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/></td>
 			</tr>
@@ -67,7 +74,7 @@ margin-right:auto; line-height: 40px;
 				</c:if>
 				<c:if test="${preDto!=null}">
 				<td><strong>이전글</strong><span>|</span>
-				<a href="b_view.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}</a></td>
+				<a href="b_freeview.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}</a></td>
 				</c:if>
 			</tr>
 			<tr>
@@ -77,7 +84,7 @@ margin-right:auto; line-height: 40px;
 			</c:if>
 			<c:if test="${nextDto!=null}">
 				<td><strong>다음글</strong><span>|</span>
-			<a href="b_view.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}</a></td>
+			<a href="b_freeview.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}</a></td>
 			</c:if>
 			</tr>
 			
@@ -86,13 +93,13 @@ margin-right:auto; line-height: 40px;
 			<a href="b_list.do?page=${page}&category=${category}&sword=${sword}"><button type="button">게시판</button></a>
 		</tr>
 		<tr>
-			<a href="b_reply.do?page=${page}&b_no=${bdto.b_no}&b_no=${bdto.b_no}&category=${category}&sword=${sword}&gid=${bdto.g_id}"><button type="button">답글달기</button></a>
+			<a href="b_reply.do?page=${page}&b_no=${bdto.b_no}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">답글달기</button></a>
 		</tr>
 		<tr>
 			<button type="button" id="deleteBtn">삭제</button></a>
 		</tr>
 		<tr>
-			<a href="b_update.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">글수정</button></a>
+			<a href="b_freeupdate.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">글수정</button></a>
 		</tr>
 	</body>
 </html>

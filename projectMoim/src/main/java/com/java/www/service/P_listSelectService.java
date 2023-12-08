@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.java.www.dao.BoardDao;
+import com.java.www.dao.GroupDao;
 import com.java.www.dto.BoardDto;
 
 public class P_listSelectService implements Service {
@@ -14,6 +16,9 @@ public class P_listSelectService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		//dao접근
 		BoardDao bdao = new BoardDao();
+		GroupDao gdao = new GroupDao();
+		HttpSession session = request.getSession();
+		String g_id = (String) session.getAttribute("session_gid");
 		//검색부분
 		String category = request.getParameter("category");
 		String sword = request.getParameter("sword"); 
@@ -24,9 +29,8 @@ public class P_listSelectService implements Service {
 			if(request.getParameter("page")!=null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
-		
 		//검색된 게시글 개수
-		int listCount = bdao.pListCount(category,sword);
+		int listCount = bdao.pListCount(category,sword,g_id);
 		int maxPage = (int)Math.ceil((double)listCount/rowPage);
 		int startPage = (int)((page-1)/bottomPage)*bottomPage +1;
 		int endPage = startPage+bottomPage -1;
@@ -35,10 +39,11 @@ public class P_listSelectService implements Service {
 		int endRow = startRow+rowPage-1; //가져오는 게시글의 마지막 b_no
 		
 		//전체 게시글 가져오기
-		ArrayList<BoardDto> list =  bdao.p_listSelect(category,sword,startRow,endRow); 
+		ArrayList<BoardDto> list =  bdao.p_listSelect(category,sword,startRow,endRow,g_id); 
 		
 		//request 추가 
 		request.setAttribute("list", list);
+		request.setAttribute("gdao", gdao);
 		request.setAttribute("listCount", listCount);
 		request.setAttribute("category", category);
 		request.setAttribute("sword", sword);
