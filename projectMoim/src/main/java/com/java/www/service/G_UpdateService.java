@@ -2,6 +2,7 @@ package com.java.www.service;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,18 +21,24 @@ public class G_UpdateService implements Service {
 	
 		//변수선언
 		HttpSession session = request.getSession();
+		String g_id = (String)session.getAttribute("session_gid");
+		System.out.println("g_updateSErvice : "+g_id);
 		String upload = "c:/upload";
 		int size = 10*1024*1024;
 	
 		try {
 		MultipartRequest multi = new MultipartRequest(request,upload,size,"utf-8",new DefaultFileRenamePolicy());	
-		String g_id = (String)session.getAttribute("session_g_id");
 		String g_name = multi.getParameter("g_name");
+		System.out.println("g_updateSErvice : "+g_name);
 		String g_intro = multi.getParameter("g_intro");
+		System.out.println("g_updateSErvice : "+g_intro);
 		String g_content = multi.getParameter("g_content");
+		System.out.println("g_updateSErvice : "+g_content);
 		String g_local = multi.getParameter("g_local");
+		System.out.println("service g_local: "+g_local);
 		String g_category ="";
-		String[] g_categorys = multi.getParameterValues("g_categorys");
+		String[] g_categorys = multi.getParameterValues("g_category");
+		System.out.println("array g_categorys: "+Arrays.toString(g_categorys));
 		for(int i=0;i<g_categorys.length;i++) {
 			if(i==0) g_category = g_categorys[i];
 			else g_category += "," + g_categorys[i];
@@ -46,8 +53,12 @@ public class G_UpdateService implements Service {
 			String tempfile = multi.getFilesystemName(f); 
 			if(tempfile !=null) g_file = tempfile;
 		}
+		System.out.println("service g_file: "+g_file);
 		
-		GroupDto gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt);
+		
+		System.out.println("service g_id: "+g_id);
+		GroupDto gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_cnt);
+		System.out.println("service  dto.g_id : "+gdto.getG_id());
 		
 		GroupDao gdao = new GroupDao();
 		int result = gdao.g_Update(gdto);

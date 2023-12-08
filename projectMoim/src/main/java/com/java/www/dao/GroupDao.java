@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import com.java.www.dto.ApproveDto;
 import com.java.www.dto.BoardDto;
 import com.java.www.dto.GroupDto;
+import com.java.www.dto.NoticeDto;
 
 public class GroupDao {
 
@@ -21,14 +22,17 @@ public class GroupDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	GroupDto gdto = null;
+	NoticeDto ndto =null;
 	ApproveDto adto = null;
 	ArrayList<GroupDto> list = new ArrayList<GroupDto>();
 	ArrayList<ApproveDto> listA = new ArrayList<ApproveDto>();
-	int g_id,g_member_cnt,a_no,status,result;
+	int g_id,g_member_cnt,a_no,status,result,l_bno;
 	String g_id1;
 	String g_name,g_intro,g_content,g_local,g_category,g_file,g_user_id,g_member_id,u_id,query="";
-	Timestamp g_date,apply_date,approve_date;
+	String l_title,l_content,l_file="";
+	Timestamp g_date,apply_date,approve_date,l_date;
 	String[] categorys = null;
+	
 
 	
 	//getConnection
@@ -185,7 +189,6 @@ public class GroupDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				g_id=rs.getInt("g_id");
-				g_member_cnt=rs.getInt("g_member_cnt");
 				g_name=rs.getString("g_name");
 				g_intro=rs.getString("g_intro");
 				g_content=rs.getString("g_content");
@@ -194,6 +197,8 @@ public class GroupDao {
 				g_file=rs.getString("g_file");
 				g_user_id=rs.getString("g_user_id");
 				g_member_id=rs.getString("g_member_id");
+				System.out.println("dao g_member_id: "+g_member_id);
+				g_member_cnt=rs.getInt("g_member_cnt");
 				g_date=rs.getTimestamp("g_date");
 				
 				gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date);
@@ -378,36 +383,18 @@ public class GroupDao {
 	public int g_Update(GroupDto gdto2) {
 		try {
 		conn = getConnection();
-		query = "update groups set g_name=?, g_intro=?, g_content=?, g_local=?, g_category=?, g_file=?, g_user_id=?, g_member_id=?, g_member_cnt=?, g_date=? where g_id=?";
+		System.out.println("dao g_id: "+gdto2.getG_id());
+		query = "update groups set g_name=?, g_intro=?, g_content=?, g_local=?, g_category=?, g_file=? where g_id=?";
 		pstmt = conn.prepareStatement(query);
-		pstmt.setInt(1, gdto2.getG_id());
-		pstmt.setString(2, gdto2.getG_name());
-		pstmt.setString(3, gdto2.getG_intro());
-		pstmt.setString(4, gdto2.getG_content());
-		pstmt.setString(5, gdto2.getG_local());
-		pstmt.setString(6, gdto2.getG_category());
-		pstmt.setString(7, gdto2.getG_file());
-		pstmt.setString(8, gdto2.getG_user_id());
-		pstmt.setString(9, gdto2.getG_member_id());
-		pstmt.setInt(10, gdto2.getG_member_cnt());
-		pstmt.setTimestamp(11, gdto2.getG_date() );
+		pstmt.setString(1, gdto2.getG_name());
+		pstmt.setString(2, gdto2.getG_intro());
+		pstmt.setString(3, gdto2.getG_content());
+		pstmt.setString(4, gdto2.getG_local());
+		pstmt.setString(5, gdto2.getG_category());
+		pstmt.setString(6, gdto2.getG_file());
+		pstmt.setInt(7, gdto2.getG_id());
+		
 		result = pstmt.executeUpdate();
-		if(rs.next()) {
-			g_id = rs.getInt("g_id");
-			g_name = rs.getString("g_name");
-			g_intro = rs.getString("g_intro");
-			g_content = rs.getString("g_content");
-			g_local = rs.getString("g_local");
-			g_category = rs.getString("g_category");
-			g_file = rs.getString("g_file");
-			g_user_id = rs.getString("g_user_id");
-			g_member_id = rs.getString("g_member_id");	
-			g_member_cnt = rs.getInt("g_member_cnt");
-			g_date = rs.getTimestamp("g_date");
-			gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id, g_member_cnt, g_date);
-		}
-		
-		
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -511,6 +498,37 @@ public class GroupDao {
 		return g_id1;
 	}
 
+	//공지사항정보가져오기
+	public int NselectOne(int l_bno) {
+		try {
+			conn=getConnection();
+			query="select * from groups where l_bno=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, l_title);
+			pstmt.setString(2, l_content);
+			pstmt.setString(3, l_file);
+			pstmt.setTimestamp(4, l_date);			
+			pstmt.setInt(5, l_bno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				l_title = rs.getString("l_title");
+				l_content = rs.getString("l_content");
+				l_file = rs.getString("l_file");
+				l_bno =  rs.getInt("l-bno");
+			ndto = new NoticeDto(l_title,l_content,l_file,l_bno);
+			}
 	
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}
+		return result;
+		}	
 }
 	

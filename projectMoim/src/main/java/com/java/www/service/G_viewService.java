@@ -17,6 +17,7 @@ public class G_viewService implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String g_id = request.getParameter("g_id");
+		session.setAttribute("session_gid", g_id);
 		UserDao udao = new UserDao();
 		ArrayList<UserDto> list = new ArrayList<UserDto>();
 		

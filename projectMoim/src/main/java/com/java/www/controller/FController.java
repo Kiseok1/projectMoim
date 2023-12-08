@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.java.www.service.G_MainService;
+import com.java.www.service.G_NoticeService;
 import com.java.www.service.G_applyService;
 import com.java.www.service.G_approveConfirmService;
 import com.java.www.service.G_approveSelectService;
@@ -234,14 +235,16 @@ public class FController extends HttpServlet {
 			url = "g_update.jsp";
 			break;
 		case "/doG_update.do":
-			service = new GselectOneService();
+			service = new G_UpdateService();
 			service.execute(request, response);
 			url = "doG_update.jsp";
 			break;
-		/*
-		 * case "/doG_info.input.do"://회원정보1개가져오기 service = new GselectOneService();
-		 * service.execute(request, response); url = "doG_info.input.do"; break;
-		 */
+		case "/g_notice.do":
+			service = new G_NoticeService();
+			service.execute(request, response);
+			url = "g_notice.jsp";
+			break;
+
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");
 			break;

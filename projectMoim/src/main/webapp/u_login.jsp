@@ -33,7 +33,6 @@
 			});//jquery
 		</script>
 </head>
-
 <body>
   
   <div id="header"></div>
