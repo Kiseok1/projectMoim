@@ -77,22 +77,45 @@
 					var myLike = "${my_like_status}";
 					var htmlData = "";
 					$("#like").click(function(){
-						if(myLike==0){
-							$.ajax({
-								url:"LikeUpdate",
-								type:"post",
-								data:{"g_id":g_id,"like_status":1},
-								dataType:"text",
-								success:function(data){
-									htmlData='';
-									htmlData+='<div style="display: block;"><i class="fa fa-heart" aria-hidden="true" style="color:red;"></i>&nbsp&nbsp'+data+'명이 좋아합니다.</div>'
-									$("#like").html(htmlData);	
-								},
-								error:function(){
-									alert("실패");
-								}
-							});//ajax
-						}//if
+						if(${session_id==null}){
+							alert("좋아요는 로그인 후에 가능합니다.");
+							return false;
+						}//if  로그인 안했을 경우
+						if(${session_id!=null}){
+							if(myLike==0){
+								$.ajax({
+									url:"LikeUpdate",
+									type:"post",
+									data:{"g_id":g_id,"like_status":1},
+									dataType:"text",
+									success:function(data){
+										htmlData='';
+										htmlData+='<div style="display: block;"><i class="fa fa-heart" aria-hidden="true" style="color:red;"></i>&nbsp&nbsp'+data+'명이 좋아합니다.</div>'
+										$("#like").html(htmlData);	
+									},
+									error:function(){
+										alert("실패");
+									}
+								});//ajax
+							} else {
+								$.ajax({
+									url:"LikeUpdate",
+									type:"post",
+									data:{"g_id":g_id,"like_status":0},
+									dataType:"text",
+									success:function(data){
+										htmlData='';
+										htmlData+='<div style="display: block;"><i class="fa fa-heart-o" aria-hidden="true"></i>&nbsp&nbsp'+data+'명이 좋아합니다.</div>'
+										$("#like").html(htmlData);	
+									},
+									error:function(){
+										alert("실패");
+									}
+								});//ajax
+							}//if 좋아요 상태 확인
+						}//로그인 했을 경우	
+							
+							
 					});//like click
 				});//jquery
 			</script>
@@ -139,7 +162,7 @@
 					<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
 				</c:if>
 				<c:if test="${status==0}">
-					<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 대기중</h5>
+					<h5><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 대기중</h5>
 				</c:if>
 			</c:if>
 			<!-- 비가입자(비로그인) -->
