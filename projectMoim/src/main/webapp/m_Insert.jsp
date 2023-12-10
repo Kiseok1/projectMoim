@@ -10,8 +10,9 @@
 	<body>
 		<c:if test="${result==1}">
 			<script>
-				alert("쪽지전송에 성공하였습니다.");
-				location.href="m_write.jsp"
+				//alert("쪽지전송에 성공하였습니다.");
+				//location.href="m_write.jsp"
+				window.close();
 			</script>
 		</c:if>
 		<c:if test="${result==-1}">
