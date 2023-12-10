@@ -89,6 +89,7 @@
 						}//if  로그인 안했을 경우
 						if(${session_id!=null}){
 							if(myLike==0){
+								myLike=1;
 								$.ajax({
 									url:"LikeUpdate",
 									type:"post",
@@ -104,6 +105,7 @@
 									}
 								});//ajax
 							} else {
+								myLike=0;
 								$.ajax({
 									url:"LikeUpdate",
 									type:"post",
