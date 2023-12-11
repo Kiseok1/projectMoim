@@ -21,6 +21,7 @@ public class G_viewService implements Service {
 		String id;
 		int status=1,my_like_status=0;
 		String g_id = request.getParameter("g_id");
+		session.setAttribute("session_gid", g_id);
 		UserDao udao = new UserDao();
 		ArrayList<UserDto> list = new ArrayList<UserDto>();
 		

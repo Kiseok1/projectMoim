@@ -19,8 +19,8 @@ public class G_MainService implements Service {
 		String id=null;
 		String search = null;
 		String local = null;
-		String[] categorys = request.getParameterValues("category");
 		String category = null;
+		String[] categorys = request.getParameterValues("category");
 		UserDao udao = new UserDao();
 		UserDto udto = null;
 		

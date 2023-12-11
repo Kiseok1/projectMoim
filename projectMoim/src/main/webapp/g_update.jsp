@@ -62,13 +62,13 @@
 				<br>	
 				<div class="form-group">
 					<label class="form-label">관리자 아이디</label>	
-						<input type="text" placeholder="사용자아이디를 입력하세요." class="form-input" value="${gdto.g_user_id}" readonly maxlength="100">
+						<input type="text" placeholder="사용자아이디를 입력하세요." class="form-input" name="g_user_id" value="${gdto.g_user_id}" readonly maxlength="100">
 				</div>	
 				<br>
 				<br>		
 				<div class="form-group1">
 					<label class="form-label1">모임명</label>	
-						<input type="text" placeholder="모임명을 수정하세요."  class="form-input1" value="${gdto.g_name }" maxlength="100">
+						<input type="text" placeholder="모임명을 수정하세요."  class="form-input1" name="g_name" value="${gdto.g_name }" maxlength="100">
 				</div>	
 				<br>
 				<br>
@@ -76,7 +76,7 @@
 					<label class="form-label2">지역</label>
 					<br>
 						<div class="select1">
-					 		<input type="text" id="location-text" name="location-text" value="${gdto.g_local }" placeholder="지역을 다시 선택하세요.">
+					 		<input type="text" id="location-text" name="g_local" value="${gdto.g_local}" placeholder="지역을 다시 선택하세요.">
 					 	<br>
 					 	<script>
 					 	 	$(function(){
@@ -131,14 +131,14 @@
 				<br>
 				<div class="form-group4">
 					<label class="form-label4">모임정원수</label>
-						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:30)"  class="form-input4" value="${gdto.g_member_cnt }" maxlength="30">		
+						 <input type="text" placeholder="인원수를 다시 입력하세요.(예시:30)"  class="form-input4" name="g_member_cnt" value="${gdto.g_member_cnt }" maxlength="30">		
 				</div>
 				<br>
 				<br>
 				<div class="form-group5">
 					<label class="form-label5">이미지수정</label>	
 					<br>
-						<input type="file" id="id" accept="images/*" value="${gdto.g_file }"  onchange="setThumbnail(event);">
+						<input type="file" id="id" accept="images/*" name="g_file" value="upload=${gdto.g_file}"  onchange="setThumbnail(event);">
 							<%-- <div class="image_container">
 							  <c:if test="${bdto2.g_file != null }">
 			       				<img src="upload/${bdto2.g_file}">
@@ -171,9 +171,9 @@
 					<label class="form-label6">상세정보수정</label>	
 				<br>
 					<label class="form-label6">짧은소개글</label>
-					<textarea rows="3" cols="60" id="textarea">${gdto.g_intro }</textarea>	
+					<textarea rows="3" cols="60" id="textarea" name="g_intro">${gdto.g_intro }</textarea>	
 					<label class="form-label6">긴소개글</label>
-					<textarea rows="6" cols="60" id="textarea">${gdto.g_content }</textarea>	
+					<textarea rows="6" cols="60" id="textarea" name="g_content">${gdto.g_content }</textarea>	
 				</div>
 				<div></div>
 				<br>
@@ -187,7 +187,7 @@
 				<br>
 			<div class="form-group7">
 				<label class="form-label7">개설일</label>
-				 	<input type="text" placeholder="YY/MM/DD(예시:23/12/01)" value="${gdto.g_date}"  class="form-input7" maxlength="30"> 		
+				 	<input type="text" placeholder="YY/MM/DD(예시:23/12/01)" name="g_date" value="${gdto.g_date}"  class="form-input7" maxlength="30"> 		
 			</div>
 			<br>
 			<br>
@@ -203,25 +203,25 @@
 						</dt>
 						<dd>
 							<ul>
-								<input type="checkbox" name="category" id="culture" value="culture" <c:if test="${fn:contains(gdto.g_category,'culture')}">checked</c:if> >
+								<input type="checkbox" id="culture" value="culture" name="g_category" <c:if test="${fn:contains(gdto.g_category,'culture')}">checked</c:if> >
 								<label for="culture">문화/예술</label>&nbsp&nbsp&nbsp&nbsp
-								<input type="checkbox" name="category" id="activity" value="activity" <c:if test="${fn:contains(gdto.g_category,'activity')}">checked</c:if> >
+								<input type="checkbox" id="activity" value="activity" name="g_category" <c:if test="${fn:contains(gdto.g_category,'activity')}">checked</c:if> >
 								<label for="activity">액티비티</label>&nbsp&nbsp
-								<input type="checkbox" name="category" id="food" value="food" <c:if test="${fn:contains(gdto.g_category,'food')}">checked</c:if> >
+								<input type="checkbox" id="food" value="food" name="g_category" <c:if test="${fn:contains(gdto.g_category,'food')}">checked</c:if> >
 								<label for="food">푸드/드링크</label>&nbsp
-								<input type="checkbox" name="category" id="investment" value="investment" <c:if test="${fn:contains(gdto.g_category,'investment')}">checked</c:if> >
+								<input type="checkbox" id="investment" value="investment" name="g_category" <c:if test="${fn:contains(gdto.g_category,'investment')}">checked</c:if> >
 								<label for="investment">재테크</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-								<input type="checkbox" name="category" id="hobby" value="hobby" <c:if test="${fn:contains(gdto.g_category,'hobby')}">checked</c:if> >
+								<input type="checkbox" id="hobby" value="hobby" name="g_category" <c:if test="${fn:contains(gdto.g_category,'hobby')}">checked</c:if> >
 								<label for="hobby">취미</label><br>
-								<input type="checkbox" name="category" id="party" value="party" <c:if test="${fn:contains(gdto.g_category,'party')}">checked</c:if> >
+								<input type="checkbox" id="party" value="party" name="g_category" <c:if test="${fn:contains(gdto.g_category,'party')}">checked</c:if> >
 								<label for="party">파티/소개팅</label>
-								<input type="checkbox" name="category" id="trip" value="trip" <c:if test="${fn:contains(gdto.g_category,'trip')}">checked</c:if> >
+								<input type="checkbox" id="trip" value="trip" name="g_category" <c:if test="${fn:contains(gdto.g_category,'trip')}">checked</c:if> >
 								<label for="trip">여행/동행</label>
-								<input type="checkbox" name="category" id="develop" value="develop" <c:if test="${fn:contains(gdto.g_category,'develop')}">checked</c:if> >
+								<input type="checkbox" id="develop" value="develop" name="g_category" <c:if test="${fn:contains(gdto.g_category,'develop')}">checked</c:if> >
 								<label for="develop">자기계발</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp	
-								<input type="checkbox" name="category" id="amity" value="amity" <c:if test="${fn:contains(gdto.g_category,'amity')}">checked</c:if> >
+								<input type="checkbox" id="amity" value="amity" name="g_category" <c:if test="${fn:contains(gdto.g_category,'amity')}">checked</c:if> >
 								<label for="amity">동네/친목</label>
-								<input type="checkbox" name="category" id="language" value="language" <c:if test="${fn:contains(gdto.g_category,'language')}">checked</c:if> >
+								<input type="checkbox" id="language" value="language" name="g_category" <c:if test="${fn:contains(gdto.g_category,'language')}">checked</c:if> >
 								<label for="language">외국어</label>
 							</ul>
 						</dd>
