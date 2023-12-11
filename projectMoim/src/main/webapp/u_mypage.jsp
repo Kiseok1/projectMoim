@@ -15,8 +15,8 @@
 			img{width:50px; height: 50px; border-radius: 20%;}
 			#g_content{diplay:-webkit-box; -webkit-box-orient:vertical; word-wrap:break-word; -webkit-line-camp:2; overflow:hidden; text-overflow: ellipsis;
 					white-space: nowrap; width:1000px; height:50px; font-size: 16px; color:black;}	
-			
 		</style>
+		
 	</head>
 	<body>
 		<div id="header"></div>

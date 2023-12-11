@@ -44,17 +44,7 @@
 				    }).open();
 					
 				 });
-			 		//회원정보 1명 검색 가져오기
-			 		$("#insertBtn").click(function(){
-			 			if($("#id").val()==""){
-			 				alert("아이디를 입력하세요!");
-			 				$("#id").focus();
-			    			return false;
-			 			}else{
-			 				alert("회원정보를 불러옵니다!");
-			 			}
-			 			lfrm.submit();
-			 		});
+			 		
 			 });
 			 
 			</script>
@@ -64,7 +54,7 @@
 						<p class="page-title">모임정보수정</p> 
 				<br>
 				
-				<form action="doG_update.do" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
+				<form action="doG_update.do?g_id=${gdto.g_id}" name="lfrm" class="innerbox" method="post" enctype="multipart/form-data">
 					<div class="toast">
 						<a href="https://https://www.notion.so/Project-1-d3dbad96ba6a4df498ae5eb0abe7927f" class="aa" target="blank">모임개설가이드</a>
 					</div>
@@ -104,8 +94,7 @@
 					 		});
 					 	</script>
 							<select id="location">
-								<option value="seoul" selected>지역</option>
-								<option value="서울">서울</option>
+								<option value="서울" selected>서울</option>
 								<option value="부산">부산</option>
 								<option value="인천">인천</option>
 								<option value="대구">대구</option>

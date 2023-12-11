@@ -9,7 +9,7 @@
 	<body>
 		<script>
 			alert("모임을 개설했습니다.")
-			location.href="main.do"
+			location.href="g_main.do"
 		</script>
 	</body>
 </html>

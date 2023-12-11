@@ -55,7 +55,7 @@
 			<div>
 				<div class="mwrite">
 					<div style="width: 80px">받는 사람</div>
-					<div><input type="text" name="recvId" id="recvId" placeholder="받는 사람의 ID를 입력하세요"></div>
+					<div><input type="text" name="recvId" id="recvId" placeholder="받는 사람의 ID를 입력하세요" value="${param.recvId}"></div>
 				</div>															
 				<div class="mcontent" >
 					<textarea rows="14" cols="45" id="mcontent" name="mcontent"></textarea>

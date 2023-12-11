@@ -24,7 +24,7 @@ public class GroupDao {
 	ApproveDto adto = null;
 	ArrayList<GroupDto> list = new ArrayList<GroupDto>();
 	ArrayList<ApproveDto> listA = new ArrayList<ApproveDto>();
-	int g_id,g_member_cnt,a_no,status,result;
+	int g_id,g_member_cnt,a_no,status,result,likeCount,myLikeStatus,count;
 	String g_id1;
 	String g_name,g_intro,g_content,g_local,g_category,g_file,g_user_id,g_member_id,u_id,query="";
 	Timestamp g_date,apply_date,approve_date;
@@ -357,7 +357,7 @@ public class GroupDao {
 	public void approveConfirm(String a_nos) {
 		try {
 			conn=getConnection();
-			query="update approves set status=1 where a_no=?";
+			query="update approves set status=1, approve_date=sysdate where a_no=?";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, a_nos);
 			result=pstmt.executeUpdate();
@@ -510,6 +510,128 @@ public class GroupDao {
 		}//
 		return g_id1;
 	}
+
+	//가입대기중 확인하기
+	public int selectApproveStatus(String id2, String g_id2) {
+		try {
+			conn=getConnection();
+			query="select * from approves where u_id=? and g_id=? and status=0";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1,id2);
+			pstmt.setString(2,g_id2);
+			rs=pstmt.executeQuery();
+			status=100;
+			if(rs.next()) {
+				status=rs.getInt("status");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return status;
+	}//selectApproveStatus
+
+
+	//좋아요 카운트 - select
+	public int likeCount(String g_id2) {
+		try {
+			conn=getConnection();
+			query="select count(*) likeCount from likes where g_id=? and like_status=1";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, g_id2);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				likeCount=rs.getInt("likeCount");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return likeCount;
+	}//likeCount
+
+	//나의 좋아요 상태
+	public int myLikeStatus(String id, String g_id2) {
+		try {
+			conn=getConnection();
+			query="select * from likes where u_id=? and g_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, g_id2);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				myLikeStatus=rs.getInt("like_status");
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return myLikeStatus;
+	}//myLikeStatus
+
+
+	//likeStatus update
+	public int likeStatusUpdate(String u_id2, int g_id2, int like_status) {
+		try {
+			conn=getConnection();
+			//유저가 좋아요 누른적이 있는지 체크
+			query="select count(*) count from likes where g_id=? and u_id=?";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1, g_id2);
+			pstmt.setString(2, u_id2);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt("count");
+			}
+			if(count==0) {
+				//최초 좋아요
+				query="insert into likes values (likes_seq.nextval,?,?,?)";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, g_id2);
+				pstmt.setString(2, u_id2);
+				pstmt.setInt(3, like_status);
+				pstmt.executeUpdate();
+			} else {
+				//좋아요 누른적이 있는 경우
+				query="update likes set like_status=? where g_id=? and u_id=?";
+				pstmt=conn.prepareStatement(query);
+				pstmt.setInt(1, like_status);
+				pstmt.setInt(2, g_id2);
+				pstmt.setString(3, u_id2);
+				pstmt.executeUpdate();
+			}
+			
+			//좋아요 전체개수 가져오기
+			g_id1=""+g_id2;
+			myLikeStatus=likeCount(g_id1);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close();
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}//
+		return myLikeStatus;
+	}//likeStatusUpdate
 
 	
 }
