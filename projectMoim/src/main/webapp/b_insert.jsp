@@ -54,10 +54,10 @@ margin-right:auto; line-height: 40px;
 		</head>
 	<body>
 		<section>
-		<h1>ㅁㅁ소모임 게시판 </h1>
+		<h1>${session_gname} 게시판 </h1>
 		<table>
 		<form action="do_insert.do" name="insertFrm" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="g_id" value="${session_gid}">
+		
 		<p class="titleCon">
 			<tr>
 				<th><strong>제목</strong>|</th>
@@ -83,7 +83,7 @@ margin-right:auto; line-height: 40px;
 			
 			<button type="button" class="cancel">취소</button>
 			<button type="button" class="write">작성완료</button>
-			<button type="button" class="notice">공지작성</button>
+			<!-- <button type="button" class="notice">공지작성</button> -->
 		</form>
 			
 			

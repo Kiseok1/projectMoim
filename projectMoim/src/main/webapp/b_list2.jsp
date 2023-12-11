@@ -72,7 +72,7 @@ select, div, button {
 	$(function(){
 		$("#wBtn").click(function(){
 			alert("글을 작성합니다.");
-			location.href="b_freeinsert.do";
+			location.href="b_insert.do";
 		});
 		$("#sBtn").click(function(){
 	if($("#sword").val()=="") {
@@ -83,9 +83,10 @@ select, div, button {
 		searchFrm.submit();
 		});//sBtn
 		$("#lBtn").click(function(){
-			alert("게시판의 1페이지로 돌아갑니다.")
-			location.href="b_list.do";
+			alert("자유게시판으로 이동합니다.")
+			location.href="b_freelist.do";
 		});//
+		
 		$("#community").change(function(){
 			if($("#community").val()=="specific"){
 				$("#class").css("display","inline-block");
@@ -105,8 +106,9 @@ select, div, button {
 </head>
 <body>
 	<section>
-		<h1><div>${param.g_name}</div>자유 게시판 </h1>
-		<div>
+	<div id="header"></div>
+		<h1>${session_gname} 게시판</h1>
+		<!-- <div>
 		<select name="community" id="community">
 			<option value="specific">모임별</option>
 			<option value="announcement">공지사항</option>
@@ -118,9 +120,9 @@ select, div, button {
 			<option value="baskball">농구</option>
 			<option value="swim">수영</option>
 		</select>
-		</div>
+		</div> -->
 		<div class="wrapper">
-		<form action="b_freelist.do" name="searchFrm" method="post">
+		<form action="b_list.do" name="searchFrm" method="post">
 		<select name="category" id="category">
 			<option value="all">전체</option>
 			<option value="btitle">제목</option>
@@ -155,18 +157,18 @@ select, div, button {
 					<td>${bdto.b_no}</td>
 					<td>
 					<c:forEach var="c" begin="1" end="${bdto.b_indent}" step="1">└</c:forEach>
-					<a href="b_freeview.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}">${bdto.b_title }</a></td>
+					<a href="b_view.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}">${bdto.b_title }</a></td>
 					<td>${bdto.u_nicname }</td>
-					<td><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM//dd"/></td>
+					<td><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/></td>
 					<td>${bdto.b_hit}</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		 <ul class="page-num">
-	     <a href="b_freelist.do?page=1&category=${category}&sword=${sword}"><li class="first"><img src="images/paging_first.png"></li></a>
+	     <a href="b_list.do?page=1&category=${category}&sword=${sword}"><li class="first"><img src="images/paging_first.png"></li></a>
 	    <c:if test="${page>1}">
-	      	<a href="b_freelist.do?page=${page-1}&category=${category}&sword=${sword}"><li class="prev"><img src="images/paging_prev.png"></li></a>
+	      	<a href="b_list.do?page=${page-1}&category=${category}&sword=${sword}"><li class="prev"><img src="images/paging_prev.png"></li></a>
 	     </c:if>
 	     <c:if test="${page<=1}">
 	      	<li class="prev"><img src="images/paging_prev.png"></li>
@@ -176,23 +178,29 @@ select, div, button {
 	      <li class="num txtOn">${n}</li>
 	     </c:if>
 	     <c:if test="${page!=n}">
-	      <a href="b_freelist.do?page=${n}&category=${category}&sword=${sword}"><li class="num">${n}</li></a>
+	      <a href="b_list.do?page=${n}&category=${category}&sword=${sword}"><li class="num">${n}</li></a>
 	     </c:if>
 	     </c:forEach>
 	     <c:if test="${page<maxPage}"> 
-	      <a href="b_freelist.do?page=${page+1}&category=${category}&sword=${sword}"><li class="next"><img src="images/paging_next.png"></li></a>
+	      <a href="b_list.do?page=${page+1}&category=${category}&sword=${sword}"><li class="next"><img src="images/paging_next.png"></li></a>
 	     </c:if>
 	     <c:if test="${page>=maxPage}"> 
 	      <li class="next"><img src="images/paging_next.png"></li>
 	     </c:if>
-	      <a href="b_freelist.do?page=${maxPage}&category=${category}&sword=${sword}"><li class="last"><img src="images/paging_last.png"></li></a>
+	      <a href="b_list.do?page=${maxPage}&category=${category}&sword=${sword}"><li class="last"><img src="images/paging_last.png"></li></a>
 	    </ul>
 	
 		
 		
 		<button type="button" id="wBtn">쓰기</button>
-		<button type="button" id="lBtn">게시판으로</button>
+		<!-- <button type="button" id="lBtn">자유게시판</button> -->
 	</section>
-
+	<script>
+		$(function(){
+			$("#header").load("header.jsp");
+			
+		})
+	</script>
 </body>
+	
 </html>

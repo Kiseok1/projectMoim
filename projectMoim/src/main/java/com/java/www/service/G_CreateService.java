@@ -26,10 +26,10 @@ public class G_CreateService implements Service {
 	
 		try {
 		MultipartRequest multi = new MultipartRequest(request,upload,size,"utf-8",new DefaultFileRenamePolicy());	
-		String g_id = (String)session.getAttribute("session_g_id");
+		//String g_id = (String)session.getAttribute("session_g_id");
 		//String g_id = multi.getParameter("g_id");
-		session.setAttribute("session_g_id", g_id);
-		System.out.println("g_id: "+g_id);
+		//session.setAttribute("session_g_id", g_id);
+		//System.out.println("g_id: "+g_id);
 		String g_name = multi.getParameter("g_name");
 		String g_intro = multi.getParameter("g_intro");
 		String g_content = multi.getParameter("g_content");
@@ -50,7 +50,7 @@ public class G_CreateService implements Service {
 			if(tempfile !=null) g_file = tempfile;
 		}
 		
-		GroupDto gdto = new GroupDto(g_id, g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id);
+		GroupDto gdto = new GroupDto(g_name, g_intro, g_content, g_local, g_category, g_file, g_user_id, g_member_id);
 		gdao = new GroupDao();
 		int result = gdao.g_create(gdto);
 		request.setAttribute("result", result);

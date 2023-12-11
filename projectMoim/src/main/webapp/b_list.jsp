@@ -9,12 +9,13 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
 <style>
 *{margin:0; padding: 0;}
-h1{margin:30px auto;}
+h2{margin:30px auto;}
 section{text-align: center;}
-table{width:96%; margin-top:100px; margin-left:auto; 
+table{width:96%; margin-top:30px; margin-left:auto; 
 margin-right:auto; line-height: 40px;
  border-collapse: collapse; border: 1px solid silver;
   border-top: 2px solid black;}
@@ -28,7 +29,6 @@ margin-right:auto; line-height: 40px;
  .page-num {
   margin-top: 15px;
 }
-
 .page-num li {
   display:inline-block;
   width: 36px;
@@ -37,17 +37,12 @@ margin-right:auto; line-height: 40px;
   border: 1px #989898 solid;
 
 }
-
-
 .num {
   position: relative;
-  top: -15px;
+  top: -3px;
   height: 33px !important;
   
 }
-
-
-
 .wrapper {
     display: flex;
     justify-content: center;
@@ -105,9 +100,10 @@ select, div, button {
 </script>
 </head>
 <body>
+	<div id="header"></div>
 	<section>
-		<h1><div>${param.g_name}</div>소모임 게시판 </h1>
-		<div>
+		<h2>${session_gname} 게시판</h2>
+		<!-- <div>
 		<select name="community" id="community">
 			<option value="specific">모임별</option>
 			<option value="announcement">공지사항</option>
@@ -119,7 +115,7 @@ select, div, button {
 			<option value="baskball">농구</option>
 			<option value="swim">수영</option>
 		</select>
-		</div>
+		</div> -->
 		<div class="wrapper">
 		<form action="b_list.do" name="searchFrm" method="post">
 		<select name="category" id="category">
@@ -158,7 +154,7 @@ select, div, button {
 					<c:forEach var="c" begin="1" end="${bdto.b_indent}" step="1">└</c:forEach>
 					<a href="b_view.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}">${bdto.b_title }</a></td>
 					<td>${bdto.u_nicname }</td>
-					<td><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM//dd"/></td>
+					<td><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/></td>
 					<td>${bdto.b_hit}</td>
 				</tr>
 				</c:forEach>
@@ -192,8 +188,14 @@ select, div, button {
 		
 		
 		<button type="button" id="wBtn">쓰기</button>
-		<button type="button" id="lBtn">자유게시판</button>
+		<!-- <button type="button" id="lBtn">자유게시판</button> -->
 	</section>
-
+	<script>
+		$(function(){
+			$("#header").load("header.jsp");
+			
+		})
+	</script>
 </body>
+	
 </html>

@@ -46,33 +46,33 @@ public class BoardDao {
 		try {
 			conn = getConnection();
 			if(category==null) {
-				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from boards a) where rnum between ? and ? and g_id = ?";
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from boards a where g_id=?) where rnum between ? and ?";
 				pstmt = conn.prepareStatement(query);
-				pstmt.setInt(1, startRow);
-				pstmt.setInt(2, endRow);
-				pstmt.setString(3, g_id);
+				pstmt.setString(1, g_id);
+				pstmt.setInt(2, startRow);
+				pstmt.setInt(3, endRow);
 			}else if(category.equals("all")) {
-				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from boards a where b_title like  '%'||?||'%' or b_content like '%'||?||'%')where rnum between ? and ? and g_id =?";
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from (select * from boards where g_id=?) a where b_title like  '%'||?||'%' or b_content like '%'||?||'%' )where rnum between ? and ?";
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, sword);
+				pstmt.setString(1, g_id);
+				pstmt.setString(2, sword);
+				pstmt.setString(3, sword);
+				pstmt.setInt(4, startRow);
+				pstmt.setInt(5, endRow);
+			}else if(category.equals("btitle")) {
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from (select * from boards where g_id=?) a where b_title like  '%'||?||'%')where rnum between ? and ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, g_id);
 				pstmt.setString(2, sword);
 				pstmt.setInt(3, startRow);
 				pstmt.setInt(4, endRow);
-				pstmt.setString(5, g_id);
-			}else if(category.equals("btitle")) {
-				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from boards a where b_title like  '%'||?||'%') where rnum between ? and ? and g_id =?";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, sword);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, endRow);
-				pstmt.setString(4, g_id);
 			}else {
-				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from boards a where b_content like '%'||?||'%')where rnum between ? and ? and g_id =?";
+				query = "select * from (select row_number() over(order by b_group desc, b_step asc) rnum, a.* from (select * from boards where g_id=?) a where b_content like  '%'||?||'%')where rnum between ? and ?";
 				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, sword);
-				pstmt.setInt(2, startRow);
-				pstmt.setInt(3, endRow);
-				pstmt.setString(4, g_id);
+				pstmt.setString(1, g_id);
+				pstmt.setString(2, sword);
+				pstmt.setInt(3, startRow);
+				pstmt.setInt(4, endRow);
 			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -119,13 +119,14 @@ public class BoardDao {
 				b_content = rs.getString("b_content");
 				u_nicname = rs.getString("u_nickname");
 				g_id = rs.getString("g_id");
+				u_id = rs.getString("u_id");
 				b_group = rs.getInt("b_group");
 				b_step = rs.getInt("b_step");
 				b_indent = rs.getInt("b_indent");
 				b_hit = rs.getInt("b_hit");
 				b_file = rs.getString("b_file");
 				b_date = rs.getTimestamp("b_date");
-				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
+				bdto = new BoardDto(b_no, b_title, b_content, u_nicname, g_id, u_id, b_group, b_step, b_indent, b_hit, b_file, b_date);
 			}
 			
 		} catch (Exception e) {

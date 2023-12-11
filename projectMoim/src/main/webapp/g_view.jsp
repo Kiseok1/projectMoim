@@ -205,7 +205,7 @@
 
 			<h5 style="margin-top: 10px;"><a href="b_list.do?g_id=${gdto.g_id}&g_name=${gdto.g_name}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp&nbsp&nbsp게시판</a></h5>	
 
-			<h5><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp&nbsp&nbsp사진첩</a></h5>	
+			<!-- <h5><a href="#"><i class="fa fa-picture-o" aria-hidden="true"></i>&nbsp&nbsp&nbsp사진첩</a></h5>	 -->
 			<h5 id="qBtn" style="cursor: pointer;"><i class="fa fa-times" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp탈퇴</h5>
 			</c:if>
 			<!-- 운영자 -->
@@ -226,11 +226,11 @@
 			<h5 id="jBtn" style="cursor: pointer;"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp&nbsp&nbsp&nbsp&nbsp가입 신청</h5>
 			</c:if>
 		</div>
-		
+		<div style="margin-top: 130px;"></div>
 		<div class="popup">
 			<table>
 				<tr><td target="_blank" id='sendMsg' onclick="msgPop()">쪽지 보내기</td></tr>
-				<tr><td>작성글 보기</td></tr>
+				<!-- <tr><td>작성글 보기</td></tr> -->
 			</table>
 		</div>
 		

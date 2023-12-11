@@ -34,7 +34,7 @@
     <div class="header-inner">
       <div class="header-container container-lg">
         <h1 class="header-title">
-          <a href="javascript:void(0)">
+          <a href="g_main.do">
             <img src="resources/images/img_logo_black.png" alt="로고">
           </a>
         </h1>

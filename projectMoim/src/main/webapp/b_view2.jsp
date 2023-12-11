@@ -6,7 +6,7 @@
 <html>
 <style>
 h1{text-align: center; margin-top: 10px;}
-table{width:50%; margin-top:30px; margin-left:auto; 
+#view_table{width:60%; margin-top:30px; margin-left:auto; 
 margin-right:auto; line-height: 40px;
  border-collapse: collapse; border: 1px solid silver;
   border-top: 2px solid black;}
@@ -30,73 +30,72 @@ margin-right:auto; line-height: 40px;
 		<title>게시글</title>
 	</head>
 	<body>
-		
+		<div id="header"></div>
 		<section>
 		<h1>소모임 게시판 </h1>
-		<table>
+		<table id="view_table" style="border-width: 1;">
+			<%-- <colgroup>
+				<col width=80%>
+				<col width=10%>
+				<col width=10%>
+			</colgroup> --%>
 			<tr>
-				<td><strong>제목</strong><span> | </span>${bdto.b_title}</td>
+				<th style="font-size: 25px;">&nbsp&nbsp&nbsp&nbsp&nbsp${bdto.b_title}</th>
 			</tr>
-			<%-- <tr>
-				<td><strong>그룹번호</strong><span>|</span>${bdto.g_id}</td>
-			</tr> --%>
-			<tr>
-				<td><strong>날짜</strong><span> | </span><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/></td>
-			</tr>
-			<tr>
-				<td><strong>작성자</strong><span> | </span>${bdto.u_nicname}(${bdto.u_id})</td>
+			<tr style="text-align: right;">
+				<td><fmt:formatDate value="${bdto.b_date}" pattern="yyyy/MM/dd"/><span>  |  </span>${bdto.u_nicname}&nbsp&nbsp&nbsp&nbsp</td>
 			</tr>
 			<tr>
 				<td id="b_contents">
-					${bdto.b_content}
+					&nbsp&nbsp&nbsp&nbsp&nbsp${bdto.b_content}
 				</td>
 			</tr>
 			<tr class="files">
 			<c:if test="${bdto.b_file==null}">
-			<td class="imgbox">
-			 첨부된 파일이 없습니다.
-				</td>
+				<!-- <td class="imgbox">
+					 첨부된 파일이 없습니다.
+				</td> -->
 			</c:if>
 			<c:if test="${bdto.b_file!=null}">
-				<td class="imgbox">
+				<td class="imgbox" style="text-align: center;">
 					<img src="upload/${bdto.b_file}">
 				</td>
 			</c:if>
 			</tr>
 			<tr>
 				<c:if test="${preDto==null}">
-				<td><strong>이전글</strong><span> | </span>
+				<td><strong>&nbsp&nbsp&nbsp&nbsp&nbsp이전글</strong><span> | </span>
 				이전글이 없습니다.</td>
 				</c:if>
 				<c:if test="${preDto!=null}">
-				<td><strong>이전글</strong><span> | </span>
+				<td><strong>&nbsp&nbsp&nbsp&nbsp&nbsp이전글</strong><span> | </span>
 				<a href="b_view.do?page=${page}&b_no=${preDto.b_no}&category=${category}&sword=${sword}">${preDto.b_title}</a></td>
 				</c:if>
 			</tr>
 			<tr>
 			<c:if test="${nextDto==null}">
-				<td><strong>다음글</strong><span> | </span>
+				<td><strong>&nbsp&nbsp&nbsp&nbsp&nbsp다음글</strong><span> | </span>
 				다음글이 없습니다.</td>
 			</c:if>
 			<c:if test="${nextDto!=null}">
-				<td><strong>다음글</strong><span> | </span>
+				<td><strong>&nbsp&nbsp&nbsp&nbsp&nbsp다음글</strong><span> | </span>
 			<a href="b_view.do?page=${page}&b_no=${nextDto.b_no}&category=${category}&sword=${sword}">${nextDto.b_title}</a></td>
 			</c:if>
 			</tr>
 			
 		</table>
-		<tr>
-			<a href="b_list.do?page=${page}&category=${category}&sword=${sword}"><button type="button">게시판</button></a>
-		</tr>
-		<tr>
-			<a href="b_reply.do?page=${page}&b_no=${bdto.b_no}&b_no=${bdto.b_no}&category=${category}&sword=${sword}&gid=${bdto.g_id}"><button type="button">답글달기</button></a>
-		</tr>
-		<tr>
-			<button type="button" id="deleteBtn">삭제</button>
-		</tr>
-		<tr>
-			<a href="b_update.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}"><button type="button">글수정</button></a>
-		</tr>
+			<div style="display: inline-block; position:relative; top:10px; left: 1310px; " >
+				<div style="border: 1px solid gray; display: inline-block;"><a href="b_list.do?page=${page}&category=${category}&sword=${sword}">모임 게시판</a></div>
+				<div style="border: 1px solid gray; display: inline-block;"><a href="b_reply.do?page=${page}&b_no=${bdto.b_no}&b_no=${bdto.b_no}&category=${category}&sword=${sword}&gid=${bdto.g_id}">답글달기</a></div>
+				<div style="border: 1px solid gray; display: inline-block; cursor: pointer;" id="deleteBtn">삭제</div>
+				<div style="border: 1px solid gray; display: inline-block;"><a href="b_update.do?page=${page}&b_no=${bdto.b_no}&category=${category}&sword=${sword}">글수정</a></div>
+			</div>
+		
 	</body>
-	
+	<script>
+		$(function(){
+			$("#header").load("header.jsp");
+			
+		})
+	</script>
 </html>

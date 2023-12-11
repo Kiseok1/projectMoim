@@ -217,12 +217,12 @@ public class FController extends HttpServlet {
 		case "/b_view.do":
 			service = new P_SelectOneService();
 			service.execute(request, response);
-			url="b_view.jsp";
+			url="b_view2.jsp";
 			break;		
 		case "/b_freeview.do":
 			service = new P_SelectOneService();
 			service.execute(request, response);
-			url="b_freeview.jsp";
+			url="b_view2.jsp";
 			break;		
 		case "/b_reply.do":
 			service = new P_SelectOneService();

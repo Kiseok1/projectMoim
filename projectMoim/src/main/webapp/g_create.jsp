@@ -44,6 +44,7 @@
 			 });
 			</script>
 			<body>
+				<div id="header"></div>
 				<div class="continer-box">
 					<div class="box-group">
 						<p class="page-title">모임만들기</p> 
@@ -228,4 +229,10 @@
 	</div>
 	
 	</body>
+	<script>
+		$(function(){
+			$("#header").load("header.jsp");
+			
+		})
+	</script>
 </html>

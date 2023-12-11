@@ -76,6 +76,7 @@
 		filter: blur(10px); z-index: 990;
 		}
 	.filterImg{margin-left: 300px;}	
+	
   	
   </style>
 </head>
@@ -92,7 +93,8 @@
 			<input type="text" name="g_srch" id="g_srch" class="search" placeholder="검색어를 입력하세요"> 
 			<input type="button" id="sBtn" value="확인">
 		</form>	
-		<button class="filterImg" id="popupOpen" onclick="popupOpen()" style="margin-top: 5px;">필터이미지</button>
+		<button class="filterImg" id="popupOpen" onclick="popupOpen()" style="margin-top: 5px;">필터</button>
+		
       	<div id="popup">
 		
 		<form name="fFrm" method="post"  action="g_main.do" style="margin-top: -30px;">

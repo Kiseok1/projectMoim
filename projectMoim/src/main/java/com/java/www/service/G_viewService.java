@@ -30,6 +30,7 @@ public class G_viewService implements Service {
 		
 		GroupDao gdao = new GroupDao();
 		GroupDto gdto = gdao.selectOne(g_id);
+		session.setAttribute("session_gname", gdto.getG_name());
 		
 		if(session.getAttribute("session_id")!=null) {
 			id = (String) session.getAttribute("session_id"); 

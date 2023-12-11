@@ -17,6 +17,7 @@ public class P_SelectOneService implements Service {
 		//dao 접근
 		BoardDao bdao = new BoardDao();
 		BoardDto bdto = bdao.selectOne(b_no);
+		System.out.println(bdto.getU_id());
 		//파일이름 추출
 		String uri = request.getRequestURI();
 		String cPath = request.getContextPath();

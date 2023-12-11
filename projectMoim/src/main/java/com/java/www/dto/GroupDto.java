@@ -132,6 +132,19 @@ public class GroupDto {
 	}
 
 
+	public GroupDto(String g_name2, String g_intro2, String g_content2, String g_local2, String g_category2,
+			String g_file2, String g_user_id2, String g_member_id2) {
+		this.g_name = g_name2;
+		this.g_intro = g_intro2;
+		this.g_content = g_content2;
+		this.g_local = g_local2;
+		this.g_category = g_category2;	
+		this.g_file = g_file2;
+		this.g_user_id = g_user_id2;
+		this.g_member_id = g_member_id2;
+	}
+
+
 	private int g_id;
 	private String g_name;
 	private String g_intro;

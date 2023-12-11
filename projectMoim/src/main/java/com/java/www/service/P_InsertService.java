@@ -52,7 +52,6 @@ public class P_InsertService implements Service {
 			}else {
 				result = bdao.insert(bdto);
 			}
-			
 
 			//request 추가
 			request.setAttribute("result", result);
