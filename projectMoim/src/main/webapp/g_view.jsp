@@ -63,7 +63,7 @@
 			<div>
 				<c:forEach	items="${list}" var="u">
 					<c:if test="${admin==u.u_id}">
-						<div class="memImg" style="margin-top: 10px; width:70px;  float: left;" >
+						<div class="memImg" id="${u.u_id}" style="margin-top: 10px; width:70px;  float: left;" >
 							<img src="upload/${u.u_profileImg}" style="width:50px; height:50px; border:2px solid blue; border-radius: 50%;">
 						</div>
 						<div style="margin-top: 10px; vertical-align: middle;">
