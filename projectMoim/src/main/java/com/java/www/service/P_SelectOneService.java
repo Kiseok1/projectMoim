@@ -25,7 +25,7 @@ public class P_SelectOneService implements Service {
 		BoardDto nextDto = null;
 		BoardDto hitDto = null;
 		
-		if(fileName.equals("/b_view.do")) {
+		if(fileName.equals("/b_view.do")||fileName.equals("/b_freeview.do")) {
 			preDto = bdao.preSelectOne(b_no);
 			
 			nextDto = bdao.nextSelectOne(b_no);

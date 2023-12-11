@@ -21,6 +21,7 @@ public class P_ReplyService implements Service {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("session_id");
 		String nicname = (String)session.getAttribute("session_nicname");
+		String g_id = (String)session.getAttribute("session_gid");
 		String b_title ="",b_content="",b_file="";
 		int b_group=0,b_step=0,b_indent=0;
 		//form 데이터 처리 MultiPart
@@ -41,7 +42,7 @@ public class P_ReplyService implements Service {
 				b_file = multi.getFilesystemName(f);
 				
 			}
-			BoardDto bdto = new BoardDto(b_title,b_content,nicname,id,b_group,b_step,b_indent,b_file);
+			BoardDto bdto = new BoardDto(b_title,b_content,nicname,g_id,id,b_group,b_step,b_indent,b_file);
 			//dao 접근 - 게시글 저장 메소드 호출
 			//1. bstep 큰수들을 1씩 증가
 			bdao.stepUp(b_group,b_step);

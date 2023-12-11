@@ -37,6 +37,7 @@ import com.java.www.service.P_InsertService;
 import com.java.www.service.P_ReplyService;
 import com.java.www.service.P_SelectOneService;
 import com.java.www.service.P_UpdateService;
+import com.java.www.service.P_freelistSelectService;
 import com.java.www.service.P_listSelectService;
 
 
@@ -65,6 +66,7 @@ public class FController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String cPath = request.getContextPath();
 		String fileName = uri.substring(cPath.length());
+		
 		System.out.println(fileName);
 		
 		String url = null;
@@ -81,11 +83,22 @@ public class FController extends HttpServlet {
 		case "/b_insert.do":
 			response.sendRedirect("b_insert.jsp");
 			break;
+		case "/b_freeinsert.do":
+			response.sendRedirect("b_freeinsert.jsp");
+			break;
+		case "/b_notice.do":
+			response.sendRedirect("b_notice.jsp");
+			break;
 		case "/dologin.do":
 			service = new U_LoginService();
 			service.execute(request, response);
 			url="dologin.jsp";
 			break;		
+		case "/do_notice.do":
+			service = new P_InsertService();
+			service.execute(request, response);
+			url="do_notice.jsp";
+			break;
 		case "/u_logout.do":
 			response.sendRedirect("u_logout.jsp");
 			break;
@@ -196,10 +209,20 @@ public class FController extends HttpServlet {
 			service.execute(request, response);
 			url="b_list.jsp";
 			break;		
+		case "/b_freelist.do":
+			service = new P_freelistSelectService();
+			service.execute(request, response);
+			url="b_freelist.jsp";
+			break;		
 		case "/b_view.do":
 			service = new P_SelectOneService();
 			service.execute(request, response);
 			url="b_view.jsp";
+			break;		
+		case "/b_freeview.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_freeview.jsp";
 			break;		
 		case "/b_reply.do":
 			service = new P_SelectOneService();
@@ -212,14 +235,25 @@ public class FController extends HttpServlet {
 			url="do_Reply.jsp";
 			break;
 		case "/do_insert.do":
+			System.out.println("Fcontroller g_id :"+request.getParameter("g_id"));
 			service = new P_InsertService();
 			service.execute(request, response);
 			url="do_insert.jsp";
+			break;
+		case "/do_freeinsert.do":
+			service = new P_InsertService();
+			service.execute(request, response);
+			url="do_freeinsert.jsp";
 			break;
 		case "/do_update.do":
 			service = new P_UpdateService(); //아이디 사용 
 			service.execute(request, response);
 			url="do_update.jsp";
+			break;		
+		case "/do_freeupdate.do":
+			service = new P_UpdateService(); //아이디 사용 
+			service.execute(request, response);
+			url="do_freeupdate.jsp";
 			break;		
 		case "/g_create.do":
 			url = "g_create.jsp";
@@ -257,6 +291,11 @@ public class FController extends HttpServlet {
 			service = new P_SelectOneService();
 			service.execute(request, response);
 			url="b_update.jsp";
+			break;		
+		case "/b_freeupdate.do":
+			service = new P_SelectOneService();
+			service.execute(request, response);
+			url="b_freeupdate.jsp";
 			break;		
 		}
 		

@@ -25,8 +25,14 @@ public class P_InsertService implements Service {
 		//form데이터 처리 Multipart
 		String upload = "c:/upload";
 		int size = 10*1024*1024;
-		
-		String g_id = (String) session.getAttribute("session_gid");
+		int result = 0;
+		//그룹별 분류 변수
+		String g_id = (String)session.getAttribute("session_gid");
+		System.out.println("insert service : "+g_id);
+		//파일이름 추출
+		String uri = request.getRequestURI();
+		String cPath = request.getContextPath();
+		String fileName = uri.substring(cPath.length());
 		
 		try {
 			MultipartRequest multi = new MultipartRequest(request, upload,size,"utf-8",new DefaultFileRenamePolicy());
@@ -39,9 +45,15 @@ public class P_InsertService implements Service {
 				b_file = multi.getFilesystemName(f);
 				System.out.println("service bfile : "+b_file);
 			}
-			BoardDto bdto = new BoardDto(b_title,b_content,nicname,id,b_file);
+			BoardDto bdto = new BoardDto(b_title,b_content,nicname,id,b_file,g_id);
 			//dao 접근 - 게시글 저장 메소드 호출
-			int result = bdao.insert(bdto,g_id);
+	if(fileName.equals("/do_freeinsert.do")) {
+				result = bdao.freeinsert(bdto);
+			}else {
+				result = bdao.insert(bdto);
+			}
+			
+
 			//request 추가
 			request.setAttribute("result", result);
 			System.out.println("리턴받은 result의 값 :"+result);

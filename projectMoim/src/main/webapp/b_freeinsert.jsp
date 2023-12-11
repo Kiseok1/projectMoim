@@ -36,7 +36,7 @@ margin-right:auto; line-height: 40px;
 					return false;
 				}
 				
-				insertFrm.submit();
+				freeinsertFrm.submit();
 			
 		});//
 		$(".notice").click(function(){
@@ -56,7 +56,7 @@ margin-right:auto; line-height: 40px;
 		<section>
 		<h1>ㅁㅁ소모임 게시판 </h1>
 		<table>
-		<form action="do_insert.do" name="insertFrm" method="post" enctype="multipart/form-data">
+		<form action="do_freeinsert.do" name="freeinsertFrm" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="g_id" value="${session_gid}">
 		<p class="titleCon">
 			<tr>

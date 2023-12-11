@@ -48,12 +48,13 @@ public class BoardDto {
 	}
 	
 	
-	public BoardDto(String b_title, String b_content,String u_nicname, String u_id,String b_file) {
+	public BoardDto(String b_title, String b_content,String u_nicname, String u_id,String b_file,String g_id) {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.u_nicname = u_nicname;
 		this.u_id = u_id;
 		this.b_file = b_file;
+		this.g_id = g_id;
 	}
 	
 	
@@ -65,15 +66,23 @@ public class BoardDto {
 		this.b_file = b_file;
 		
 	}
-	public BoardDto(String b_title, String b_content,String u_nicname, String u_id, int b_group, int b_step, int b_indent,
+	public BoardDto(String b_title, String b_content,String u_nicname,String g_id, String u_id, int b_group, int b_step, int b_indent,
 			String b_file) {
 		this.b_title = b_title;
 		this.b_content = b_content;
 		this.u_nicname = u_nicname;
+		this.g_id = g_id;
 		this.u_id = u_id;
 		this.b_group = b_group;
 		this.b_step = b_step;
 		this.b_indent = b_indent;
+		this.b_file = b_file;
+	}
+	public BoardDto(String b_title, String b_content,String u_nicname, String u_id,String b_file) {
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.u_nicname = u_nicname;
+		this.u_id = u_id;
 		this.b_file = b_file;
 	}
 	public void setB_no(int b_no) {

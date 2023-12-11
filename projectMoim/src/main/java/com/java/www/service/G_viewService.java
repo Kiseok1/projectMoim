@@ -24,6 +24,9 @@ public class G_viewService implements Service {
 		session.setAttribute("session_gid", g_id);
 		UserDao udao = new UserDao();
 		ArrayList<UserDto> list = new ArrayList<UserDto>();
+		session.setAttribute("session_gid", g_id);
+		System.out.println("service gid : "+session.getAttribute("session_gid"));
+		
 		
 		GroupDao gdao = new GroupDao();
 		GroupDto gdto = gdao.selectOne(g_id);

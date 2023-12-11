@@ -138,7 +138,8 @@
 				<div class="form-group5">
 					<label class="form-label5">이미지수정</label>	
 					<br>
-						<input type="file" id="id" accept="images/*" name="g_file" value="upload=${gdto.g_file}"  onchange="setThumbnail(event);">
+						<input type="file" id="id" accept="images/*" name="g_file" onchange="setThumbnail(event);">
+						<input type="hidden" name="oldfile" value="${gdto.g_file}">
 							<%-- <div class="image_container">
 							  <c:if test="${bdto2.g_file != null }">
 			       				<img src="upload/${bdto2.g_file}">

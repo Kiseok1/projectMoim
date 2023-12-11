@@ -29,21 +29,17 @@ public class G_UpdateService implements Service {
 		try {
 		MultipartRequest multi = new MultipartRequest(request,upload,size,"utf-8",new DefaultFileRenamePolicy());	
 		String g_name = multi.getParameter("g_name");
-		System.out.println("g_updateSErvice : "+g_name);
 		String g_intro = multi.getParameter("g_intro");
-		System.out.println("g_updateSErvice : "+g_intro);
 		String g_content = multi.getParameter("g_content");
-		System.out.println("g_updateSErvice : "+g_content);
 		String g_local = multi.getParameter("g_local");
-		System.out.println("service g_local: "+g_local);
 		String g_category ="";
 		String[] g_categorys = multi.getParameterValues("g_category");
-		System.out.println("array g_categorys: "+Arrays.toString(g_categorys));
+		
 		for(int i=0;i<g_categorys.length;i++) {
 			if(i==0) g_category = g_categorys[i];
 			else g_category += "," + g_categorys[i];
 		}	
-		String g_file = multi.getParameter("g_file");
+		String g_file = multi.getParameter("oldfile");
 		String g_user_id = multi.getParameter("g_user_id");
 		String g_member_id = multi.getParameter("g_member_id");
 		int g_member_cnt = Integer.parseInt(multi.getParameter("g_member_cnt"));
