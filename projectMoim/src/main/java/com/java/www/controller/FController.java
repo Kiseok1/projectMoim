@@ -244,6 +244,9 @@ public class FController extends HttpServlet {
 			service.execute(request, response);
 			url = "g_notice.jsp";
 			break;
+		case "/g_notice_info.do":
+			url = "g_notice_info.jsp";
+			break;
 
 		case "/u_login.do":
 			response.sendRedirect("u_login.jsp");

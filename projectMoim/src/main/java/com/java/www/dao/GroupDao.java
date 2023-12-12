@@ -499,10 +499,10 @@ public class GroupDao {
 	}
 
 	//공지사항정보가져오기
-	public int NselectOne(int l_bno) {
+	public int NselectOne() {
 		try {
 			conn=getConnection();
-			query="select * from groups where l_bno=?";
+			query="select * from groups";
 			pstmt=conn.prepareStatement(query);
 			pstmt.setString(1, l_title);
 			pstmt.setString(2, l_content);
@@ -515,7 +515,7 @@ public class GroupDao {
 				l_content = rs.getString("l_content");
 				l_file = rs.getString("l_file");
 				l_bno =  rs.getInt("l-bno");
-			ndto = new NoticeDto(l_title,l_content,l_file,l_bno);
+			ndto = new NoticeDto(l_title,l_content,l_file);
 			}
 	
 			
@@ -529,6 +529,41 @@ public class GroupDao {
 			} catch (Exception e2) { e2.printStackTrace();}
 		}
 		return result;
-		}	
+		}
+
+
+	public int NselectAll(NoticeDto ndto2) {
+		try {
+			conn=getConnection();
+			//query="select * from (select row_number() over (order by l_bno desc) rnum, a.* from notice a) where rnum between 1 and 10";
+			query = "select * from notice";
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, l_title);
+			pstmt.setString(2, l_content);
+			pstmt.setString(3, l_file);
+			pstmt.setTimestamp(4, l_date);			
+			pstmt.setInt(5, l_bno);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				l_title = rs.getString("l_title");
+				l_content = rs.getString("l_content");
+				l_file = rs.getString("l_file"); 
+				l_file = rs.getString("l-file");
+				l_bno =  rs.getInt("l-bno");
+			NoticeDto ndto = new NoticeDto(l_title,l_content,l_file);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs!=null) rs.close(); 
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null) conn.close();
+			} catch (Exception e2) { e2.printStackTrace();}
+		}
+		return result;
+	}
+
 }
 	

@@ -40,9 +40,9 @@ public class G_NoticeService implements Service {
 			
 			NoticeDto ndto = new NoticeDto(l_title,l_content,l_file,l_bno);
 			GroupDao gdao = new GroupDao();
-			int result = gdao.NselectOne(l_bno);
+			int result = gdao.NselectAll(ndto);
 		
-			request.setAttribute("result", result);
+			request.setAttribute("ndto", ndto);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

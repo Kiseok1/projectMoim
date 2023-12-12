@@ -20,7 +20,7 @@
 			$(function(){
 				 $("#load").click(function(){
 					if(confirm("이전페이지로 가시겠습니까?"))
-					location.href="g_notice.jsp";
+				
 				 }			 
 				 lfrm.submit();
 				 });
@@ -90,7 +90,8 @@
 							</li>					 	
 					 	</ul>
 					 	<p style="padding-top:0px">
-					 		<img class="notice-img"  src="images/*" name="l_file" value="${ndto.l_file }">
+					 		<img class="notice-img"  src="images/${ndto.l_file }" name="l_file">
+					 		
 					 	</p>
 					 	<ul>
 							<li style="padding-top:0px;">
